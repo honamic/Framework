@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Contracts", ""))</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+
+		<ProjectReference Include="..\..\..\src\Core\Commands.Abstractions\Honamic.Framework.Commands.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>
