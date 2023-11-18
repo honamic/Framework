@@ -13,7 +13,7 @@ public class TodoItemQuery : AggregateQueryBase<long>
     public List<TodoItemLogQuery> Logs { get; set; }
 }
 
-public class TodoItemLogQuery : AggregateQueryBase<long>
+public class TodoItemLogQuery : EntityQueryBase<long>
 {
     public long TodoItemRef { get; set; }
 

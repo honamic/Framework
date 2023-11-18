@@ -89,6 +89,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.EntityFra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Todo.Query.EntityFramework", "TodoSample\Infra\Query\Honamic.Todo.Query.EntityFramework.csproj", "{C8271C33-7C40-49CA-B705-6DD2CA2DED89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honamic.Todo.Endpoints.WebApi", "TodoSample\Endpoints\WebApi\Honamic.Todo.Endpoints.WebApi\Honamic.Todo.Endpoints.WebApi.csproj", "{AED57B53-F951-4DE2-9367-18BD2DD063BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +213,10 @@ Global
 		{C8271C33-7C40-49CA-B705-6DD2CA2DED89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8271C33-7C40-49CA-B705-6DD2CA2DED89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8271C33-7C40-49CA-B705-6DD2CA2DED89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AED57B53-F951-4DE2-9367-18BD2DD063BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AED57B53-F951-4DE2-9367-18BD2DD063BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AED57B53-F951-4DE2-9367-18BD2DD063BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AED57B53-F951-4DE2-9367-18BD2DD063BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -257,6 +263,7 @@ Global
 		{C9EAD05B-1BB5-4DD5-8E35-02F8347C5770} = {DFA327E3-7DC5-4DD2-92BD-68313D99D1BD}
 		{966BCC13-B2F1-4871-B689-F4BCE60BB8DB} = {DFA327E3-7DC5-4DD2-92BD-68313D99D1BD}
 		{C8271C33-7C40-49CA-B705-6DD2CA2DED89} = {6C04CBDD-19F9-466E-A579-5ED9BD0056FA}
+		{AED57B53-F951-4DE2-9367-18BD2DD063BB} = {39275E89-52E0-4D1B-ABD5-5A8D334A0A8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E15D83FC-8F5C-4D9C-9DCD-D114F5609922}

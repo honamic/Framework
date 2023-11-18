@@ -10,7 +10,7 @@ using Honamic.Todo.Query.Domain.TodoItems;
 namespace Honamic.Todo.Facade.TodoItems;
 
 [FacadeDynamicAuthorize]
-[DisplayName("نمایش پیامک")]
+[DisplayName("نمایش انجام دادنی ها")]
 public class TodoItemQueryFacade : BaseFacade, ITodoItemQueryFacade
 {
     private readonly ITodoItemQueryRepository _TodoItemQueryRepository;

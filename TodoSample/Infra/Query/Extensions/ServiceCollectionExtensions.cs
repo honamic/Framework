@@ -19,6 +19,7 @@ public static class ServiceCollectionExtensions
             options.AddPersianYeKeCommandInterceptor();
             DebuggerConsoleLog(options);
         });
+
         services.AddTransient<ITodoItemQueryRepository, TodoItemQueryRepository>();
     }
 

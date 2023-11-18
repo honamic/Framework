@@ -8,6 +8,8 @@ namespace Honamic.Todo.Query.EntityFramework;
 public class TodoQueryDbContext : QueryDbContext‌Base
 {
     public DbSet<TodoItemQuery> TodoItems { get; set; }
+    public DbSet<TodoItemLogQuery> TodoItemLogs { get; set; }
+
     public TodoQueryDbContext(DbContextOptions<TodoQueryDbContext> options)
         : base(options)
     {

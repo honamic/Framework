@@ -39,9 +39,9 @@ internal class TodoItemQueryRepository : ITodoItemQueryRepository
             );
         }
 
-
         return query.Select(x => new GetAllTodoItemsQueryResult()
         {
+            Id = x.Id,
             Title = x.Title,
             Content = x.Content,
             Tags = x.Tags,
