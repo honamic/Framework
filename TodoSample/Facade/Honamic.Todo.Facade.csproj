@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\Facade\Default\Honamic.Framework.Facade.csproj" />
+		<ProjectReference Include="..\Core\Application\Honamic.Todo.Application.csproj" />
+		<ProjectReference Include="..\Core\Query\Honamic.Todo.Query.Domain.csproj" />
+		<ProjectReference Include="..\Infra\Persistence\Honamic.Todo.Persistence.EntityFramework.csproj" />
+		<ProjectReference Include="..\Infra\Query\Honamic.Todo.Query.EntityFramework.csproj" />
+	</ItemGroup>
+</Project>

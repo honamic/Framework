@@ -4,7 +4,7 @@ using Honamic.Todo.Query.Domain.TodoItems.Queries;
 
 namespace Honamic.Todo.Query.Domain.TodoItems;
 
-public interface ITodoQueryRepository
+public interface ITodoItemQueryRepository
 {
     Task<GetAllTodoItemsQueryResult> GetAsync(GetAllTodoItemsQueryFilter filter);
 

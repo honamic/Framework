@@ -1,5 +1,4 @@
 ﻿using Honamic.Framework.Domain;
-using Honamic.Todo.Domain.Messages;
 using System.ComponentModel.DataAnnotations;
 
 namespace Honamic.Todo.Domain.TodoItems;
@@ -36,4 +35,6 @@ public class TodoItem : AggregateRoot<long>
     public bool Done { get; set; }
 
     public List<string> Tags { get; set; }
+
+    public List<TodoItemLog> Logs{ get; set; }
 }

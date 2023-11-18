@@ -26,7 +26,6 @@ public static class InterceptorServiceCollectionExtensions
         return optionsBuilder;
     }
 
-
     public static DbContextOptionsBuilder<TContext> AddMarkAsDeletedInterceptors<TContext>(this DbContextOptionsBuilder<TContext> optionsBuilder) where TContext : DbContext
     {
         return optionsBuilder.AddInterceptors(new MarkAsDeletedSaveChangesInterceptor());

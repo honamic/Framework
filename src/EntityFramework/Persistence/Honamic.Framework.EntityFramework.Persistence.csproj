@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+
+		
+
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\core\Domain.Abstractions\Honamic.Framework.Domain.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\core\Events.Abstractions\Honamic.Framework.Events.Abstractions.csproj" />
+	  <ProjectReference Include="..\Default\Honamic.Framework.EntityFramework.csproj" />
+	</ItemGroup>
+
+
+</Project>

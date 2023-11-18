@@ -1,6 +1,6 @@
 ﻿using Honamic.Framework.Domain;
 
-namespace Honamic.Todo.Domain.Messages;
+namespace Honamic.Todo.Domain.TodoItems;
 
 public class TodoItemCreatedEvent : DomainEvent
 {
