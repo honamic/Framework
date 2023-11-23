@@ -4,6 +4,7 @@ using Honamic.Framework.Applications.Extensions;
 using Honamic.Todo.Application.TodoItems.Commands;
 using Honamic.Todo.Application.TodoItems.CommandHandlers;
 using Honamic.Todo.Domain.Extensions;
+using Honamic.Framework.Tools.IdGenerators;
 
 namespace Honamic.Todo.Application.Extensions;
 
@@ -14,6 +15,7 @@ public static class ApplicationServiceCollectionExtensions
         services.AddDefaultApplicationsServices();
         services.AddCommandHandlers();
         services.AddDomainServices();
+        services.AddSnowflakeIdGeneratorServices();
     }
 
     private static void AddCommandHandlers(this IServiceCollection services)

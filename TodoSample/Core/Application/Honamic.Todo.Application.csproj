@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Core\Applications\Honamic.Framework.Applications.csproj" />
+    <ProjectReference Include="..\..\..\src\Tools\Honamic.Framework.Tools.IdGenerators\Honamic.Framework.Tools.IdGenerators.csproj" />
     <ProjectReference Include="..\Application.Contracts\Honamic.Todo.Application.Contracts.csproj" />
     <ProjectReference Include="..\Domain\Honamic.Todo.Domain.csproj" />
   </ItemGroup>

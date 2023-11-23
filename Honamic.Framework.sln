@@ -89,7 +89,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.EntityFra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Todo.Query.EntityFramework", "TodoSample\Infra\Query\Honamic.Todo.Query.EntityFramework.csproj", "{C8271C33-7C40-49CA-B705-6DD2CA2DED89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honamic.Todo.Endpoints.WebApi", "TodoSample\Endpoints\WebApi\Honamic.Todo.Endpoints.WebApi\Honamic.Todo.Endpoints.WebApi.csproj", "{AED57B53-F951-4DE2-9367-18BD2DD063BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Todo.Endpoints.WebApi", "TodoSample\Endpoints\WebApi\Honamic.Todo.Endpoints.WebApi\Honamic.Todo.Endpoints.WebApi.csproj", "{AED57B53-F951-4DE2-9367-18BD2DD063BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{196209A4-3BCC-442B-9686-CF311ADEBF6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honamic.Framework.Tools.IdGenerators", "src\Tools\Honamic.Framework.Tools.IdGenerators\Honamic.Framework.Tools.IdGenerators.csproj", "{462B177A-3E97-4F60-A141-7A01F8B437B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -217,6 +221,10 @@ Global
 		{AED57B53-F951-4DE2-9367-18BD2DD063BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AED57B53-F951-4DE2-9367-18BD2DD063BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AED57B53-F951-4DE2-9367-18BD2DD063BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{462B177A-3E97-4F60-A141-7A01F8B437B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{462B177A-3E97-4F60-A141-7A01F8B437B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{462B177A-3E97-4F60-A141-7A01F8B437B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{462B177A-3E97-4F60-A141-7A01F8B437B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -264,6 +272,8 @@ Global
 		{966BCC13-B2F1-4871-B689-F4BCE60BB8DB} = {DFA327E3-7DC5-4DD2-92BD-68313D99D1BD}
 		{C8271C33-7C40-49CA-B705-6DD2CA2DED89} = {6C04CBDD-19F9-466E-A579-5ED9BD0056FA}
 		{AED57B53-F951-4DE2-9367-18BD2DD063BB} = {39275E89-52E0-4D1B-ABD5-5A8D334A0A8D}
+		{196209A4-3BCC-442B-9686-CF311ADEBF6D} = {E9FC6BF1-7A52-43AD-90F3-E8A20BE3FE99}
+		{462B177A-3E97-4F60-A141-7A01F8B437B5} = {196209A4-3BCC-442B-9686-CF311ADEBF6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E15D83FC-8F5C-4D9C-9DCD-D114F5609922}
