@@ -1,0 +1,9 @@
+<Project>
+	<PropertyGroup>
+		<Version>1.0.0-Beta01</Version>
+		<PackageProjectUrl>https://github.com/honamic/Framework</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/honamic/Framework</RepositoryUrl>
+		<Company>Honamic</Company>
+		<Authors>Honamic</Authors>
+	</PropertyGroup>
+</Project>
