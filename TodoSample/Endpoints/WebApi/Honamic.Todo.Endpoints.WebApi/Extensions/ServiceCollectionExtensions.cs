@@ -1,6 +1,7 @@
 ﻿using Honamic.Framework.Endpoints.Web.Extensions;
 using Honamic.Framework.Utilities.Web.Json;
 using Honamic.Todo.Facade.Extensions;
+using Honamic.IdentityPlus.WebApi.Extensions;
 
 namespace Honamic.Todo.Endpoints.WebApi.Extensions;
 
@@ -9,7 +10,9 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddFacades(configuration);
+        services.AddIdentityPlusApiEndpoint();
         services.AddEndpointsServices(configuration);
+
         return services;
     }
 
@@ -22,7 +25,7 @@ public static class ServiceCollectionExtensions
                         c.JsonSerializerOptions
                          .Converters.Add(new CustomLongToStringConverter());
                     });
-        services.AddEndpointsApiExplorer();
+        services.AddEndpointsApiExplorer(); 
         services.AddSwaggerGen();
         services.AddCors();
     }

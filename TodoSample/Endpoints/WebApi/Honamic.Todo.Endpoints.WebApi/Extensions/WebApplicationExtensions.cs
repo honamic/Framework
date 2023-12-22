@@ -1,6 +1,6 @@
 ﻿using Honamic.Framework.Endpoints.Web.Extensions;
 using Honamic.Framework.Facade.Web.Middleware;
-
+using Honamic.IdentityPlus.WebApi.Extensions;
 namespace Honamic.Todo.Endpoints.WebApi.Extensions;
 
 public static class WebApplicationExtensions
@@ -28,6 +28,8 @@ public static class WebApplicationExtensions
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
+
+        app.MapIdentityPlusApi();
 
         app.MapControllers();
 

@@ -18,6 +18,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\src\Endpoints\Web\Honamic.Framework.Endpoints.Web.csproj" />
 		<ProjectReference Include="..\..\..\..\src\Facade\Web\Honamic.Framework.Facade.Web.csproj" />
+		<ProjectReference Include="..\..\..\..\src\IdentityPlus\WebApi\Honamic.IdentityPlus.WebApi.csproj" />
 		<ProjectReference Include="..\..\..\Facade\Honamic.Todo.Facade.csproj" />
 	</ItemGroup>
 

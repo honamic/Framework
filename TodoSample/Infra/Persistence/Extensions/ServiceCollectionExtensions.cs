@@ -5,6 +5,7 @@ using Honamic.Framework.Persistence.EntityFramework.Extensions;
 using Honamic.Todo.Domain.TodoItems;
 using Honamic.Todo.Domain;
 using Honamic.Todo.Persistence.EntityFramework.TodoItems;
+using Honamic.IdentityPlus.Persistence.Extensions;
 
 
 namespace Honamic.Todo.Persistence.EntityFramework.Extensions;
@@ -28,6 +29,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<DbContext>((sp) => sp.GetRequiredService<TodoDbContext>());
         services.AddTransient<ITodoItemRepository, TodoItemRepository>();
         services.AddUnitOfWorkByEntityFramework();
+
+        services.AddIdentityPlusPersistence();
     }
 
     private static void DebuggerConnectionStringLog(string? SqlServerConnection)
