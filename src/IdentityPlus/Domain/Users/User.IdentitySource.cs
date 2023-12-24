@@ -1,17 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity;
-
+﻿
 namespace Honamic.IdentityPlus.Domain.Users;
 
 public partial class User
 {
 
-	[PersonalData]
+	[IdenityPlusPersonalData]
 	public override long Id { get => base.Id; set => base.Id = value; }
 
 	/// <summary>
 	/// Gets or sets the user name for this user.
 	/// </summary>
-	[ProtectedPersonalData]
+	[IdentityPlusProtectedPersonalData]
 	public virtual string? UserName { get; set; }
 
 	/// <summary>
@@ -22,7 +21,7 @@ public partial class User
 	/// <summary>
 	/// Gets or sets the email address for this user.
 	/// </summary>
-	[ProtectedPersonalData]
+	[IdentityPlusProtectedPersonalData]
 	public virtual string? Email { get; set; }
 
 	/// <summary>
@@ -34,7 +33,7 @@ public partial class User
 	/// Gets or sets a flag indicating if a user has confirmed their email address.
 	/// </summary>
 	/// <value>True if the email address has been confirmed, otherwise false.</value>
-	[PersonalData]
+	[IdenityPlusPersonalData]
 	public virtual bool EmailConfirmed { get; set; }
 
 	/// <summary>
@@ -55,21 +54,21 @@ public partial class User
 	/// <summary>
 	/// Gets or sets a telephone number for the user.
 	/// </summary>
-	[ProtectedPersonalData]
+	[IdentityPlusProtectedPersonalData]
 	public virtual string? PhoneNumber { get; set; }
 
 	/// <summary>
 	/// Gets or sets a flag indicating if a user has confirmed their telephone address.
 	/// </summary>
 	/// <value>True if the telephone number has been confirmed, otherwise false.</value>
-	[PersonalData]
+	[IdenityPlusPersonalData]
 	public virtual bool PhoneNumberConfirmed { get; set; }
 
 	/// <summary>
 	/// Gets or sets a flag indicating if two factor authentication is enabled for this user.
 	/// </summary>
 	/// <value>True if 2fa is enabled, otherwise false.</value>
-	[PersonalData]
+	[IdenityPlusPersonalData]
 	public virtual bool TwoFactorEnabled { get; set; }
 
 	/// <summary>

@@ -1,4 +1,5 @@
-﻿using Honamic.IdentityPlus.Domain.Users;
+﻿using Honamic.IdentityPlus.Domain;
+using Honamic.IdentityPlus.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -10,7 +11,7 @@ internal class UserConfigurations : IEntityTypeConfiguration<User>
     private readonly string? schema;
     private bool _encryptPersonalData;
     private PersonalDataConverter? _personalDataConverter;
-    public UserConfigurations(string tableName, string? schema, bool encryptPersonalData, PersonalDataConverter personalDataConverter = null)
+    public UserConfigurations(string tableName, string? schema, bool encryptPersonalData, PersonalDataConverter? personalDataConverter = null)
     {
         this.tableName = tableName;
         this.schema = schema;
@@ -46,7 +47,8 @@ internal class UserConfigurations : IEntityTypeConfiguration<User>
         if (_encryptPersonalData)
         {
             var personalDataProps = typeof(User).GetProperties().Where(
-                            prop => Attribute.IsDefined(prop, typeof(ProtectedPersonalDataAttribute)));
+                            prop => Attribute.IsDefined(prop, typeof(ProtectedPersonalDataAttribute)) ||
+                                 Attribute.IsDefined(prop, typeof(IdentityPlusProtectedPersonalDataAttribute)));
 
             foreach (var p in personalDataProps)
             {

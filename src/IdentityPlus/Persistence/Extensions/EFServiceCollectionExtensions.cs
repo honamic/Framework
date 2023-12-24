@@ -1,4 +1,5 @@
-﻿using Honamic.IdentityPlus.Domain.Roles;
+﻿using Honamic.IdentityPlus.Domain;
+using Honamic.IdentityPlus.Domain.Roles;
 using Honamic.IdentityPlus.Domain.Users;
 using Honamic.IdentityPlus.Persistence.Users;
 using Microsoft.AspNetCore.Identity;
@@ -47,7 +48,9 @@ public static class EFServiceCollectionExtensions
             if (encryptPersonalData)
             {
                 var tokenProps = typeof(UserToken).GetProperties().Where(
-                                prop => Attribute.IsDefined(prop, typeof(ProtectedPersonalDataAttribute)));
+                                prop => Attribute.IsDefined(prop, typeof(ProtectedPersonalDataAttribute)) ||
+                                 Attribute.IsDefined(prop, typeof(IdentityPlusProtectedPersonalDataAttribute))
+                                );
                 foreach (var p in tokenProps)
                 {
                     if (p.PropertyType != typeof(string))

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
+﻿
 namespace Honamic.IdentityPlus.Domain.Users;
 
 public partial class UserToken 
@@ -22,6 +21,6 @@ public partial class UserToken
     /// <summary>
     /// Gets or sets the token value.
     /// </summary>
-    [ProtectedPersonalData]
+    [IdentityPlusProtectedPersonalData]
     public virtual string? Value { get; set; }
 }

@@ -33,7 +33,7 @@ public class AuditSourceValues
     public string? ClientVersion { get; set; }
 
     [JsonPropertyName("o")]
-    public string Other { get; set; }
+    public string? Other { get; set; }
 
     public string SerializeJson()
     {
@@ -43,6 +43,6 @@ public class AuditSourceValues
 
     public static AuditSourceValues DeserializeJson(string value)
     {
-        return JsonSerializer.Deserialize<AuditSourceValues>(value);
+        return JsonSerializer.Deserialize<AuditSourceValues>(value)!;
     }
 }

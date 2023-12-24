@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Honamic.Framework.Domain;
 public abstract class Entity<TKey> : IAuditCreate, IAuditUpdate
 {
-    public virtual TKey Id { get; set; }
+    public virtual TKey Id { get; set; } = default!;
 
     [StringLength(100)]
     public string? CreatedBy { get; set; }
