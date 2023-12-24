@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Honamic.Framework.Domain;
 
 namespace Honamic.IdentityPlus.Domain.Roles;
 
-public class Role : IdentityRole<long>
+public partial class Role : AggregateRoot<long>
 {
 
 }

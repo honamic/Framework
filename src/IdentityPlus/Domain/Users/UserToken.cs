@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Honamic.Framework.Domain;
 
 namespace Honamic.IdentityPlus.Domain.Users;
 
-public class UserToken : IdentityUserToken<long>
+public partial class UserToken :Entity<long>
 {
 
 }

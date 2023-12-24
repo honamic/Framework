@@ -18,26 +18,29 @@ internal class UserConfigurations : IEntityTypeConfiguration<User>
         _personalDataConverter = personalDataConverter;
     }
 
-    public void Configure(EntityTypeBuilder<User> b)
+    public void Configure(EntityTypeBuilder<User> builder)
     {
-        b.HasKey(u => u.Id);
-        b.HasIndex(u => u.NormalizedUserName)
+        builder.HasKey(u => u.Id);
+
+        builder.Property(p => p.Id).ValueGeneratedNever();
+
+        builder.HasIndex(u => u.NormalizedUserName)
             .HasDatabaseName("UserNameIndex")
             .IsUnique();
 
-        b.HasIndex(u => u.NormalizedEmail)
+        builder.HasIndex(u => u.NormalizedEmail)
             .HasDatabaseName("EmailIndex");
 
-        b.ToTable(tableName, schema);
+        builder.ToTable(tableName, schema);
 
-        b.Property(u => u.ConcurrencyStamp)
+        builder.Property(u => u.ConcurrencyStamp)
             .IsConcurrencyToken();
 
-        b.Property(u => u.UserName).HasMaxLength(256);
-        b.Property(u => u.NormalizedUserName).HasMaxLength(256);
-        b.Property(u => u.Email).HasMaxLength(256);
-        b.Property(u => u.NormalizedEmail).HasMaxLength(256);
-        b.Property(u => u.PhoneNumber).HasMaxLength(256);
+        builder.Property(u => u.UserName).HasMaxLength(256);
+        builder.Property(u => u.NormalizedUserName).HasMaxLength(256);
+        builder.Property(u => u.Email).HasMaxLength(256);
+        builder.Property(u => u.NormalizedEmail).HasMaxLength(256);
+        builder.Property(u => u.PhoneNumber).HasMaxLength(256);
 
 
         if (_encryptPersonalData)
@@ -51,27 +54,27 @@ internal class UserConfigurations : IEntityTypeConfiguration<User>
                 {
                     throw new InvalidOperationException("[ProtectedPersonalData] only works strings by default.");
                 }
-                b.Property(typeof(string), p.Name)
+                builder.Property(typeof(string), p.Name)
                     .HasConversion(_personalDataConverter);
             }
         }
 
-        b.HasMany<UserClaim>()
+        builder.HasMany<UserClaim>()
             .WithOne()
             .HasForeignKey(uc => uc.UserId)
             .IsRequired();
 
-        b.HasMany<UserLogin>()
+        builder.HasMany<UserLogin>()
             .WithOne()
             .HasForeignKey(ul => ul.UserId)
             .IsRequired();
 
-        b.HasMany<UserToken>()
+        builder.HasMany<UserToken>()
             .WithOne()
             .HasForeignKey(ut => ut.UserId)
             .IsRequired();
 
-        b.HasMany<UserRole>()
+        builder.HasMany<UserRole>()
             .WithOne()
             .HasForeignKey(ur => ur.UserId)
         .IsRequired();

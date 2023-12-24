@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Honamic.Framework.Domain;
 
 namespace Honamic.IdentityPlus.Domain.Users;
 
-public class UserLogin : IdentityUserLogin<long>
+public partial class UserLogin : Entity<long>, IEquatable<long>
 {
-
+    public bool Equals(long other)
+    {
+        return Id == other;
+    }
 }

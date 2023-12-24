@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Honamic.Framework.Domain;
 
 namespace Honamic.IdentityPlus.Domain.Users;
 
-public class UserClaim : IdentityUserClaim<long>
+public partial class UserClaim : Entity<long>
 {
 
 }

@@ -1,7 +1,7 @@
 ﻿using Honamic.IdentityPlus.Domain.Roles;
 using Honamic.IdentityPlus.Domain.Users;
+using Honamic.IdentityPlus.Persistence.IdentitySource;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Honamic.IdentityPlus.Persistence.Roles;

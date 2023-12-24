@@ -3,11 +3,9 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-	</PropertyGroup>
+		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Abstractions", ""))</RootNamespace>
 
-	<ItemGroup>
-		<!--<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.0" />-->
-	</ItemGroup>
+	</PropertyGroup>
 	
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Domain.Abstractions\Honamic.Framework.Domain.Abstractions.csproj" />
