@@ -16,7 +16,7 @@ public abstract class DomainEvent : IEvent
 
     public long AggregateVersion { get; private set; }
 
-    public IEventUserInfo UserInfo { get; private set; }
+    public IEventUserInfo? UserInfo { get; private set; }
 
     public void SetUserContextValue(IEventUserInfo userInfo)
     {

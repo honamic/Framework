@@ -6,6 +6,7 @@ using Honamic.Framework.Domain.Defaults;
 using Honamic.Framework.Domain;
 using Honamic.Framework.Events.Extensions;
 using Honamic.Framework.Queries.Extensions;
+using Honamic.Framework.Events;
 
 namespace Honamic.Framework.Applications.Extensions;
 
@@ -44,5 +45,12 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<ICommandHandler<TCommand, TResponse>, TCommandHandler>();
         services.Decorate<ICommandHandler<TCommand, TResponse>, TransactionalCommandHandlerDecorator<TCommand, TResponse>>();
+    }
+
+    public static void AddEventHandler<TEvent, TEventHandler>(this IServiceCollection services)
+    where TEvent : IEvent
+    where TEventHandler : class, IEventHandler<TEvent>
+    {
+        services.AddTransient<IEventHandler<TEvent>, TEventHandler>();
     }
 }

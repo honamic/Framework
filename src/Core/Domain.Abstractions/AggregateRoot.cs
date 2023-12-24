@@ -5,7 +5,7 @@ namespace Honamic.Framework.Domain;
 
 public abstract class AggregateRoot<TKey> : Entity<TKey>, IAuditCreateSources, IAuditUpdateSources, IAggregateRoot
 {
-    private List<DomainEvent> _events= new List<DomainEvent>();
+    private List<DomainEvent> _events = new List<DomainEvent>();
     private bool _markAsDeleted;
     private long _version;
 
@@ -24,7 +24,9 @@ public abstract class AggregateRoot<TKey> : Entity<TKey>, IAuditCreateSources, I
 
     public void RaiseEvent(DomainEvent @event)
     {
-        @event?.SetAggregateVersion(Version);
+        ArgumentNullException.ThrowIfNull(@event, nameof(@event));
+
+        @event.SetAggregateVersion(Version);
 
         _events.Add(@event);
     }

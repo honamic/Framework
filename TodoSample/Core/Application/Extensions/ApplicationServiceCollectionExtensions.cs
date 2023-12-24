@@ -5,6 +5,8 @@ using Honamic.Todo.Application.TodoItems.Commands;
 using Honamic.Todo.Application.TodoItems.CommandHandlers;
 using Honamic.Todo.Domain.Extensions;
 using Honamic.Framework.Tools.IdGenerators;
+using Honamic.Todo.Application.TodoItems.EventHandlers;
+using Honamic.IdentityPlus.Domain.Users;
 
 namespace Honamic.Todo.Application.Extensions;
 
@@ -14,6 +16,7 @@ public static class ApplicationServiceCollectionExtensions
     {
         services.AddDefaultApplicationsServices();
         services.AddCommandHandlers();
+        services.AddEventHandlers();
         services.AddDomainServices();
         services.AddSnowflakeIdGeneratorServices();
     }
@@ -22,5 +25,11 @@ public static class ApplicationServiceCollectionExtensions
     {
         services.AddCommandHandler<DeleteTodoItemCommand, DeleteTodoItemCommandHandler>();
         services.AddCommandHandler<CreateTodoItemCommand, CreateTodoItemCommandHandler>();
+    }
+
+    private static void AddEventHandlers(this IServiceCollection services)
+    {
+        services.AddEventHandler<UserCreatedEvent, UserCreatedEventHandler>();
+        services.AddEventHandler<UserLoggedEvent, UserLoggedEventHandler>();
     }
 }
