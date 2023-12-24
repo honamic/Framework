@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Honamic.IdentityPlus.Application.Extensions;
-using Honamic.IdentityPlus.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
+using Honamic.IdentityPlus.Application;
 
 namespace Honamic.IdentityPlus.WebApi.Extensions;
 

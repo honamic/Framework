@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Honamic.IdentityPlus.Domain;
+namespace Honamic.IdentityPlus.Application;
 public class IdentityPlusOptions : IdentityOptions
 {
 

@@ -1,5 +1,4 @@
-﻿using Honamic.IdentityPlus.Domain;
-using Honamic.IdentityPlus.Domain.Roles;
+﻿using Honamic.IdentityPlus.Domain.Roles;
 using Honamic.IdentityPlus.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
