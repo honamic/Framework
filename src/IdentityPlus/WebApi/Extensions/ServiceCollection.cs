@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
-using Honamic.IdentityPlus.Application;
+using Honamic.IdentityPlus.Application; 
 
 namespace Honamic.IdentityPlus.WebApi.Extensions;
 
@@ -43,6 +43,9 @@ public static class ServiceCollection
 
         IdentityPlusApplicationServiceCollection
             .IdentityBuilder?.AddApiEndpoints();
+
+        IdentityPlusApplicationServiceCollection
+            .IdentityBuilder?.AddSignInManager<IdentityPlusSignInManager>();
 
         return services;
     }

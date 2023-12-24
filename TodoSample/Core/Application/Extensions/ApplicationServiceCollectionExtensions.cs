@@ -30,5 +30,6 @@ public static class ApplicationServiceCollectionExtensions
     private static void AddEventHandlers(this IServiceCollection services)
     {
         services.AddEventHandler<UserCreatedEvent, UserCreatedEventHandler>();
+        services.AddEventHandler<UserLoggedEvent, UserLoggedEventHandler>();
     }
 }
