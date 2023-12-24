@@ -1,4 +1,5 @@
 ﻿using Honamic.IdentityPlus.Domain;
+using Honamic.IdentityPlus.Domain.Roles;
 using Honamic.IdentityPlus.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,12 @@ public static class IdentityPlusApplicationServiceCollection
     {
         ArgumentNullException.ThrowIfNull(services);
         ArgumentNullException.ThrowIfNull(configure);
+
+        services.AddScoped<UserManager<User>, IdentityPlusUserManager>();
+        services.AddScoped<IdentityPlusUserManager>();
+        
+        services.AddScoped<RoleManager<Role>, IdentityPlusRoleManager>();
+        services.AddScoped<IdentityPlusRoleManager>();
 
         IdentityBuilder = services.AddIdentityCore<User>((opt) =>
         {
