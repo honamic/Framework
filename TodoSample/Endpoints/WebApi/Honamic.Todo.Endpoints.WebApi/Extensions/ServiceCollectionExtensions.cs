@@ -25,8 +25,9 @@ public static class ServiceCollectionExtensions
                         c.JsonSerializerOptions
                          .Converters.Add(new CustomLongToStringConverter());
                     });
-        services.AddEndpointsApiExplorer(); 
-        services.AddSwaggerGen();
+
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerAndConfiguration();
         services.AddCors();
     }
 }
