@@ -2,6 +2,8 @@
 using Honamic.Framework.Utilities.Web.Json;
 using Honamic.Todo.Facade.Extensions;
 using Honamic.IdentityPlus.WebApi.Extensions;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Honamic.Todo.Endpoints.WebApi.Extensions;
 
@@ -29,5 +31,18 @@ public static class ServiceCollectionExtensions
         services.AddEndpointsApiExplorer();
         services.AddSwaggerAndConfiguration();
         services.AddCors();
+
+        services.AddBlazorServices(configurations)
+            ;
+    }
+
+
+    private static void AddBlazorServices(this IServiceCollection services, IConfiguration configurations)
+    {
+
+        services.AddRazorComponents()
+           .AddInteractiveServerComponents()
+           .AddInteractiveWebAssemblyComponents();
+
     }
 }

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Honamic.IdentityPlus.Application.csproj" />
+    <ProjectReference Include="..\Honamic.IdentityPlus.Razor\Honamic.IdentityPlus.Razor.csproj" />
   </ItemGroup>
 
 </Project>

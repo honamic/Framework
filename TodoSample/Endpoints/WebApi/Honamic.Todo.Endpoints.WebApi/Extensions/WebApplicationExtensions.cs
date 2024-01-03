@@ -1,6 +1,8 @@
 ﻿using Honamic.Framework.Endpoints.Web.Extensions;
 using Honamic.Framework.Facade.Web.Middleware;
 using Honamic.IdentityPlus.WebApi.Extensions;
+using Microsoft.AspNetCore.Builder;
+
 namespace Honamic.Todo.Endpoints.WebApi.Extensions;
 
 public static class WebApplicationExtensions
@@ -29,9 +31,22 @@ public static class WebApplicationExtensions
 
         app.UseAuthorization();
 
+
+
         app.MapIdentityPlusApi();
 
         app.MapControllers();
+
+        app.UseStaticFiles();
+        app.UseAntiforgery();
+
+        app.MapRazorComponents<Components.App>()
+            .AddInteractiveServerRenderMode()
+            .AddInteractiveWebAssemblyRenderMode()
+           .AddIdentityPlusComponents()
+           .AddAdditionalAssemblies(
+              typeof(Honamic.Todo.Endpoints.WasmClient.Pages.Counter).Assembly);
+
 
         return app;
     }

@@ -1,0 +1,38 @@
+﻿@using Honamic.IdentityPlus.Razor.Components
+@* <Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="@Assemblies">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+</Router>
+ *@
+
+<Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="@Assemblies">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)">
+            <NotAuthorized>
+                <RedirectToLogin />
+            </NotAuthorized>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+</Router>
+
+
+@code {
+    List<System.Reflection.Assembly> Assemblies = new List<System.Reflection.Assembly>();
+
+    protected override Task OnInitializedAsync()
+    {
+        Assemblies = new List<System.Reflection.Assembly>
+    {
+        typeof(Honamic.IdentityPlus.Razor.Constants).Assembly,
+        typeof(Honamic.Todo.Endpoints.WasmClient.Pages.Counter).Assembly
+    };
+        
+        int x = Assemblies.Count();
+
+        return base.OnInitializedAsync();
+    }
+
+}

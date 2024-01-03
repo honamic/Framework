@@ -6,10 +6,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
-using Honamic.IdentityPlus.Application; 
-
+using Honamic.IdentityPlus.Application;
+using Microsoft.AspNetCore.Components.Authorization;
+using Honamic.IdentityPlus.Razor;
+using Honamic.IdentityPlus.WebApi.Components;
 namespace Honamic.IdentityPlus.WebApi.Extensions;
-
 public static class ServiceCollection
 {
 
@@ -25,6 +26,15 @@ public static class ServiceCollection
         ArgumentNullException.ThrowIfNull(configure);
 
 
+
+        // blazor
+        services.AddCascadingAuthenticationState();
+        services.AddScoped<IdentityUserAccessor>();
+        services.AddScoped<IdentityRedirectManager>();
+        services.AddScoped<AuthenticationStateProvider, PersistingServerAuthenticationStateProvider>();
+        // end blazor
+
+        services.AddAuthorization();
         services
             .AddAuthentication(IdentityPlusConstants.BearerAndApplicationScheme)
             .AddScheme<AuthenticationSchemeOptions, CompositeIdentityHandler>(IdentityPlusConstants.BearerAndApplicationScheme, null, compositeOptions =>
