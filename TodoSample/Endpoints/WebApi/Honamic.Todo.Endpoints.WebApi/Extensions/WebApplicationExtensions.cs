@@ -41,7 +41,6 @@ public static class WebApplicationExtensions
         app.UseAntiforgery();
 
         app.MapRazorComponents<Components.App>()
-            .AddInteractiveServerRenderMode()
             .AddInteractiveWebAssemblyRenderMode()
            .AddIdentityPlusComponents()
            .AddAdditionalAssemblies(
