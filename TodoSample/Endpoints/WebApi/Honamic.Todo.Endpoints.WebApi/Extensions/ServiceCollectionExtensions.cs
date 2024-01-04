@@ -4,6 +4,7 @@ using Honamic.Todo.Facade.Extensions;
 using Honamic.IdentityPlus.WebApi.Extensions;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
+using MudBlazor.Services;
 
 namespace Honamic.Todo.Endpoints.WebApi.Extensions;
 
@@ -43,6 +44,8 @@ public static class ServiceCollectionExtensions
         services.AddRazorComponents()
            .AddInteractiveServerComponents()
            .AddInteractiveWebAssemblyComponents();
+
+        services.AddMudServices();
 
     }
 }

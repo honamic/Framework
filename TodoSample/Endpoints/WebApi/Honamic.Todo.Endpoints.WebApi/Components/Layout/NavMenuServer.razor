@@ -1,0 +1,67 @@
+﻿@implements IDisposable
+
+@inject NavigationManager NavigationManager
+
+<MudPaper Width="250px" Elevation="0" Class="py-3">
+    <MudNavMenu Color="Color.Info">
+        <MudNavLink Href="/"  Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
+        <MudNavLink Href="/weather" Icon="@Icons.Material.Filled.Dashboard">Weather</MudNavLink>
+        <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Storage">Servers</MudNavLink>
+        <MudNavLink Href="/test" Disabled="true">test</MudNavLink>
+        <MudNavLink Href="/auth">Auth Required</MudNavLink>
+        <MudNavGroup Title="Users" Expanded="true">
+
+            <AuthorizeView>
+                <Authorized>
+                    <MudNavLink Href="/Account/Manage">@context.User.Identity?.Name</MudNavLink>
+                        <div class="nav-item px-3">
+                            <form action="Account/Logout" method="post">
+                                <AntiforgeryToken />
+                                <input type="hidden" name="ReturnUrl" value="@currentUrl" />
+                                <button type="submit" class="nav-link">
+                                    <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
+                                </button>
+                            </form>
+                        </div>
+                    </Authorized>
+                    <NotAuthorized>
+                        <MudNavLink Href="/Account/Manage">Register</MudNavLink>
+                        <MudNavLink Href="/Account/Login">Login</MudNavLink>
+                    </NotAuthorized>
+                </AuthorizeView>
+
+            </MudNavGroup>
+            <MudNavLink Href="/about">About</MudNavLink>
+        </MudNavMenu>
+    </MudPaper>
+
+    <MudButton OnClick="TestClick">Test</MudButton>
+    <MudInputLabel>@currentUrl</MudInputLabel>
+
+    @code {
+    private string? currentUrl;
+
+    protected override void OnInitialized()
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private Task TestClick()
+    {
+
+        return Task.CompletedTask;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+}
+
