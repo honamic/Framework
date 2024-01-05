@@ -9,7 +9,7 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddSingleton<AuthenticationStateProvider, PersistentAuthenticationStateProvider>();
 
+builder.Services.AddLocalization();
 builder.Services.AddMudServices();
-
 
 await builder.Build().RunAsync();

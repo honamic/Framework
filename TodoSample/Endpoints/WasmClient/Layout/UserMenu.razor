@@ -1,0 +1,62 @@
+@inject NavigationManager NavigationManager
+
+
+<MudTooltip Arrow="true" Text="User Profile">
+    <MudMenu AnchorOrigin="Origin.BottomRight"
+             Icon="@Icons.Material.Outlined.Face"
+             Size="Size.Large"
+             Class="mx-1"
+             LockScroll="true"
+             TransformOrigin="Origin.TopRight">
+        <ChildContent>
+            <div class="pb-4"
+                 style="min-width: 260px;margin-bottom:0px!important">
+                <AuthorizeView>
+                    <Authorized>
+                        <MudStack Row="true" Class="ma-4">
+                            <MudAvatar>
+                                <MudIconButton Icon="@Icons.Material.Filled.Face" Size="Size.Large" Color="Color.Inherit" />
+                            </MudAvatar>
+                            <MudStack Justify="Justify.SpaceBetween" Spacing="0">
+                                <MudText Typo="Typo.body1">@context.User.Identity?.Name</MudText>
+                                    <MudText Typo="Typo.body2">@context.User.Identity?.Name</MudText>
+                                </MudStack>
+                            </MudStack>
+                            <MudDivider Class="my-2" />
+                            <MudMenuItem Href="/Account/profile">
+                                <div class="d-flex">
+                                    <MudIcon Class="mx-2"
+                                             Icon="@Icons.Material.Filled.Person" />
+                                    <MudText>Profile</MudText>
+                                </div>
+                            </MudMenuItem>
+                            <MudMenuItem Href="/Account/logout">
+                                <div class="d-flex">
+                                    <MudIcon Class="mx-2"
+                                             Icon="@Icons.Material.Filled.Logout" />
+                                    <MudText>Logout</MudText>
+                                </div>
+                            </MudMenuItem>
+                        </Authorized>
+                        <NotAuthorized>
+                            <MudMenuItem Href="/Account/login">
+                                <div class="d-flex">
+                                    <MudIcon Class="mx-2"
+                                             Icon="@Icons.Material.Filled.Login" />
+                                    <MudText>Login</MudText>
+                                </div>
+                            </MudMenuItem>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                </div>
+            </ChildContent>
+        </MudMenu>
+    </MudTooltip>
+
+    @code
+    {
+
+
+
+
+}
