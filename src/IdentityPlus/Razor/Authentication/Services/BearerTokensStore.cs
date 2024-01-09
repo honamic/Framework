@@ -1,8 +1,8 @@
 using Blazored.LocalStorage;
 using Honamic.IdentityPlus.Application.Users.Commands;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.Services.Contracts;
+using Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
 
-namespace Honamic.Todo.Endpoints.WasmClient.Authentication.Services;
+namespace Honamic.IdentityPlus.Razor.Authentication.Services;
 
 public class BearerTokensStore : IBearerTokensStore
 {

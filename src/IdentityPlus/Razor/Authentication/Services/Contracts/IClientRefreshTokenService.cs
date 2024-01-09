@@ -1,6 +1,6 @@
 ﻿using Honamic.IdentityPlus.Application.Users.Commands;
 
-namespace Honamic.Todo.Endpoints.WasmClient.Authentication.Services.Contracts;
+namespace Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
 
 public interface IClientRefreshTokenService
 {

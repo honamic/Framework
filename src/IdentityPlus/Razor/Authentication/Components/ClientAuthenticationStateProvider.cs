@@ -1,11 +1,11 @@
 ﻿using System.Security.Claims;
 using Honamic.IdentityPlus.Application.Users.Commands;
 using Honamic.IdentityPlus.Application.Users.Queries;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.HttpClients;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.Services.Contracts;
+using Honamic.IdentityPlus.Razor.Authentication.HttpClients;
+using Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
 using Microsoft.AspNetCore.Components.Authorization;
 
-namespace Honamic.Todo.Endpoints.WasmClient.Authentication.Components;
+namespace Honamic.IdentityPlus.Razor.Authentication.Components;
 
 
 public class ClientAuthenticationStateProvider : AuthenticationStateProvider

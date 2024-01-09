@@ -1,9 +1,10 @@
-using Honamic.Todo.Endpoints.WasmClient.Authentication.Services.Contracts;
+using Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Retry;
 using System.Net;
 
-namespace Honamic.Todo.Endpoints.WasmClient.Authentication.Interceptors;
+namespace Honamic.IdentityPlus.Razor.Authentication.Interceptors;
 
 public static class ClientRefreshTokenRetryPolicy
 {

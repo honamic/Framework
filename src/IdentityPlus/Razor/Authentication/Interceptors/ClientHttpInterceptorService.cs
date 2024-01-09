@@ -1,7 +1,7 @@
-using Honamic.Todo.Endpoints.WasmClient.Authentication.Services.Contracts;
+using Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
 using System.Net.Http.Headers;
 
-namespace Honamic.Todo.Endpoints.WasmClient.Authentication.Interceptors;
+namespace Honamic.IdentityPlus.Razor.Authentication.Interceptors;
 
 
 public class ClientHttpInterceptorService : DelegatingHandler

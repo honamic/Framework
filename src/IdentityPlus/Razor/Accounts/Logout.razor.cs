@@ -1,11 +1,11 @@
-using Honamic.Todo.Endpoints.WasmClient.Authentication.Services.Contracts;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.HttpClients;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.Components;
+using Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
+using Honamic.IdentityPlus.Razor.Authentication.Components;
+using Honamic.IdentityPlus.Razor.Authentication.HttpClients;
 
-namespace Honamic.Todo.Endpoints.WasmClient.Accounts;
+namespace Honamic.IdentityPlus.Razor.Accounts;
 public partial class Logout
 {
     [Inject] private NavigationManager NavigationManager { set; get; } = default!;

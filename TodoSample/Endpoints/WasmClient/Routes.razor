@@ -1,4 +1,5 @@
-﻿
+﻿@using Honamic.IdentityPlus.Razor.Accounts
+
 <Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="@Assemblies" >
     <Found Context="routeData">
         <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)">
@@ -18,12 +19,10 @@
     {
         Assemblies = new List<System.Reflection.Assembly>
     {
-       // typeof(Honamic.IdentityPlus.Razor.Constants).Assembly,
+        typeof(Honamic.IdentityPlus.Razor.Accounts.Login).Assembly,
         typeof(Honamic.Todo.Endpoints.WasmClient.Pages.Counter).Assembly
     };
         
-        int x = Assemblies.Count();
-
         return base.OnInitializedAsync();
     }
 

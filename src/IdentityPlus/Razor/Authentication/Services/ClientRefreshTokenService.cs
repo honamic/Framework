@@ -1,11 +1,11 @@
 using Honamic.IdentityPlus.Application.Users.CommandHandlers;
 using Honamic.IdentityPlus.Application.Users.Commands;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.HttpClients;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.Services.Contracts;
+using Honamic.IdentityPlus.Razor.Authentication.HttpClients;
+using Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Headers;
 
-namespace Honamic.Todo.Endpoints.WasmClient.Authentication.Services;
+namespace Honamic.IdentityPlus.Razor.Authentication.Services;
 
 public class ClientRefreshTokenService : IClientRefreshTokenService
 {
@@ -68,7 +68,7 @@ public class ClientRefreshTokenService : IClientRefreshTokenService
 
         var response = await _httpClientService.PostDataAsJsonAsync<BererTokenResult?>(
             RefreshTokenUrl, new RefreshTokenCommand { RefreshToken = tokenInfo.RefreshToken },
-            ensureSuccessStatus:false);
+            ensureSuccessStatus: false);
         if (response is null)
         {
             await _bearerTokensStore.RemoveBearerTokenAsync();

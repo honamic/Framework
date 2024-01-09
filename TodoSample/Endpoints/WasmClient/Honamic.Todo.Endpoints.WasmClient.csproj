@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\IdentityPlus\Honamic.IdentityPlus.Application.Contracts\Honamic.IdentityPlus.Application.Contracts.csproj" />
+		<ProjectReference Include="..\..\..\src\IdentityPlus\Razor\Honamic.IdentityPlus.Razor.csproj" />
 		<ProjectReference Include="..\..\..\src\Utilities\Razor\Honamic.Framework.Utilities.Razor.csproj" />
 	</ItemGroup>
 

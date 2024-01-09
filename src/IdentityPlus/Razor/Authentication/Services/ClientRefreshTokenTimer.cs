@@ -1,9 +1,10 @@
 using System.Timers;
 using Blazored.LocalStorage;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.Services.Contracts;
+using Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
+using Microsoft.Extensions.Logging;
 using Timer = System.Timers.Timer;
 
-namespace BlazorWasmDynamicPermissions.Client.ClientAuthorization.Services;
+namespace Honamic.IdentityPlus.Razor.Authentication.Services;
 
 /// <summary>
 ///     We need to use the refresh-token before its being expired.

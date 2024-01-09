@@ -1,4 +1,4 @@
-namespace Honamic.Todo.Endpoints.WasmClient.Authentication.HttpClients;
+namespace Honamic.IdentityPlus.Razor.Authentication.HttpClients;
 
 /// <summary>
 ///     A custom  HttpClient Service

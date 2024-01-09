@@ -1,12 +1,12 @@
 using Honamic.IdentityPlus.Application.Users.Commands;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.Components;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.HttpClients;
-using Honamic.Todo.Endpoints.WasmClient.Authentication.Services.Contracts;
+using Honamic.IdentityPlus.Razor.Authentication.Components;
+using Honamic.IdentityPlus.Razor.Authentication.HttpClients;
+using Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 
-namespace Honamic.Todo.Endpoints.WasmClient.Accounts;
+namespace Honamic.IdentityPlus.Razor.Accounts;
 public partial class Login
 {
     private string _title = "Sign In";
@@ -28,8 +28,8 @@ public partial class Login
 
     private readonly LoginCommand _model = new()
     {
-        UserName = "mohammadi4net@gmail.com",
-        Password = "Iman@2951"
+        UserName = "",
+        Password = ""
     };
 
     protected override async Task OnInitializedAsync()
@@ -61,7 +61,7 @@ public partial class Login
                 await BearerTokensStore.StoreAllTokensAsync(response);
                 await ((ClientAuthenticationStateProvider)AuthStateProvider).NotifyUserLoggedInAsync();
                 await RefreshTokenTimer.StartRefreshTimerAsync();
-              //  RedirectAfterLogin();
+                //  RedirectAfterLogin();
             }
         }
         finally
