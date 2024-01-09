@@ -2,7 +2,7 @@ using Honamic.IdentityPlus.Domain.Users;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
-namespace Honamic.IdentityPlus.Razor;
+namespace IdentityRazor;
 
 public sealed class IdentityUserAccessor(UserManager<User> userManager, IdentityRedirectManager redirectManager)
 {

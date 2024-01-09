@@ -7,9 +7,6 @@ using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using Honamic.IdentityPlus.Application;
-using Microsoft.AspNetCore.Components.Authorization;
-using Honamic.IdentityPlus.Razor;
-using Honamic.IdentityPlus.WebApi.Components;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace Honamic.IdentityPlus.WebApi.Extensions;
@@ -29,13 +26,6 @@ public static class ServiceCollection
 
         services.AddControllers()
                         .PartManager.ApplicationParts.Add(new AssemblyPart(typeof(ServiceCollection).Assembly));
-
-        // blazor
-        services.AddCascadingAuthenticationState();
-        services.AddScoped<IdentityUserAccessor>();
-        services.AddScoped<IdentityRedirectManager>();
-        services.AddScoped<AuthenticationStateProvider, PersistingServerAuthenticationStateProvider>();
-        // end blazor
 
         services.AddAuthorization();
         services

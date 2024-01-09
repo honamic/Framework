@@ -2,7 +2,6 @@ using System.Security.Claims;
 using System.Text.Json;
 using Honamic.IdentityPlus.Domain;
 using Honamic.IdentityPlus.Domain.Users;
-using Honamic.IdentityPlus.Razor;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -15,10 +14,29 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 
-namespace Honamic.IdentityPlus.WebApi.Extensions;
+namespace IdentityRazor.BlazorServerNeeds.Extensions;
 
-internal static class IdentityComponentsEndpointRouteBuilderExtensions
+public static class IdentityComponentsEndpointRouteBuilderExtensions
 {
+    public static RazorComponentsEndpointConventionBuilder AddIdentityPlusComponents(
+  this RazorComponentsEndpointConventionBuilder builder)
+    {
+        ArgumentNullException.ThrowIfNull(builder);
+
+        builder.AddAdditionalAssemblies(
+              typeof(IdentityComponentsEndpointRouteBuilderExtensions).Assembly);
+
+        return builder;
+    }
+
+    public static IEndpointConventionBuilder MapIdentityPlusApi(this IEndpointRouteBuilder endpoints)
+    {
+        // Add additional endpoints required by the Identity /Account Razor components.
+        endpoints.MapAdditionalIdentityEndpoints();
+
+        return endpoints.MapGroup("/identity").MapIdentityApi<User>();
+    }
+
     // These endpoints are required by the Identity Razor components defined in the /Components/Account/Pages directory of this project.
     public static IEndpointConventionBuilder MapAdditionalIdentityEndpoints(this IEndpointRouteBuilder endpoints)
     {

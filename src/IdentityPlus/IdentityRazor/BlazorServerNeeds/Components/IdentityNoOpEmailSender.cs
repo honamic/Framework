@@ -1,7 +1,7 @@
 using Honamic.IdentityPlus.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-namespace Honamic.IdentityPlus.WebApi.Components;
+namespace IdentityRazor.BlazorServerNeeds.Components;
 
 // Remove the "else if (EmailSender is IdentityNoOpEmailSender)" block from RegisterConfirmation.razor after updating with a real implementation.
 internal sealed class IdentityNoOpEmailSender : IEmailSender<User>

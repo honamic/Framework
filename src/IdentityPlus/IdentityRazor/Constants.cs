@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Honamic.IdentityPlus.Razor;
+namespace IdentityRazor;
 public static class Constants
 {
 

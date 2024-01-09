@@ -13,7 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Facade\Web\Honamic.Framework.Facade.Web.csproj" />
     <ProjectReference Include="..\Application\Honamic.IdentityPlus.Application.csproj" />
-    <ProjectReference Include="..\Honamic.IdentityPlus.Razor\Honamic.IdentityPlus.Razor.csproj" />
   </ItemGroup>
 
 </Project>

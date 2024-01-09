@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using IdentityRazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace Honamic.IdentityPlus.WebApi.Components;
+namespace IdentityRazor.BlazorServerNeeds.Components;
 
 // This is a server-side AuthenticationStateProvider that uses PersistentComponentState to flow the
 // authentication state to the client which is then fixed for the lifetime of the WebAssembly application.

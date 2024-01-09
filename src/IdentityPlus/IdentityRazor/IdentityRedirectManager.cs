@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 
-namespace Honamic.IdentityPlus.Razor;
+namespace IdentityRazor;
 
 public sealed class IdentityRedirectManager(NavigationManager navigationManager)
 {
