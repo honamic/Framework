@@ -1,7 +1,12 @@
-﻿using Honamic.IdentityPlus.Domain.Roles;
+﻿using Honamic.IdentityPlus.Application.Users.CommandHandlers;
+using Honamic.IdentityPlus.Application.Users.Commands;
+using Honamic.IdentityPlus.Domain.Roles;
 using Honamic.IdentityPlus.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Honamic.Framework.Applications.Extensions;
+using Honamic.IdentityPlus.Application.Facade;
+using Honamic.Framework.Facade.Extensions;
 
 namespace Honamic.IdentityPlus.Application.Extensions;
 
@@ -11,7 +16,6 @@ public static class IdentityPlusApplicationServiceCollection
     public static IServiceCollection AddIdentityPlusApplication(this IServiceCollection services)
     {
         services.AddIdentityPlusApplication(_ => { });
-
         return services;
     }
 
@@ -23,7 +27,7 @@ public static class IdentityPlusApplicationServiceCollection
 
         services.AddScoped<UserManager<User>, IdentityPlusUserManager>();
         services.AddScoped<IdentityPlusUserManager>();
-        
+
         services.AddScoped<RoleManager<Role>, IdentityPlusRoleManager>();
         services.AddScoped<IdentityPlusRoleManager>();
 
@@ -32,6 +36,27 @@ public static class IdentityPlusApplicationServiceCollection
 
         });
 
+        services.AddCommandHandlers();
+        services.AddEventHandlers();
+        services.AddFacades();
+
         return services;
+    }
+
+    private static void AddCommandHandlers(this IServiceCollection services)
+    {
+        services.AddCommandHandler<LoginCommand, LoginCommandHandler, LoginCommandResult>();
+        services.AddCommandHandler<LogoutCommand, LogoutCommandHandler>();
+        services.AddCommandHandler<RefreshTokenCommand, RefreshTokenCommandHandler, object>();
+    }
+
+    private static void AddEventHandlers(this IServiceCollection services)
+    {
+        //services.AddEventHandler<UserCreatedEvent, UserCreatedEventHandler>();
+    }
+
+    private static void AddFacades(this IServiceCollection services)
+    {
+        services.AddFacadeScoped<IUserFacade, UserFacade>();
     }
 }

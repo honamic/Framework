@@ -17,6 +17,7 @@ public static class WebApplicationExtensions
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.UseWebAssemblyDebugging();
         }
 
         // global cors policy

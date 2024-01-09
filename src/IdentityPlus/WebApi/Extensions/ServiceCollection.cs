@@ -10,6 +10,8 @@ using Honamic.IdentityPlus.Application;
 using Microsoft.AspNetCore.Components.Authorization;
 using Honamic.IdentityPlus.Razor;
 using Honamic.IdentityPlus.WebApi.Components;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+
 namespace Honamic.IdentityPlus.WebApi.Extensions;
 public static class ServiceCollection
 {
@@ -25,7 +27,8 @@ public static class ServiceCollection
         ArgumentNullException.ThrowIfNull(services);
         ArgumentNullException.ThrowIfNull(configure);
 
-
+        services.AddControllers()
+                        .PartManager.ApplicationParts.Add(new AssemblyPart(typeof(ServiceCollection).Assembly));
 
         // blazor
         services.AddCascadingAuthenticationState();
@@ -42,7 +45,33 @@ public static class ServiceCollection
                 compositeOptions.ForwardDefault = IdentityConstants.BearerScheme;
                 compositeOptions.ForwardAuthenticate = IdentityPlusConstants.BearerAndApplicationScheme;
             })
-            .AddBearerToken(IdentityConstants.BearerScheme)
+            .AddBearerToken(IdentityConstants.BearerScheme, opt =>
+            {
+                opt.ClaimsIssuer = "Honamic.Dev";
+                opt.BearerTokenExpiration = TimeSpan.FromHours(1);
+            })
+            //.AddJwtBearer(options =>
+            //{
+            //    options.Authority = oktaSettings.Authority;
+            //    options.Audience = "api://default";
+            //    options.RequireHttpsMetadata = false;
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(oktaSettings.ClientSecret)),
+            //        RequireSignedTokens = true,
+            //        ClockSkew = TimeSpan.FromMinutes(5),
+
+            //        RequireExpirationTime = true,
+            //        ValidateLifetime = true,
+
+            //        ValidateAudience = true,
+            //        ValidAudience = "api://default",
+
+            //        ValidateIssuer = true,
+            //        ValidIssuer = oktaSettings.Authority
+
+            //    };
+            //})
             .AddIdentityCookies();
 
         if (IdentityPlusApplicationServiceCollection
