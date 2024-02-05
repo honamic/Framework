@@ -18,7 +18,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Applications\Honamic.Framework.Applications.csproj" />
-		<ProjectReference Include="..\..\Facade\Default\Honamic.Framework.Facade.csproj" />
 		<ProjectReference Include="..\Domain\Honamic.IdentityPlus.Domain.csproj" />
 		<ProjectReference Include="..\Honamic.IdentityPlus.Application.Contracts\Honamic.IdentityPlus.Application.Contracts.csproj" />
 	</ItemGroup>

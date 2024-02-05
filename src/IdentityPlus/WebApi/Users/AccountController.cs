@@ -1,9 +1,9 @@
 ﻿using Honamic.Framework.Facade.Results;
 using Honamic.Framework.Facade.Web.Results;
-using Honamic.IdentityPlus.Application.Facade;
 using Honamic.IdentityPlus.Application.Users.CommandHandlers;
 using Honamic.IdentityPlus.Application.Users.Commands;
 using Honamic.IdentityPlus.Application.Users.Queries;
+using Honamic.IdentityPlus.Facade.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -6,7 +6,7 @@ using Honamic.IdentityPlus.Application.Users.Commands;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Logging;
 
-namespace Honamic.IdentityPlus.Application.Facade;
+namespace Honamic.IdentityPlus.Facade.Users;
 public class UserFacade : BaseFacade, IUserFacade
 {
     private readonly ICommandBus commandBus;

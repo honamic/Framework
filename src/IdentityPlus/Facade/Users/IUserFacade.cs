@@ -4,7 +4,7 @@ using Honamic.IdentityPlus.Application.Users.CommandHandlers;
 using Honamic.IdentityPlus.Application.Users.Commands;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace Honamic.IdentityPlus.Application.Facade;
+namespace Honamic.IdentityPlus.Facade.Users;
 
 public interface IUserFacade : IBaseFacade
 {

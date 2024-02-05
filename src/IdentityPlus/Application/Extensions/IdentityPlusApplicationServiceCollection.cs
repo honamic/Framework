@@ -5,8 +5,6 @@ using Honamic.IdentityPlus.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Honamic.Framework.Applications.Extensions;
-using Honamic.IdentityPlus.Application.Facade;
-using Honamic.Framework.Facade.Extensions;
 
 namespace Honamic.IdentityPlus.Application.Extensions;
 
@@ -38,7 +36,6 @@ public static class IdentityPlusApplicationServiceCollection
 
         services.AddCommandHandlers();
         services.AddEventHandlers();
-        services.AddFacades();
 
         return services;
     }
@@ -55,8 +52,4 @@ public static class IdentityPlusApplicationServiceCollection
         //services.AddEventHandler<UserCreatedEvent, UserCreatedEventHandler>();
     }
 
-    private static void AddFacades(this IServiceCollection services)
-    {
-        services.AddFacadeScoped<IUserFacade, UserFacade>();
-    }
 }
