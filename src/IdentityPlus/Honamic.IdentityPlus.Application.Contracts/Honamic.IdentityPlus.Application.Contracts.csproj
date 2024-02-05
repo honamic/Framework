@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Commands.Abstractions\Honamic.Framework.Commands.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Core\Queries.Abstractions\Honamic.Framework.Queries.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

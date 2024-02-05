@@ -1,0 +1,76 @@
+﻿@inject IStringLocalizer<List> L
+@page "/Users/list"
+@using Honamic.Framework.Facade.Results
+@using Honamic.Framework.Queries
+@using Honamic.IdentityPlus.Application.Users.Queries
+<PageTitle>Users</PageTitle>
+
+
+@inject HttpClient httpClient
+
+<MudDataGrid ServerData="GetAll" T="GetAllUsersQueryResult" @ref=_dataGrid>
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Users</MudText>
+        <MudSpacer />
+        <MudTextField Debounce="500"
+                      TextChanged="Search" @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start"
+                      Immediate="false" Clearable="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Id" Title="ID" />
+        <PropertyColumn Property="x => x.Username" />
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="GetAllUsersQueryResult" />
+    </PagerContent>
+</MudDataGrid>
+
+@code {
+    private string _searchString;
+    private MudDataGrid<GetAllUsersQueryResult>? _dataGrid;
+
+    private IEnumerable<GetAllUsersQueryResult> Elements = new List<GetAllUsersQueryResult>();
+
+    private async Task<GridData<GetAllUsersQueryResult?>> GetAll(GridState<GetAllUsersQueryResult?> gridState)
+    {
+        var path = $"api/Users?Page={gridState.Page + 1}&PageSize={gridState.PageSize}";
+        if (gridState.SortDefinitions.Any())
+        {
+            var sort = gridState.SortDefinitions.First();
+            path += $"&OrderBy={sort.SortBy}";
+            if (sort.Descending)
+                path += " desc";
+        }
+
+        if (!string.IsNullOrEmpty(_searchString))
+        {
+            path += $"&keyword={_searchString}";
+        }
+
+        var data = new GridData<GetAllUsersQueryResult>();
+
+        var result = await httpClient.GetFromJsonAsync<Result<PagedQueryResult<GetAllUsersQueryResult>>>(path);
+
+        if (result?.Status == ResultStatus.Ok)
+        {
+            data.Items = result.Data.Items;
+            data.TotalItems = result.Data.TotalItems;
+        }
+
+        return data;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+
+    private async Task Search()
+    {
+        if (_dataGrid is not null)
+        {
+            await _dataGrid.ReloadServerData();
+        }
+    }
+}

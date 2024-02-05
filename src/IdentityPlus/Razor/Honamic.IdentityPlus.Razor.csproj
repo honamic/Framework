@@ -20,7 +20,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Domain\Honamic.IdentityPlus.Domain.csproj" />
+		<ProjectReference Include="..\..\Core\Queries.Abstractions\Honamic.Framework.Queries.Abstractions.csproj" />
+		<ProjectReference Include="..\..\Facade\Abstractions\Honamic.Framework.Facade.Abstractions.csproj" />
 		<ProjectReference Include="..\Honamic.IdentityPlus.Application.Contracts\Honamic.IdentityPlus.Application.Contracts.csproj" />
 	</ItemGroup>
 
