@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Honamic.Framework.Facade.Extensions;
-using Honamic.IdentityPlus.Facade.Users;
+using Honamic.IdentityPlus.Facade.Accounts;
 
 namespace Honamic.IdentityPlus.Facade.Extensions;
 
@@ -18,5 +18,6 @@ public static class FacadeServiceCollectionExtensions
     private static void AddFacades(this IServiceCollection services)
     {
         services.AddFacadeScoped<IUserFacade, UserFacade>();
+        services.AddFacadeScoped<IAccountFacade, AccountFacade>();
     }
 }

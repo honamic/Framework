@@ -1,9 +1,8 @@
 ﻿using Honamic.Framework.Facade.Results;
 using Honamic.Framework.Facade.Web.Results;
-using Honamic.IdentityPlus.Application.Users.CommandHandlers;
-using Honamic.IdentityPlus.Application.Users.Commands;
-using Honamic.IdentityPlus.Application.Users.Queries;
-using Honamic.IdentityPlus.Facade.Users;
+using Honamic.IdentityPlus.Application.Accounts.Commands;
+using Honamic.IdentityPlus.Application.Accounts.Queries;
+using Honamic.IdentityPlus.Facade.Accounts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +15,9 @@ namespace Honamic.IdentityPlus.WebApi.Users;
 [ApiController]
 public class AccountController : ControllerBase
 {
-    private readonly IUserFacade _userFacade;
+    private readonly IAccountFacade _userFacade;
 
-    public AccountController(IUserFacade userFacade)
+    public AccountController(IAccountFacade userFacade)
     {
         _userFacade = userFacade;
     }

@@ -1,4 +1,4 @@
-﻿using Honamic.IdentityPlus.Application.Users.Commands;
+﻿using Honamic.IdentityPlus.Application.Accounts.Commands;
 
 namespace Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
 

@@ -1,6 +1,6 @@
 ﻿using Honamic.Framework.Commands;
 
-namespace Honamic.IdentityPlus.Application.Users.Commands;
+namespace Honamic.IdentityPlus.Application.Accounts.Commands;
 public class LoginCommand : ICommand<LoginCommandResult>
 {
     public required string UserName { get; set; }

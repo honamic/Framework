@@ -1,11 +1,11 @@
-﻿namespace Honamic.IdentityPlus.Application.Users.Commands;
+﻿namespace Honamic.IdentityPlus.Application.Accounts.Commands;
 
 
 public class BererTokenResult
 {
     public BererTokenResult()
     {
-        
+
     }
 
     // not in Identity
@@ -16,6 +16,6 @@ public class BererTokenResult
     public required string AccessToken { get; init; }
 
     public required long ExpiresIn { get; init; }
-  
+
     public required string RefreshToken { get; init; }
 }

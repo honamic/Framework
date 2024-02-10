@@ -1,6 +1,4 @@
-﻿using Honamic.IdentityPlus.Application.Users.CommandHandlers;
-using Honamic.IdentityPlus.Application.Users.Commands;
-using Honamic.IdentityPlus.Domain.Roles;
+﻿using Honamic.IdentityPlus.Domain.Roles;
 using Honamic.IdentityPlus.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +7,8 @@ using Honamic.Framework.Queries.Extensions;
 using Honamic.IdentityPlus.Application.Users.QueryHandlers;
 using Honamic.IdentityPlus.Application.Users.Queries;
 using Honamic.Framework.Queries;
+using Honamic.IdentityPlus.Application.Accounts.Commands;
+using Honamic.IdentityPlus.Application.Accounts.CommandHandlers;
 
 namespace Honamic.IdentityPlus.Application.Extensions;
 

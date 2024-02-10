@@ -1,9 +1,9 @@
 ﻿using Honamic.Framework.Commands;
-using Honamic.IdentityPlus.Application.Users.Commands;
+using Honamic.IdentityPlus.Application.Accounts.Commands;
 using Honamic.IdentityPlus.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 
-namespace Honamic.IdentityPlus.Application.Users.CommandHandlers;
+namespace Honamic.IdentityPlus.Application.Accounts.CommandHandlers;
 internal class LoginCommandHandler : ICommandHandler<LoginCommand, LoginCommandResult>
 {
     private readonly SignInManager<User> signInManager;
@@ -15,13 +15,13 @@ internal class LoginCommandHandler : ICommandHandler<LoginCommand, LoginCommandR
 
     public async Task<LoginCommandResult> HandleAsync(LoginCommand command, CancellationToken cancellationToken)
     {
-        var useCookieScheme = (command.UseCookies == true) || (command.UseSessionCookies == true);
-        var isPersistent = (command.UseCookies == true) && (command.UseSessionCookies != true);
-        
+        var useCookieScheme = command.UseCookies == true || command.UseSessionCookies == true;
+        var isPersistent = command.UseCookies == true && command.UseSessionCookies != true;
+
         signInManager.AuthenticationScheme = useCookieScheme
             ? IdentityConstants.ApplicationScheme
             : IdentityConstants.BearerScheme;
-        
+
         var result = await signInManager
                 .PasswordSignInAsync(command.UserName, command.Password, isPersistent, lockoutOnFailure: true);
 

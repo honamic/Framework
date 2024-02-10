@@ -1,5 +1,5 @@
 using Blazored.LocalStorage;
-using Honamic.IdentityPlus.Application.Users.Commands;
+using Honamic.IdentityPlus.Application.Accounts.Commands;
 using Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
 
 namespace Honamic.IdentityPlus.Razor.Authentication.Services;

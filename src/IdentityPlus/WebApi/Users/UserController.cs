@@ -1,7 +1,7 @@
 ﻿using Honamic.Framework.Facade.Results;
 using Honamic.Framework.Queries;
 using Honamic.IdentityPlus.Application.Users.Queries;
-using Honamic.IdentityPlus.Facade.Users;
+using Honamic.IdentityPlus.Facade.Accounts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Honamic.IdentityPlus.WebApi.Users;

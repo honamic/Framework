@@ -1,4 +1,5 @@
 ﻿using Honamic.Framework.Commands;
+using Honamic.IdentityPlus.Application.Accounts.Commands;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -6,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq.Dynamic.Core.Tokenizer;
 using System.Text;
 
-namespace Honamic.IdentityPlus.Application.Users.CommandHandlers;
+namespace Honamic.IdentityPlus.Application.Accounts.CommandHandlers;
 public class ValidateAccessTokenCommandHandler : ICommandHandler<ValidateAccessTokenCommand, bool>
 {
     private readonly IOptionsMonitor<BearerTokenOptions> bearerTokenOptions;

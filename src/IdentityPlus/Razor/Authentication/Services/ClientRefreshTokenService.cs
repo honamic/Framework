@@ -1,5 +1,4 @@
-using Honamic.IdentityPlus.Application.Users.CommandHandlers;
-using Honamic.IdentityPlus.Application.Users.Commands;
+using Honamic.IdentityPlus.Application.Accounts.Commands;
 using Honamic.IdentityPlus.Razor.Authentication.HttpClients;
 using Honamic.IdentityPlus.Razor.Authentication.Services.Contracts;
 using Microsoft.AspNetCore.Components;

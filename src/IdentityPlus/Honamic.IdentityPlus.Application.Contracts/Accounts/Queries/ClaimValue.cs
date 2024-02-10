@@ -1,4 +1,4 @@
-﻿namespace Honamic.IdentityPlus.Application.Users.Queries;
+﻿namespace Honamic.IdentityPlus.Application.Accounts.Queries;
 public class ClaimValue
 {
     public string Type { get; set; } = default!;

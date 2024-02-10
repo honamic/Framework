@@ -1,12 +1,12 @@
 ﻿using Honamic.Framework.Commands;
-using Honamic.IdentityPlus.Application.Users.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Honamic.IdentityPlus.Domain.Users;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.Extensions.Options;
+using Honamic.IdentityPlus.Application.Accounts.Commands;
 
-namespace Honamic.IdentityPlus.Application.Users.CommandHandlers;
+namespace Honamic.IdentityPlus.Application.Accounts.CommandHandlers;
 public class RefreshTokenCommandHandler : ICommandHandler<RefreshTokenCommand, object?>
 {
     private readonly SignInManager<User> signInManager;
@@ -38,7 +38,7 @@ public class RefreshTokenCommandHandler : ICommandHandler<RefreshTokenCommand, o
         }
         var newPrincipal = await signInManager.CreateUserPrincipalAsync(user);
 
-       return TypedResults.SignIn(newPrincipal, authenticationScheme: IdentityConstants.BearerScheme);
+        return TypedResults.SignIn(newPrincipal, authenticationScheme: IdentityConstants.BearerScheme);
 
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Honamic.IdentityPlus.Application.Users.Commands;
+﻿namespace Honamic.IdentityPlus.Application.Accounts.Commands;
 
 public class LoginCommandResult
 {
