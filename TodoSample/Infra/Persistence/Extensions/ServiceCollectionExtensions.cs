@@ -25,10 +25,8 @@ public static class ServiceCollectionExtensions
             DebuggerConsoleLog(options);
         });
 
-        //for default DbContext in framework
-        services.AddScoped<DbContext>((sp) => sp.GetRequiredService<TodoDbContext>());
         services.AddTransient<ITodoItemRepository, TodoItemRepository>();
-        services.AddUnitOfWorkByEntityFramework();
+        services.AddUnitOfWorkByEntityFramework<TodoDbContext>();
 
         services.AddIdentityPlusPersistence();
     }
