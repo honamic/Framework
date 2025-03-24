@@ -3,6 +3,7 @@ using Honamic.Framework.Facade;
 using Honamic.Framework.Facade.Results;
 using Honamic.Framework.Queries;
 using Honamic.IdentityPlus.Application.Accounts.Commands;
+using Honamic.IdentityPlus.Application.Accounts.Commands.Register;
 using Honamic.IdentityPlus.Application.Users.Queries;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,20 @@ using Microsoft.Extensions.Logging;
 namespace Honamic.IdentityPlus.Facade.Accounts;
 public class AccountFacade(ILogger<AccountFacade> logger, ICommandBus commandBus, IQueryBus queryBus) : BaseFacade(logger), IAccountFacade
 {
+    public async Task<Result> Register(RegisterCommand command, CancellationToken cancellationToken)
+    {
+        var commandResult = await commandBus.DispatchAsync<RegisterCommand, RegisterCommandResult>(command, cancellationToken);
+
+        if (!commandResult.Succeeded)
+        {
+            var result = new Result(ResultStatus.Unauthorized);
+            result.AppendError(commandResult.ToString());
+            return result;
+        }
+
+        return ResultStatus.Ok;
+    }
+
     public async Task<Result> Login(LoginCommand model, CancellationToken cancellationToken)
     {
         var commandResult = await commandBus.DispatchAsync<LoginCommand, LoginCommandResult>(model, cancellationToken);
