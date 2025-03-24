@@ -9,7 +9,7 @@ public class TodoItem : AggregateRoot<long>
 
     protected TodoItem()
     {
-        
+
     }
 
     public TodoItem(long id, string title, string content, List<string> tags)
@@ -20,6 +20,12 @@ public class TodoItem : AggregateRoot<long>
         Tags = tags;
 
         RaiseEvent(new TodoItemCreatedEvent(Id));
+    }
+
+    public void MakeDone()
+    {
+        Done = true;
+        RaiseEvent(new TodoItemDoneEvent(Id));
     }
 
     [Required]
@@ -36,5 +42,5 @@ public class TodoItem : AggregateRoot<long>
 
     public List<string> Tags { get; set; }
 
-    public List<TodoItemLog> Logs{ get; set; }
+    public List<TodoItemLog> Logs { get; set; }
 }
