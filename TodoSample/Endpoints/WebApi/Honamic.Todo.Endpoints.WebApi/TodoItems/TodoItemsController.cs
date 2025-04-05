@@ -43,12 +43,12 @@ public class TodoItemsController : ControllerBase
         return _todoItemFacade.Create(model, cancellationToken);
     }
 
-    //[HttpPut("{id}")]
-    //public Task<Result<bool>> Put([FromRoute] long id, [FromBody] ChangeBodyTodoItemCommand model, CancellationToken cancellationToken)
-    //{
-    //    model.SetId(id);
-    //    return _todoItemFacade.Update(model, cancellationToken);
-    //}
+    [HttpPut("{id}")]
+    public Task<Result> Put([FromRoute] long id, CancellationToken cancellationToken)
+    {
+        var cmd = new MakeCompletedTodoItemCommand(id);
+        return _todoItemFacade.MakeCompleted(cmd, cancellationToken);
+    }
 
     [HttpDelete("{id}")]
     public Task<Result> Delete([FromRoute] long id, CancellationToken cancellationToken)

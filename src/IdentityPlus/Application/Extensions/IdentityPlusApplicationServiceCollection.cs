@@ -9,6 +9,7 @@ using Honamic.IdentityPlus.Application.Users.Queries;
 using Honamic.Framework.Queries;
 using Honamic.IdentityPlus.Application.Accounts.Commands;
 using Honamic.IdentityPlus.Application.Accounts.CommandHandlers;
+using Honamic.IdentityPlus.Application.Accounts.Commands.Register;
 
 namespace Honamic.IdentityPlus.Application.Extensions;
 
@@ -47,9 +48,10 @@ public static class IdentityPlusApplicationServiceCollection
 
     private static void AddCommandHandlers(this IServiceCollection services)
     {
+        services.AddCommandHandler<RegisterCommand, RegisterCommandHandler, RegisterCommandResult>();
         services.AddCommandHandler<LoginCommand, LoginCommandHandler, LoginCommandResult>();
         services.AddCommandHandler<LogoutCommand, LogoutCommandHandler>();
-        services.AddCommandHandler<RefreshTokenCommand, RefreshTokenCommandHandler, object>();
+        services.AddCommandHandler<RefreshTokenCommand, RefreshTokenCommandHandler, object?>();
     }
 
     private static void AddQueryHandlers(this IServiceCollection services)

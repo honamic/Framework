@@ -53,6 +53,11 @@ public abstract class RepositoryBase<TEntity, TKey>
         return await GetQuery().ToListAsync();
     }
 
+    public virtual async Task Update(TEntity entity)
+    {
+        DbSet.Update(entity);
+    }
+
     public virtual async Task<bool> IsExistsAsync(Expression<Func<TEntity, bool>> predicate)
     {
         return await GetQuery().AnyAsync(predicate);

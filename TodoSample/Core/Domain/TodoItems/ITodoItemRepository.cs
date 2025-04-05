@@ -8,6 +8,8 @@ public interface ITodoItemRepository
 
     Task InsertAsync(TodoItem entity);
 
+    Task Update(TodoItem entity);
+
     Task<TodoItem> GetAsync(long id);
 
     Task<IList<TodoItem>> GetAllAsync();
