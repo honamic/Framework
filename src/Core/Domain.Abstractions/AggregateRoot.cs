@@ -18,9 +18,9 @@ public abstract class AggregateRoot<TKey> : Entity<TKey>, IAuditCreateSources, I
     [NotMapped]
     public IList<DomainEvent> Events => _events;
 
-    public string? ModifiedSources { get; set; }
-
     public string? CreatedSources { get; set; }
+
+    public string? ModifiedSources { get; set; }
 
     public void RaiseEvent(DomainEvent @event)
     {
