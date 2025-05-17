@@ -25,6 +25,7 @@ public static class ApplicationServiceCollectionExtensions
     {
         services.AddCommandHandler<DeleteTodoItemCommand, DeleteTodoItemCommandHandler>();
         services.AddCommandHandler<CreateTodoItemCommand, CreateTodoItemCommandHandler>();
+        services.AddCommandHandler<MakeCompletedTodoItemCommand, MakeCompletedTodoItemCommandHandler>();
     }
 
     private static void AddEventHandlers(this IServiceCollection services)
