@@ -1,4 +1,4 @@
-﻿namespace Honamic.Framework.Facade.Exceptions;
+﻿namespace Honamic.Framework.Applications.Exceptions;
 
 public class UnauthenticatedException : Exception
 {

@@ -37,6 +37,12 @@ public class TodoItemsController : ControllerBase
 
     }
 
+    [HttpPost("Create")]
+    public Task<Result<long>> Create([FromBody] CreateTodoItemCommand model, CancellationToken cancellationToken)
+    {
+        return _todoItemFacade.Create(model, cancellationToken);
+    }
+
     [HttpPost]
     public Task<Result<long>> Post([FromBody] CreateTodoItemCommand model, CancellationToken cancellationToken)
     {

@@ -27,6 +27,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<ICommandHandler<TCommand>, TCommandHandler>();
         services.Decorate<ICommandHandler<TCommand>, TransactionalCommandHandlerDecorator<TCommand>>();
+        // Note: No ResultOriented decorator for non-response commands
     }
 
     public static void AddCommandHandler<TCommand, TCommandHandler, TResponse>(this IServiceCollection services)
@@ -35,6 +36,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<ICommandHandler<TCommand, TResponse>, TCommandHandler>();
         services.Decorate<ICommandHandler<TCommand, TResponse>, TransactionalCommandHandlerDecorator<TCommand, TResponse>>();
+        services.Decorate<ICommandHandler<TCommand, TResponse>, ResultOrientedCommandHandlerDecorator<TCommand, TResponse>>();
     }
 
     public static void AddEventHandler<TEvent, TEventHandler>(this IServiceCollection services)
