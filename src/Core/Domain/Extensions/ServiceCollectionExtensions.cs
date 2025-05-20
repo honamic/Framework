@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Honamic.Framework.Domain.Defaults;
-using Honamic.Framework.Domain;
 
-namespace Honamic.Framework.Applications.Extensions;
+namespace Honamic.Framework.Domain.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddDefaultDomainsServices(this IServiceCollection services)
+    public static IServiceCollection AddDefaultDomainServices(this IServiceCollection services)
     {
         services.AddSystemClock();
         return services;

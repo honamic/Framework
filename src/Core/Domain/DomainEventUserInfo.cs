@@ -1,6 +1,6 @@
 ﻿using Honamic.Framework.Events;
 
-namespace Honamic.Framework.Domain.Defaults;
+namespace Honamic.Framework.Domain;
 
 public class DomainEventUserInfo : IEventUserInfo
 {

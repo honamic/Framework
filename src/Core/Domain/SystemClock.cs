@@ -1,4 +1,4 @@
-﻿namespace Honamic.Framework.Domain.Defaults;
+﻿namespace Honamic.Framework.Domain;
 
 public class SystemClock : IClock
 {

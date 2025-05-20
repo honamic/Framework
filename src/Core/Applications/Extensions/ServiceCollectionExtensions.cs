@@ -5,6 +5,7 @@ using Honamic.Framework.Applications.CommandHandlerDecorators;
 using Honamic.Framework.Events.Extensions;
 using Honamic.Framework.Queries.Extensions;
 using Honamic.Framework.Events;
+using Honamic.Framework.Domain.Extensions;
 
 namespace Honamic.Framework.Applications.Extensions;
 
@@ -12,7 +13,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddDefaultApplicationsServices(this IServiceCollection services)
     {
-        services.AddDefaultDomainsServices();
+        services.AddDefaultDomainServices();
         services.AddDefaultEventsServices();
         services.AddDefaultCommandsServices();
         services.AddDefaultQueriesServices();

@@ -6,9 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-
-
-
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\src\Facade\Default\Honamic.Framework.Facade.csproj" />
 		<ProjectReference Include="..\Application\Honamic.IdentityPlus.Application.csproj" /> 
