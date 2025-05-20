@@ -2,8 +2,6 @@
 using Honamic.Framework.Commands.Extensions;
 using Honamic.Framework.Commands;
 using Honamic.Framework.Applications.CommandHandlerDecorators;
-using Honamic.Framework.Domain.Defaults;
-using Honamic.Framework.Domain;
 using Honamic.Framework.Events.Extensions;
 using Honamic.Framework.Queries.Extensions;
 using Honamic.Framework.Events;
@@ -14,21 +12,12 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddDefaultApplicationsServices(this IServiceCollection services)
     {
+        services.AddDefaultDomainsServices();
+        services.AddDefaultEventsServices();
         services.AddDefaultCommandsServices();
-        services.AddDefaultDomainEventsDispatcherServices();
-        services.AddSystemClock();
-        services.AddDefaultEventBusServices();
         services.AddDefaultQueriesServices();
 
         return services;
-    }
-
-    public static IServiceCollection AddSystemClock(this IServiceCollection services)
-    {
-        services.AddScoped<IClock, SystemClock>();
-
-        return services;
-
     }
 
     public static void AddCommandHandler<TCommand, TCommandHandler>(this IServiceCollection services)

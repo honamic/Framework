@@ -7,8 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Linq.Dynamic.Core;
 using Honamic.Framework.Utilities.Extensions;
-using Honamic.Framework.Facade.Results;
 using Honamic.Framework.Facade.FastCrud.Dtos;
+using Honamic.Framework.Applications.Results;
 
 namespace Honamic.Framework.Facade.FastCrud;
 

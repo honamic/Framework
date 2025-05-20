@@ -1,4 +1,4 @@
-﻿using Honamic.Framework.Facade.Results;
+﻿using Honamic.Framework.Applications.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Honamic.Framework.Facade.Web.Results;
