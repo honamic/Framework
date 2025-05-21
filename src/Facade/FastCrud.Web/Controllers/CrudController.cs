@@ -1,7 +1,7 @@
-﻿using Honamic.Framework.Domain;
+﻿using Honamic.Framework.Applications.Results;
+using Honamic.Framework.Domain;
 using Honamic.Framework.Endpoints.Web;
 using Honamic.Framework.Facade.FastCrud.Dtos;
-using Honamic.Framework.Facade.Results;
 using Honamic.Framework.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -5,9 +5,10 @@ namespace Honamic.Framework.Events.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static void AddDefaultEventssServices(this IServiceCollection services)
+    public static void AddDefaultEventsServices(this IServiceCollection services)
     {
-
+        services.AddDefaultEventBusServices();
+        services.AddDefaultDomainEventsDispatcherServices();
     }
 
     public static void AddDefaultEventBusServices(this IServiceCollection services)

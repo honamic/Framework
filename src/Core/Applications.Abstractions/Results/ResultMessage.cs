@@ -1,4 +1,4 @@
-﻿namespace Honamic.Framework.Facade.Results;
+﻿namespace Honamic.Framework.Applications.Results;
 
 public class ResultMessage
 {

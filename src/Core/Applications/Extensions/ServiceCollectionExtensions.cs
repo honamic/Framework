@@ -2,11 +2,10 @@
 using Honamic.Framework.Commands.Extensions;
 using Honamic.Framework.Commands;
 using Honamic.Framework.Applications.CommandHandlerDecorators;
-using Honamic.Framework.Domain.Defaults;
-using Honamic.Framework.Domain;
 using Honamic.Framework.Events.Extensions;
 using Honamic.Framework.Queries.Extensions;
 using Honamic.Framework.Events;
+using Honamic.Framework.Domain.Extensions;
 
 namespace Honamic.Framework.Applications.Extensions;
 
@@ -14,21 +13,12 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddDefaultApplicationsServices(this IServiceCollection services)
     {
+        services.AddDefaultDomainServices();
+        services.AddDefaultEventsServices();
         services.AddDefaultCommandsServices();
-        services.AddDefaultDomainEventsDispatcherServices();
-        services.AddSystemClock();
-        services.AddDefaultEventBusServices();
         services.AddDefaultQueriesServices();
 
         return services;
-    }
-
-    public static IServiceCollection AddSystemClock(this IServiceCollection services)
-    {
-        services.AddScoped<IClock, SystemClock>();
-
-        return services;
-
     }
 
     public static void AddCommandHandler<TCommand, TCommandHandler>(this IServiceCollection services)
@@ -37,6 +27,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<ICommandHandler<TCommand>, TCommandHandler>();
         services.Decorate<ICommandHandler<TCommand>, TransactionalCommandHandlerDecorator<TCommand>>();
+        // Note: No ResultOriented decorator for non-response commands
     }
 
     public static void AddCommandHandler<TCommand, TCommandHandler, TResponse>(this IServiceCollection services)
@@ -45,6 +36,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<ICommandHandler<TCommand, TResponse>, TCommandHandler>();
         services.Decorate<ICommandHandler<TCommand, TResponse>, TransactionalCommandHandlerDecorator<TCommand, TResponse>>();
+        services.Decorate<ICommandHandler<TCommand, TResponse>, ResultOrientedCommandHandlerDecorator<TCommand, TResponse>>();
     }
 
     public static void AddEventHandler<TEvent, TEventHandler>(this IServiceCollection services)

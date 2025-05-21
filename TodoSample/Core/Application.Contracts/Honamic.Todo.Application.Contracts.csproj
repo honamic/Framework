@@ -10,6 +10,8 @@
 
 	<ItemGroup>
 
+		<ProjectReference Include="..\..\..\src\Core\Applications.Abstractions\Honamic.Framework.Applications.Abstractions.csproj" />
+
 		<ProjectReference Include="..\..\..\src\Core\Commands.Abstractions\Honamic.Framework.Commands.Abstractions.csproj" />
 	</ItemGroup>
 

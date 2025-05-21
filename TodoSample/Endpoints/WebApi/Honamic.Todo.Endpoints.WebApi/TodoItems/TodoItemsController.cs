@@ -1,4 +1,4 @@
-using Honamic.Framework.Facade.Results;
+using Honamic.Framework.Applications.Results;
 using Honamic.Framework.Queries;
 using Honamic.Todo.Application.TodoItems.Commands;
 using Honamic.Todo.Facade.TodoItems;
@@ -35,6 +35,12 @@ public class TodoItemsController : ControllerBase
     {
         return _todoItemQueryFacade.GetTodoItem(id, cancellationToken);
 
+    }
+
+    [HttpPost("Create")]
+    public Task<Result<long>> Create([FromBody] CreateTodoItemCommand model, CancellationToken cancellationToken)
+    {
+        return _todoItemFacade.Create(model, cancellationToken);
     }
 
     [HttpPost]

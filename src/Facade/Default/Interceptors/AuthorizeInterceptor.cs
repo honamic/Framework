@@ -1,5 +1,5 @@
 ﻿using Castle.DynamicProxy;
-using Honamic.Framework.Facade.Exceptions;
+using Honamic.Framework.Applications.Exceptions;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 
