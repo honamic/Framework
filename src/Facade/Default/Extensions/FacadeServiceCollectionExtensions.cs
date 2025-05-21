@@ -1,4 +1,5 @@
 ﻿using Castle.DynamicProxy;
+using Honamic.Framework.Applications.Authorizes;
 using Honamic.Framework.Facade.Discovery;
 using Honamic.Framework.Facade.Interceptors;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +21,7 @@ public static class FacadeServiceCollectionExtensions
 
     public static void AddDisableFacadeAuthorizationServices(this IServiceCollection services)
     {
-        services.AddScoped<IFacadeAuthorization, DisableFacadeAuthorization>();
+        services.AddScoped<IAuthorization, DisableAuthorization>();
     }
 
     public static void AddFacadeScoped<TInterface, TImplementation>(this IServiceCollection services)
