@@ -332,3 +332,4 @@ ASALocalRun/
 *.ncrunchproject
 *.ncrunchsolution
 *.ncrunchsolution.*
+/Publish_to_Nexus.cmd
