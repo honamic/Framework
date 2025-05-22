@@ -1,4 +1,5 @@
-﻿using Honamic.Framework.Applications.Results;
+﻿using Honamic.Framework.Applications.Authorizes;
+using Honamic.Framework.Applications.Results;
 using Honamic.Framework.Commands;
 using Honamic.Framework.Events;
 using Honamic.Framework.Facade;
@@ -8,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Honamic.Todo.Facade.TodoItems;
 
-[FacadeDynamicAuthorize]
+[DynamicAuthorize]
 internal class TodoItemFacade : BaseFacade, ITodoItemFacade
 {
     private readonly ICommandBus _commandBus;

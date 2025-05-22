@@ -6,10 +6,11 @@ using Honamic.Todo.Query.Domain.TodoItems.Models;
 using Honamic.Todo.Query.Domain.TodoItems.Queries;
 using Honamic.Todo.Query.Domain.TodoItems;
 using Honamic.Framework.Applications.Results;
+using Honamic.Framework.Applications.Authorizes;
 
 namespace Honamic.Todo.Facade.TodoItems;
 
-[FacadeDynamicAuthorize]
+[DynamicAuthorize]
 [DisplayName("نمایش انجام دادنی ها")]
 public class TodoItemQueryFacade : BaseFacade, ITodoItemQueryFacade
 {

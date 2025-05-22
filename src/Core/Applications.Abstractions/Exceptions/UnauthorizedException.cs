@@ -6,7 +6,7 @@ public class UnauthorizedException : Exception
     {
         PermissionName = permissionName;
     }
-    public override string Message => "the request does not have valid authentication credentials for the operation";
+    public override string Message => "You do not have permission to perform this operation";
 
     public string PermissionName { get; }
 }

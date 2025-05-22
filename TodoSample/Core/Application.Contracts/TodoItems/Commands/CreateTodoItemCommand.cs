@@ -1,4 +1,5 @@
 ﻿
+using Honamic.Framework.Applications.Authorizes;
 using Honamic.Framework.Applications.Results;
 using Honamic.Framework.Commands;
 
@@ -8,6 +9,8 @@ public record CreateTodoItemCommand(string title, string content, List<string> t
 
 
 
+//[DynamicAuthorize]
+[Authorize("admin")]
 public record CreateTodoItem2Command(string title, string content, List<string> tags)
     : ICommand<Result<CreateTodoItem2ResultCommand>>;
 

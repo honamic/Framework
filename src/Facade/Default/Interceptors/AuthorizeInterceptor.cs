@@ -1,4 +1,5 @@
 ﻿using Castle.DynamicProxy;
+using Honamic.Framework.Applications.Authorizes;
 using Honamic.Framework.Applications.Exceptions;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
@@ -8,10 +9,10 @@ namespace Honamic.Framework.Facade.Interceptors;
 internal class AuthorizeInterceptor : IInterceptor
 {
     private readonly ILogger<AuthorizeInterceptor> _logger;
-    private readonly IFacadeAuthorization _facadeAuthorization;
+    private readonly IAuthorization _facadeAuthorization;
 
     public AuthorizeInterceptor(ILogger<AuthorizeInterceptor> logger,
-        IFacadeAuthorization facadeAuthorization)
+        IAuthorization facadeAuthorization)
     {
         _logger = logger;
         _facadeAuthorization = facadeAuthorization;
@@ -28,10 +29,10 @@ internal class AuthorizeInterceptor : IInterceptor
     private void Authorize(IInvocation invocation)
     {
         var classDynamicAuthorize = invocation.TargetType
-            .GetCustomAttribute<FacadeDynamicAuthorizeAttribute>();
+            .GetCustomAttribute<DynamicAuthorizeAttribute>();
 
         var methodDynamicAuthorize = invocation.MethodInvocationTarget
-            .GetCustomAttribute<FacadeDynamicAuthorizeAttribute>();
+            .GetCustomAttribute<DynamicAuthorizeAttribute>();
 
         if (classDynamicAuthorize is null
             && methodDynamicAuthorize is null)
@@ -43,7 +44,7 @@ internal class AuthorizeInterceptor : IInterceptor
         if (methodDynamicAuthorize is null)
         {
             var AllowAnonymous = invocation.MethodInvocationTarget
-                         .GetCustomAttribute<FacadeAllowAnonymousAttribute>();
+                         .GetCustomAttribute<AllowAnonymousAttribute>();
             if (AllowAnonymous is not null)
             {
                 return;
@@ -66,10 +67,10 @@ internal class AuthorizeInterceptor : IInterceptor
     private void Authentication(IInvocation invocation)
     {
         var classAuthorize = invocation.TargetType
-            .GetCustomAttribute<FacadeAuthorizeAttribute>();
+            .GetCustomAttribute<AuthorizeAttribute>();
 
         var methodAuthorize = invocation.Method
-            .GetCustomAttribute<FacadeAuthorizeAttribute>();
+            .GetCustomAttribute<AuthorizeAttribute>();
 
         if (classAuthorize is null
             && methodAuthorize is null)
@@ -80,7 +81,7 @@ internal class AuthorizeInterceptor : IInterceptor
         if (methodAuthorize is null)
         {
             var AllowAnonymous = invocation.Method
-                         .GetCustomAttribute<FacadeAllowAnonymousAttribute>();
+                         .GetCustomAttribute<AllowAnonymousAttribute>();
             if (AllowAnonymous is not null)
             {
                 return;
