@@ -1,6 +1,5 @@
 ﻿using Honamic.Framework.Applications.Results;
 using Honamic.Framework.Domain;
-using Honamic.Framework.Endpoints.Web;
 using Honamic.Framework.Facade.FastCrud.Dtos;
 using Honamic.Framework.Queries;
 using Microsoft.AspNetCore.Http;
@@ -69,7 +68,7 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
         {
             ModelState.AddModelError("Id", "The identifier in the body does not match the path");
 
-            return ( new BadRequestFacadeResult(ModelState));
+            return ( new Honamic.Framework.Endpoints.Web.Results.BadRequestResult(ModelState));
         }
 
         var result = await _crudEntityService.UpdateAsync(input, cancellationToken);

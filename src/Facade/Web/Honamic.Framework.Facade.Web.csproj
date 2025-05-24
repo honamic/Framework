@@ -5,7 +5,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
@@ -15,8 +15,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\core\Domain.Abstractions\Honamic.Framework.Domain.Abstractions.csproj" />
-	  <ProjectReference Include="..\Default\Honamic.Framework.Facade.csproj" />
+		<ProjectReference Include="..\..\core\Domain.Abstractions\Honamic.Framework.Domain.Abstractions.csproj" />
+		<ProjectReference Include="..\Default\Honamic.Framework.Facade.csproj" />
+		<ProjectReference Include="..\..\Endpoints\Web\Honamic.Framework.Endpoints.Web.csproj" />
+
 	</ItemGroup>
 
 </Project>
