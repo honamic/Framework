@@ -4,8 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Honamic.Framework.Persistence.EntityFramework.Extensions;
 using Honamic.Todo.Domain.TodoItems;
 using Honamic.Todo.Domain;
-using Honamic.Todo.Persistence.EntityFramework.TodoItems;
-using Honamic.IdentityPlus.Persistence.Extensions;
+using Honamic.Todo.Persistence.EntityFramework.TodoItems; 
 
 
 namespace Honamic.Todo.Persistence.EntityFramework.Extensions;
@@ -27,8 +26,6 @@ public static class ServiceCollectionExtensions
 
         services.AddTransient<ITodoItemRepository, TodoItemRepository>();
         services.AddUnitOfWorkByEntityFramework<TodoDbContext>();
-
-        services.AddIdentityPlusPersistence();
     }
 
     private static void DebuggerConnectionStringLog(string? SqlServerConnection)

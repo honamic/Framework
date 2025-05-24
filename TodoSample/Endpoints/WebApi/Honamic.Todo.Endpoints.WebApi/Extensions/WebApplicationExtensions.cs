@@ -1,6 +1,5 @@
 ﻿using Honamic.Framework.Endpoints.Web.Extensions;
-using Honamic.Framework.Facade.Web.Middleware;
-using Honamic.IdentityPlus.WebApi.Extensions;
+using Honamic.Framework.Facade.Web.Middleware; 
 
 namespace Honamic.Todo.Endpoints.WebApi.Extensions;
 
@@ -15,35 +14,21 @@ public static class WebApplicationExtensions
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
-            app.UseWebAssemblyDebugging();
+            app.UseSwaggerUI(); 
         }
 
         // global cors policy
         app.UseCors(x => x
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .SetIsOriginAllowed(origin => true) // allow any origin
-                                                //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins separated with comma
-            .AllowCredentials()); // allow credentials
+            .SetIsOriginAllowed(origin => true) 
+            .AllowCredentials()); 
 
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
 
-        app.MapIdentityPlusApi();
-
         app.MapControllers();
-
-        app.UseStaticFiles();
-        app.UseAntiforgery();
-
-        app.MapRazorComponents<Components.App>()
-            .AddInteractiveWebAssemblyRenderMode()
-           .AddIdentityPlusComponents()
-           .AddAdditionalAssemblies(
-              typeof(Honamic.Todo.Endpoints.WasmClient.Pages.Counter).Assembly);
-
 
         return app;
     }

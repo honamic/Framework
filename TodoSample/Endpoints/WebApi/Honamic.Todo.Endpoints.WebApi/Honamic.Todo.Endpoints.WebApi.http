@@ -1,6 +1,0 @@
-@Honamic.Todo.Endpoints.WebApi_HostAddress = https://localhost:7122
-
-
-GET {{Honamic.Todo.Endpoints.WebApi_HostAddress}}/api/todoitems
-
-###

@@ -4,9 +4,7 @@ using Honamic.Framework.Applications.Extensions;
 using Honamic.Todo.Application.TodoItems.Commands;
 using Honamic.Todo.Application.TodoItems.CommandHandlers;
 using Honamic.Todo.Domain.Extensions;
-using Honamic.Framework.Tools.IdGenerators;
-using Honamic.Todo.Application.TodoItems.EventHandlers;
-using Honamic.IdentityPlus.Domain.Users;
+using Honamic.Framework.Tools.IdGenerators; 
 using Honamic.Framework.Applications.Results;
 
 namespace Honamic.Todo.Application.Extensions;
@@ -36,7 +34,6 @@ public static class ApplicationServiceCollectionExtensions
 
     private static void AddEventHandlers(this IServiceCollection services)
     {
-        services.AddEventHandler<UserCreatedEvent, UserCreatedEventHandler>();
-        services.AddEventHandler<UserLoggedEvent, UserLoggedEventHandler>();
+ 
     }
 }

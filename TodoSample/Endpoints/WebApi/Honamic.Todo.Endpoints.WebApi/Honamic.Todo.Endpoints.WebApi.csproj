@@ -6,28 +6,20 @@
 		<IsPackable>false</IsPackable>
 		<UserSecretsId>aspnet-wasm-ded6f7a4-a003-4e09-9660-4a91b94a1ba9</UserSecretsId>
 	</PropertyGroup>
-	<ItemGroup>
-	  <None Include="Honamic.Todo.Endpoints.WasmClient.csproj" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.16">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.2" />
 		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.1" />
-		<PackageReference Include="MudBlazor" Version="6.15.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\src\Endpoints\Web\Honamic.Framework.Endpoints.Web.csproj" />
 		<ProjectReference Include="..\..\..\..\src\Facade\Web\Honamic.Framework.Facade.Web.csproj" />
-		<ProjectReference Include="..\..\..\..\src\IdentityPlus\Facade\Honamic.IdentityPlus.Facade.csproj" />
-		<ProjectReference Include="..\..\..\..\src\IdentityPlus\WebApi\Honamic.IdentityPlus.WebApi.csproj" />
 		<ProjectReference Include="..\..\..\Facade\Honamic.Todo.Facade.csproj" />
-		<ProjectReference Include="..\..\WasmClient\Honamic.Todo.Endpoints.WasmClient.csproj" />
 	</ItemGroup>
 
 </Project>
