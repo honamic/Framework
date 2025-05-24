@@ -46,8 +46,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Endpoints.Web", "src\Endpoints\Web\Honamic.Framework.Endpoints.Web.csproj", "{E6B1BA0C-2C80-449D-A96F-EBCD590B10A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Facade", "src\Facade\Default\Honamic.Framework.Facade.csproj", "{753E6B01-E2D4-4D04-8FBD-D33A57B91429}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Facade.Abstractions", "src\Facade\Abstractions\Honamic.Framework.Facade.Abstractions.csproj", "{4BB01D5D-0F5E-4B29-9177-5F11DA68CA8E}"
+EndProject
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Facade.Web", "src\Facade\Web\Honamic.Framework.Facade.Web.csproj", "{77ED902B-18FE-4873-9169-4512184A9482}"
 EndProject
@@ -93,7 +93,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Todo.Endpoints.WebA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{196209A4-3BCC-442B-9686-CF311ADEBF6D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Tools.IdGenerators", "src\Tools\Honamic.Framework.Tools.IdGenerators\Honamic.Framework.Tools.IdGenerators.csproj", "{462B177A-3E97-4F60-A141-7A01F8B437B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Tools.IdGenerators", "src\Tools\IdGenerators\Honamic.Framework.Tools.IdGenerators.csproj", "{462B177A-3E97-4F60-A141-7A01F8B437B5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Utilities.Razor", "src\Utilities\Razor\Honamic.Framework.Utilities.Razor.csproj", "{91F6CBC0-C422-43C5-AF19-DE6D3B5B7806}"
 EndProject
