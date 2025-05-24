@@ -1,10 +1,9 @@
 ﻿using Honamic.Framework.Applications.Results;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Honamic.Framework.Facade.Web.Results;
+namespace Honamic.Framework.Endpoints.Web.Results;
 public static class ResultExtensions
 {
-
     public static ActionResult<Result<T>> ResultToAction<T>(this ControllerBase controller, Result<T> result)
     {
         switch (result.Status)

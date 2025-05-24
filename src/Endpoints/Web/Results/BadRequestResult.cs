@@ -4,15 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Honamic.Framework.Endpoints.Web;
+namespace Honamic.Framework.Endpoints.Web.Results;
 
 [DefaultStatusCode(DefaultStatusCode)]
-
-public class BadRequestFacadeResult : ObjectResult
+public class BadRequestResult : ObjectResult
 {
     private const int DefaultStatusCode = StatusCodes.Status400BadRequest;
 
-    public BadRequestFacadeResult(ModelStateDictionary modelState) :
+    public BadRequestResult(ModelStateDictionary modelState) :
         base(ToResult(modelState))
     {
         if (modelState == null)

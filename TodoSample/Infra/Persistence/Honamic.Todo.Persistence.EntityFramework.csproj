@@ -22,7 +22,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\src\EntityFramework\Persistence\Honamic.Framework.EntityFramework.Persistence.csproj" />
-	  <ProjectReference Include="..\..\..\src\IdentityPlus\Persistence\Honamic.IdentityPlus.Persistence.csproj" />
 	  <ProjectReference Include="..\..\core\domain\Honamic.Todo.Domain.csproj" />
 	</ItemGroup>
 

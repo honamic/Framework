@@ -1,5 +1,5 @@
 ﻿using Honamic.Framework.Endpoints.Web.Extensions;
-using Honamic.Framework.Facade.Web.Middleware; 
+using Honamic.Framework.Facade.Web.Middleware;
 
 namespace Honamic.Todo.Endpoints.WebApi.Extensions;
 
@@ -7,7 +7,7 @@ public static class WebApplicationExtensions
 {
     public static WebApplication UseConfigurations(this WebApplication app)
     {
-        app.UseExceptionToFacadeResult();
+        app.UseExceptionToResult();
         app.UseFacadeDiscoveryEndpoint();
 
         // Configure the HTTP request pipeline.

@@ -16,7 +16,7 @@ public static class ServiceCollectionExtensions
 
     private static void AddEndpointsServices(this IServiceCollection services, IConfiguration configurations)
     {
-        services.ConfigureBadRequestToFacadeResult();
+        services.ConfigureBadRequestToResult();
         services.AddControllers()
                     .AddJsonOptions(c =>
                     {

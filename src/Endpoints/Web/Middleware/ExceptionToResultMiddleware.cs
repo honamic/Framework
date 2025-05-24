@@ -10,17 +10,16 @@ using System.Text.Json;
 
 namespace Honamic.Framework.Endpoints.Web.Middleware;
 
-internal class ExceptionToFacadeResultMiddleware
+internal class ExceptionToResultMiddleware
 {
     private readonly RequestDelegate _next;
-    private readonly ILogger<ExceptionToFacadeResultMiddleware> _logger;
-    private const string UnhandledExceptionMessage = "An unhandled exception has been occurred.";
-    private const string UnhandledBusinessExceptionMessage = "business exception has been occurred.";
-
+    private readonly ILogger<ExceptionToResultMiddleware> _logger;
+    
+    //todo: move to options
     private readonly bool _errorExceptionInResult;
 
-    public ExceptionToFacadeResultMiddleware(RequestDelegate next,
-        ILogger<ExceptionToFacadeResultMiddleware> logger,
+    public ExceptionToResultMiddleware(RequestDelegate next,
+        ILogger<ExceptionToResultMiddleware> logger,
         IConfiguration configuration)
     {
         _next = next;
@@ -51,10 +50,10 @@ internal class ExceptionToFacadeResultMiddleware
             case UnauthorizedException:
                 break;
             case BusinessException:
-                _logger.LogWarning(exception, UnhandledBusinessExceptionMessage);
+                _logger.LogWarning(exception, Constants.UnhandledBusinessExceptionMessage);
                 break;
             default:
-                _logger.LogError(exception, UnhandledExceptionMessage);
+                _logger.LogError(exception, Constants.UnhandledExceptionMessage);
                 break;
         }
 
@@ -73,15 +72,12 @@ internal class ExceptionToFacadeResultMiddleware
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, UnhandledExceptionMessage);
+            _logger.LogError(ex, Constants.UnhandledExceptionMessage);
         }
     }
 
     private async Task ReturnApiResultMessage(HttpContext context, Result errorResult)
     {
-        var serializedResult = SerializeResult(errorResult);
-        context.Response.ContentType = "application/json";
-
         switch (errorResult.Status)
         {
             case ResultStatus.None:
@@ -110,6 +106,8 @@ internal class ExceptionToFacadeResultMiddleware
                 break;
         }
 
+        var serializedResult = SerializeResult(errorResult);
+        context.Response.ContentType = "application/json";
         await context.Response.WriteAsync(serializedResult);
     }
 
@@ -119,10 +117,10 @@ internal class ExceptionToFacadeResultMiddleware
 
         if (exception is BusinessException businessException)
         {
-            errorResult.Status=ResultStatus.ValidationError;
+            errorResult.Status = ResultStatus.ValidationError;
             var code = businessException.GetCode();
             var message = businessException.GetMessage();
-            errorResult.AppendError(message,null, code);
+            errorResult.AppendError(message, null, code);
         }
         else if (exception is UnauthorizedException unauthorizedException)
         {
@@ -136,7 +134,7 @@ internal class ExceptionToFacadeResultMiddleware
         }
         else
         {
-            errorResult.SetStatusAsUnhandledException(UnhandledExceptionMessage);
+            errorResult.SetStatusAsUnhandledException(Constants.UnhandledExceptionMessage);
         }
 
         if (_errorExceptionInResult)

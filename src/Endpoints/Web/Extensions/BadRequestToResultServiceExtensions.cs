@@ -3,14 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Honamic.Framework.Endpoints.Web.Extensions;
 
-public static class BadRequestToFacadeResultServiceExtensions
+public static class BadRequestToResultServiceExtensions
 {
-    public static void ConfigureBadRequestToFacadeResult(this IServiceCollection services)
+    public static void ConfigureBadRequestToResult(this IServiceCollection services)
     {
         services.PostConfigure<ApiBehaviorOptions>(options =>
         {
             options.InvalidModelStateResponseFactory = actionContext
-                       => new BadRequestFacadeResult(actionContext.ModelState);
+                       => new Results.BadRequestResult(actionContext.ModelState);
         });
     }
 }
