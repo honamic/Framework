@@ -28,4 +28,4 @@ jobs:
 
     - name: Push Package to NuGet.org
       if: github.event_name == 'push'
-      run: dotnet nuget push ./packages/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push **\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
