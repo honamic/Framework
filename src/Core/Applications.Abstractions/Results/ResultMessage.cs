@@ -2,7 +2,7 @@
 
 public class ResultMessage
 {
-    public ResultMessage(ResultMessageType type, string message, string field = null, string code = null)
+    public ResultMessage(ResultMessageType type, string message, string?  field= null, string? code = null)
     {
         Type = type;
         Message = message;
@@ -12,9 +12,9 @@ public class ResultMessage
 
     public string Message { get; set; }
 
-    public string Field { get; set; }
+    public string? Field { get; set; }
 
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     public ResultMessageType Type { get; set; }
 }

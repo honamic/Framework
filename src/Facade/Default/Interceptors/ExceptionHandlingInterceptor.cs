@@ -1,6 +1,7 @@
 ﻿using Castle.DynamicProxy;
 using Honamic.Framework.Applications.Exceptions;
 using Honamic.Framework.Applications.Results;
+using Honamic.Framework.Domain;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Reflection;
@@ -36,7 +37,7 @@ internal class ExceptionHandlingInterceptor : IInterceptor
         {
             if (invocation.Proxy is IBaseFacade baseFacade)
             {
-                 baseFacade.Logger.LogError(ex, "Unhandled exception");
+                baseFacade.Logger.LogError(ex, "Unhandled exception");
             }
 
             var result = GetNewResult(invocation, ex);
@@ -111,16 +112,24 @@ internal class ExceptionHandlingInterceptor : IInterceptor
         switch (ex)
         {
             case UnauthenticatedException:
-                rawResult?.SetStatusAsUnauthenticated();
-                rawResult?.AppendError(ex.Message, "Exception");
+                rawResult?.SetStatusAsUnauthenticated(ex.Message);
                 break;
             case UnauthorizedException:
-                rawResult?.SetStatusAsUnauthorized();
-                rawResult?.AppendError(ex.Message, "Exception");
+                rawResult?.SetStatusAsUnauthorized(ex.Message);
+                break;
+            case NotFoundBusinessException notFoundEx:
+                rawResult?.SetStatusAsNotFound();
+                rawResult?.AppendError(notFoundEx.GetMessage(), null, notFoundEx.GetCode());
+                break;
+            case BusinessException businessException:
+                rawResult?.SetStatusAsValidationError();
+                var code = businessException.GetCode();
+                var message = businessException.GetMessage();
+                rawResult?.AppendError(message, null, code);
                 break;
             default:
                 rawResult?.SetStatusAsUnhandledExceptionWithSorryError();
-                rawResult?.AppendError(ex.ToString(), "Exception");
+                rawResult?.AppendError(ex.Message, "Exception");
                 break;
         }
 

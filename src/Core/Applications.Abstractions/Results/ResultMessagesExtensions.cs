@@ -12,14 +12,14 @@ public static class ResultMessagesExtensions
         result.Messages.Add(new ResultMessage(ResultMessageType.Info, message));
     }
 
-    public static void AppendError(this Result result, string message, string field, string code)
+    public static void AppendError(this Result result, string message, string? field, string? code)
     {
-        result.Messages.Add(new ResultMessage(ResultMessageType.Error, message, field, code));
+        result.Messages.Add(new ResultMessage(ResultMessageType.Error, message, code:code , field: field));
     }
 
-    public static void AppendError(this Result result, string message, string field)
+    public static void AppendError(this Result result, string message, string? field)
     {
-        result.AppendError(message, field, null);
+        result.AppendError(message, field: field, null);
     }
 
     public static void AppendError(this Result result, string message)
@@ -87,5 +87,10 @@ public static class ResultMessagesExtensions
     {
         result.Status = ResultStatus.InvalidDomainState;
         result.AppendError(errorMessage);
+    }
+
+    public static void SetStatusAsValidationError(this Result result)
+    {
+        result.Status = ResultStatus.ValidationError;
     }
 }
