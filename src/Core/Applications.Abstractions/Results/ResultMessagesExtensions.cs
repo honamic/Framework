@@ -12,12 +12,12 @@ public static class ResultMessagesExtensions
         result.Messages.Add(new ResultMessage(ResultMessageType.Info, message));
     }
 
-    public static void AppendError(this Result result, string message, string field, string code)
+    public static void AppendError(this Result result, string message, string? field, string? code)
     {
         result.Messages.Add(new ResultMessage(ResultMessageType.Error, message, field, code));
     }
 
-    public static void AppendError(this Result result, string message, string field)
+    public static void AppendError(this Result result, string message, string? field)
     {
         result.AppendError(message, field, null);
     }

@@ -14,6 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\Core\Domain.Abstractions\Honamic.Framework.Domain.Abstractions.csproj" />
 	  <ProjectReference Include="..\..\Utilities\Default\Honamic.Framework.Utilities.csproj" />
 	  <ProjectReference Include="..\Abstractions\Honamic.Framework.Facade.Abstractions.csproj" />
 	</ItemGroup>

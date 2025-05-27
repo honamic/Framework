@@ -52,6 +52,10 @@ public class ExceptionCommandHandlerDecorator<TCommand, TResponse> : ICommandHan
                     result.SetStatusAsUnauthorized();
                     result.AppendError(ex.Message);
                     break;
+                case NotFoundBusinessException notFoundEx:
+                    result.Status = ResultStatus.NotFound;
+                    result.AppendError(notFoundEx.GetMessage(), null, notFoundEx.GetCode());
+                    break;
                 case BusinessException businessException:
                     result.Status = ResultStatus.ValidationError;
                     var code = businessException.GetCode();
