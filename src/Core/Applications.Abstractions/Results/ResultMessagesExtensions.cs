@@ -88,4 +88,9 @@ public static class ResultMessagesExtensions
         result.Status = ResultStatus.InvalidDomainState;
         result.AppendError(errorMessage);
     }
+
+    public static void SetStatusAsValidationError(this Result result)
+    {
+        result.Status = ResultStatus.ValidationError;
+    }
 }
