@@ -2,7 +2,7 @@
 
 public class ResultMessage
 {
-    public ResultMessage(ResultMessageType type, string message, string? code = null, string? field = null)
+    public ResultMessage(ResultMessageType type, string message, string?  field= null, string? code = null)
     {
         Type = type;
         Message = message;
