@@ -1,6 +1,6 @@
 ﻿namespace Honamic.Framework.Queries;
 
-public class PagedQueryResult<TEntity> : IQueryResult
+public class PagedQueryResult<TEntity> 
 {
     public PagedQueryResult()
     {

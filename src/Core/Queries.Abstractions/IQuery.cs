@@ -1,5 +1,6 @@
 ﻿namespace Honamic.Framework.Queries;
 
-public interface IQueryFilter
+public interface IQuery<out TResponse>
 {
+
 }

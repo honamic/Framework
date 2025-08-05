@@ -1,10 +1,7 @@
 ﻿namespace Honamic.Framework.Queries;
 
-public interface IQueryHandler<in TQueryFilter, TQueryResult>
-    where TQueryFilter : IQueryFilter
-    //where TQueryResult : IQueryResult
-
+public interface IQueryHandler<in TQuery, TResponse>
+    where TQuery : class, IQuery<TResponse>
 {
-    Task<TQueryResult> HandleAsync(TQueryFilter filter, CancellationToken cancellationToken);
-
+    Task<TResponse> HandleAsync(TQuery filter, CancellationToken cancellationToken);
 }

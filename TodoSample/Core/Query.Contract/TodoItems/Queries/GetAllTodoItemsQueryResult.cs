@@ -1,8 +1,6 @@
-﻿using Honamic.Framework.Queries;
+﻿namespace Honamic.Todo.Query.Domain.TodoItems.Queries;
 
-namespace Honamic.Todo.Query.Domain.TodoItems.Queries;
-
-public class GetAllTodoItemsQueryResult: IQueryResult
+public class GetAllTodoItemsQueryResult
 {
     public long Id { get; set; }
 

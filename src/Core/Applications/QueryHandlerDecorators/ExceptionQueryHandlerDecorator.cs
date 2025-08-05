@@ -1,34 +1,30 @@
-using Honamic.Framework.Applications.Authorizes;
 using Honamic.Framework.Applications.Extensions;
 using Honamic.Framework.Queries;
 
 namespace Honamic.Framework.Applications.QueryHandlerDecorators;
 
-public class ExceptionQueryHandlerDecorator<TQueryFilter, TQueryResult> : IQueryHandler<TQueryFilter, TQueryResult>
-        where TQueryFilter : IQueryFilter
-       // where TQueryResult : IQueryResult
+public class ExceptionQueryHandlerDecorator<TQuery, TResponse> : IQueryHandler<TQuery, TResponse>
+    where TQuery : class, IQuery<TResponse>
 {
-    private readonly IQueryHandler<TQueryFilter, TQueryResult> _queryHandler;
-    private readonly IAuthorization _authorization;
+    private readonly IQueryHandler<TQuery, TResponse> _queryHandler;
 
-    public ExceptionQueryHandlerDecorator(IQueryHandler<TQueryFilter, TQueryResult> queryHandler, IAuthorization authorization)
+    public ExceptionQueryHandlerDecorator(IQueryHandler<TQuery, TResponse> queryHandler)
     {
         _queryHandler = queryHandler;
-        _authorization = authorization;
     }
 
-    public async Task<TQueryResult> HandleAsync(TQueryFilter query, CancellationToken cancellationToken)
+    public async Task<TResponse> HandleAsync(TQuery query, CancellationToken cancellationToken)
     {
-        TQueryResult result;
+        TResponse result;
         try
         {
             result = await _queryHandler.HandleAsync(query, cancellationToken);
         }
         catch (Exception ex)
         {
-            if (ExceptionDecoratorHelper.IsResultOriented(typeof(TQueryResult)))
+            if (ExceptionDecoratorHelper.IsResultOriented(typeof(TResponse)))
             {
-                result = ExceptionDecoratorHelper.CreateResultWithError<TQueryResult>(typeof(TQueryResult), ex);
+                result = ExceptionDecoratorHelper.CreateResultWithError<TResponse>(typeof(TResponse), ex);
                 return result;
             }
 

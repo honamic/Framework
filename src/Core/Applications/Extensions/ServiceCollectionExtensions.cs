@@ -50,14 +50,12 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IEventHandler<TEvent>, TEventHandler>();
     }
 
-    public static void AddQueryHandler<TQueryFilter, TQueryResult, TQueryHandler>(this IServiceCollection services)
-        where TQueryFilter : IQueryFilter
-        //where TQueryResult : IQueryResult
-        where TQueryHandler : class, IQueryHandler<TQueryFilter, TQueryResult>
+    public static void AddQueryHandler<TQuery, TResponse, TQueryHandler>(this IServiceCollection services)
+    where TQuery : class, IQuery<TResponse>
+    where TQueryHandler : class, IQueryHandler<TQuery, TResponse>
     {
-        services.AddTransient<IQueryHandler<TQueryFilter, TQueryResult>, TQueryHandler>();
-        services.Decorate<IQueryHandler<TQueryFilter, TQueryResult>, AuthorizeQueryHandlerDecorator<TQueryFilter, TQueryResult>>();
-        services.Decorate<IQueryHandler<TQueryFilter, TQueryResult>, ExceptionQueryHandlerDecorator<TQueryFilter, TQueryResult>>();
-
+        services.AddTransient<IQueryHandler<TQuery, TResponse>, TQueryHandler>();
+        services.Decorate<IQueryHandler<TQuery, TResponse>, AuthorizeQueryHandlerDecorator<TQuery, TResponse>>();
+        services.Decorate<IQueryHandler<TQuery, TResponse>, ExceptionQueryHandlerDecorator<TQuery, TResponse>>();
     }
 }

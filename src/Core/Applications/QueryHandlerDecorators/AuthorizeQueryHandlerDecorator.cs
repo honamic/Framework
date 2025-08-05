@@ -4,22 +4,21 @@ using Honamic.Framework.Queries;
 
 namespace Honamic.Framework.Applications.QueryHandlerDecorators;
 
-public class AuthorizeQueryHandlerDecorator<TQueryFilter, TQueryResult> : IQueryHandler<TQueryFilter, TQueryResult>
-        where TQueryFilter : IQueryFilter
-        //where TQueryResult : IQueryResult
+public class AuthorizeQueryHandlerDecorator<TQuery, TResponse> : IQueryHandler<TQuery, TResponse>
+    where TQuery : class, IQuery<TResponse>
 {
-    private readonly IQueryHandler<TQueryFilter, TQueryResult> _queryHandler;
+    private readonly IQueryHandler<TQuery, TResponse> _queryHandler;
     private readonly IAuthorization _authorization;
 
-    public AuthorizeQueryHandlerDecorator(IQueryHandler<TQueryFilter, TQueryResult> queryHandler, IAuthorization authorization)
+    public AuthorizeQueryHandlerDecorator(IQueryHandler<TQuery, TResponse> queryHandler, IAuthorization authorization)
     {
         _queryHandler = queryHandler;
         _authorization = authorization;
     }
 
-    public async Task<TQueryResult> HandleAsync(TQueryFilter query, CancellationToken cancellationToken)
+    public async Task<TResponse> HandleAsync(TQuery query, CancellationToken cancellationToken)
     {
-        await _authorization.AuthorizeAttributes(typeof(TQueryFilter));
+        await _authorization.AuthorizeAttributes(typeof(TQuery));
         return await _queryHandler.HandleAsync(query, cancellationToken);
     }
 }

@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace Honamic.Framework.Queries;
+﻿namespace Honamic.Framework.Queries;
 
 internal class QueryBus : IQueryBus
 {
@@ -11,19 +9,31 @@ internal class QueryBus : IQueryBus
         _serviceProvider = serviceProvider;
     }
 
-    public async Task<TQueryResult> Dispatch<TQueryFilter, TQueryResult>(TQueryFilter filter, CancellationToken cancellationToken)
-        where TQueryFilter : IQueryFilter
-      //  where TQueryResult : IQueryResult
+    public async Task<TResponse> Dispatch<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken)
     {
-        var handler = _serviceProvider.GetService<IQueryHandler<TQueryFilter, TQueryResult>>();
+        var queryType = query.GetType();
+        var handlerType = typeof(IQueryHandler<,>).MakeGenericType(queryType, typeof(TResponse));
+        var handler = _serviceProvider.GetService(handlerType);
 
         if (handler == null)
         {
-            throw new InvalidOperationException($"No QueryHandler is registered for {typeof(TQueryFilter).Name}");
+            throw new InvalidOperationException($"No QueryHandler is registered for {queryType.Name}");
         }
 
-        var result = await handler.HandleAsync(filter,cancellationToken);
-        return result;
-    }
+        var method = handlerType.GetMethod("HandleAsync");
+        if (method == null)
+            throw new InvalidOperationException("HandleAsync method not found on handler.");
 
+        var task = (Task)method.Invoke(handler, new object[] { query, cancellationToken })!;
+        await task.ConfigureAwait(false);
+
+
+        // گرفتن نتیجه از Task<T>
+        var resultProperty = task.GetType().GetProperty("Result");
+
+        if (resultProperty == null)
+            throw new InvalidOperationException("Result property not found on Task.");
+
+        return (TResponse)resultProperty.GetValue(task)!;
+    }
 }
