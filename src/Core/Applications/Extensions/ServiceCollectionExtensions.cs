@@ -1,11 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Honamic.Framework.Commands.Extensions;
+﻿using Honamic.Framework.Applications.CommandHandlerDecorators;
+using Honamic.Framework.Applications.QueryHandlerDecorators;
 using Honamic.Framework.Commands;
-using Honamic.Framework.Applications.CommandHandlerDecorators;
-using Honamic.Framework.Events.Extensions;
-using Honamic.Framework.Queries.Extensions;
-using Honamic.Framework.Events;
+using Honamic.Framework.Commands.Extensions;
 using Honamic.Framework.Domain.Extensions;
+using Honamic.Framework.Events;
+using Honamic.Framework.Events.Extensions;
+using Honamic.Framework.Queries;
+using Honamic.Framework.Queries.Extensions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Honamic.Framework.Applications.Extensions;
 
@@ -46,5 +48,16 @@ public static class ServiceCollectionExtensions
     where TEventHandler : class, IEventHandler<TEvent>
     {
         services.AddTransient<IEventHandler<TEvent>, TEventHandler>();
+    }
+
+    public static void AddQueryHandler<TQueryFilter, TQueryResult, TQueryHandler>(this IServiceCollection services)
+        where TQueryFilter : IQueryFilter
+        where TQueryResult : IQueryResult
+        where TQueryHandler : class, IQueryHandler<TQueryFilter, TQueryResult>
+    {
+        services.AddTransient<IQueryHandler<TQueryFilter, TQueryResult>, TQueryHandler>();
+        services.Decorate<IQueryHandler<TQueryFilter, TQueryResult>, AuthorizeQueryHandlerDecorator<TQueryFilter, TQueryResult>>();
+        services.Decorate<IQueryHandler<TQueryFilter, TQueryResult>, ExceptionQueryHandlerDecorator<TQueryFilter, TQueryResult>>();
+
     }
 }

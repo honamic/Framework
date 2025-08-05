@@ -3,6 +3,7 @@ using Honamic.Framework.Applications.Authorizes;
 using Honamic.Framework.Applications.Exceptions;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Honamic.Framework.Facade.Interceptors;
 
@@ -21,12 +22,12 @@ internal class AuthorizeInterceptor : IInterceptor
     {
         _logger.LogTrace($"Authorizing method {invocation.TargetType}.{invocation.Method.Name}.");
 
-        Authorize(invocation);
+        Authorize(invocation).GetAwaiter().GetResult();
 
         invocation.Proceed();
     }
 
-    private void Authorize(IInvocation invocation)
+    private async Task Authorize(IInvocation invocation)
     {
         var classDynamicAuthorize = invocation.TargetType
             .GetCustomAttribute<DynamicAuthorizeAttribute>();
@@ -58,7 +59,7 @@ internal class AuthorizeInterceptor : IInterceptor
             throw new UnauthenticatedException();
         }
 
-        if (!_facadeAuthorization.HaveAccess(permission))
+        if (!await _facadeAuthorization.HaveAccessAsync(permission))
         {
             throw new UnauthorizedException(permission);
         }

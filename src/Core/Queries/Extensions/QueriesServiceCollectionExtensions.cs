@@ -8,12 +8,4 @@ public static class QueriesServiceCollectionExtensions
     {
         services.AddScoped<IQueryBus, QueryBus>();
     }
-
-    public static void AddQueryHandler<TQueryFilter, TQueryResult, TQueryHandler>(this IServiceCollection services)
-    where TQueryFilter : IQueryFilter
-    where TQueryResult : IQueryResult
-    where TQueryHandler : class, IQueryHandler<TQueryFilter, TQueryResult>
-    {
-        services.AddTransient<IQueryHandler<TQueryFilter, TQueryResult>, TQueryHandler>();
-    }
 }
