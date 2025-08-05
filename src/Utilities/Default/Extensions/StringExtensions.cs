@@ -2,7 +2,7 @@
 
 public static class StringExtensions
 {
-    public static bool HasValue(this string value)
+    public static bool HasValue(this string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
@@ -13,7 +13,7 @@ public static class StringExtensions
     }
 
 
-    public static string SeparateCamelCase(this string stringValue)
+    public static string? SeparateCamelCase(this string? stringValue)
     {
         if (stringValue is null)
             return stringValue;

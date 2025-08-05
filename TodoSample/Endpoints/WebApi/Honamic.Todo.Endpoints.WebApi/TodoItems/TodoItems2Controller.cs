@@ -1,6 +1,8 @@
 using Honamic.Framework.Applications.Results;
 using Honamic.Framework.Commands;
+using Honamic.Framework.Queries;
 using Honamic.Todo.Application.TodoItems.Commands;
+using Honamic.Todo.Query.Domain.TodoItems.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Honamic.Todo.Endpoints.WebApi.Controllers;
@@ -11,11 +13,13 @@ public class TodoItems2Controller : ControllerBase
 {
     private readonly ILogger<TodoItemsController> _logger;
     private readonly ICommandBus _commandBus;
+    private readonly IQueryBus _queryBus;
 
-    public TodoItems2Controller(ILogger<TodoItemsController> logger, ICommandBus commandBus)
+    public TodoItems2Controller(ILogger<TodoItemsController> logger, ICommandBus commandBus, IQueryBus queryBus)
     {
         _logger = logger;
         _commandBus = commandBus;
+        _queryBus = queryBus;
     }
 
     [HttpPost]
@@ -26,5 +30,12 @@ public class TodoItems2Controller : ControllerBase
             (model, cancellationToken);
     }
 
+    [HttpGet]
+    public async Task<Result<PagedQueryResult<GetAllTodoItemsQueryResult>>> GetAll([FromQuery] GetAllTodoItemsQueryFilter model, CancellationToken cancellationToken)
+    {
+        var x= await _queryBus.Dispatch <GetAllTodoItemsQueryFilter,Result<PagedQueryResult<GetAllTodoItemsQueryResult>>>
+            (model, cancellationToken);
 
+        return x;
+    }
 }

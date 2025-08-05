@@ -6,7 +6,7 @@ namespace Honamic.Framework.Applications.QueryHandlerDecorators;
 
 public class ExceptionQueryHandlerDecorator<TQueryFilter, TQueryResult> : IQueryHandler<TQueryFilter, TQueryResult>
         where TQueryFilter : IQueryFilter
-        where TQueryResult : IQueryResult
+       // where TQueryResult : IQueryResult
 {
     private readonly IQueryHandler<TQueryFilter, TQueryResult> _queryHandler;
     private readonly IAuthorization _authorization;

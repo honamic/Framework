@@ -9,6 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\Core\Applications.Abstractions\Honamic.Framework.Applications.Abstractions.csproj" />
 		<ProjectReference Include="..\..\..\src\Core\Queries.Abstractions\Honamic.Framework.Queries.Abstractions.csproj" />
 	</ItemGroup>
 

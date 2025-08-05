@@ -11,11 +11,11 @@ internal class DisableAuthorization : IAuthorization
 
     public Task<bool> HaveAccessAsync(string permission)
     {
-        return Task.FromResult(true);
+        return Task.FromResult(false);
     }
 
     public bool IsAuthenticated()
     {
-        return true;
+        return false;
     }
 }

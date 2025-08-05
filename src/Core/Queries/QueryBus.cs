@@ -13,7 +13,7 @@ internal class QueryBus : IQueryBus
 
     public async Task<TQueryResult> Dispatch<TQueryFilter, TQueryResult>(TQueryFilter filter, CancellationToken cancellationToken)
         where TQueryFilter : IQueryFilter
-        where TQueryResult : IQueryResult
+      //  where TQueryResult : IQueryResult
     {
         var handler = _serviceProvider.GetService<IQueryHandler<TQueryFilter, TQueryResult>>();
 

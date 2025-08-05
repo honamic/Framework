@@ -4,7 +4,6 @@ using Honamic.Todo.Application.TodoItems.Commands;
 using Honamic.Todo.Facade.TodoItems;
 using Honamic.Todo.Query.Domain.TodoItems.Models;
 using Honamic.Todo.Query.Domain.TodoItems.Queries;
-using Honamic.Todo.Query.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Honamic.Todo.Endpoints.WebApi.Controllers;

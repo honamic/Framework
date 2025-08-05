@@ -16,6 +16,7 @@
 		<ProjectReference Include="..\..\..\src\Tools\IdGenerators\Honamic.Framework.Tools.IdGenerators.csproj" />
 		<ProjectReference Include="..\Application.Contracts\Honamic.Todo.Application.Contracts.csproj" />
 		<ProjectReference Include="..\Domain\Honamic.Todo.Domain.csproj" />
+		<ProjectReference Include="..\Query.Contract\Honamic.Todo.Query.Domain.Contract.csproj" />
 	</ItemGroup>
 
 </Project>

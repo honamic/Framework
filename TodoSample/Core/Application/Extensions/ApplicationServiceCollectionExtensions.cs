@@ -1,11 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Honamic.Framework.Applications.Extensions;
-using Honamic.Todo.Application.TodoItems.Commands;
-using Honamic.Todo.Application.TodoItems.CommandHandlers;
-using Honamic.Todo.Domain.Extensions;
-using Honamic.Framework.Tools.IdGenerators; 
+﻿using Honamic.Framework.Applications.Extensions;
 using Honamic.Framework.Applications.Results;
+using Honamic.Framework.Queries;
+using Honamic.Framework.Tools.IdGenerators;
+using Honamic.IdentityPlus.Application.Users.QueryHandlers;
+using Honamic.Todo.Application.TodoItems.CommandHandlers;
+using Honamic.Todo.Application.TodoItems.Commands;
+using Honamic.Todo.Domain.Extensions;
+using Honamic.Todo.Query.Domain.TodoItems.Queries;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Honamic.Todo.Application.Extensions;
 
@@ -15,6 +18,7 @@ public static class ApplicationServiceCollectionExtensions
     {
         services.AddDefaultApplicationsServices();
         services.AddCommandHandlers();
+        services.AddQueryHandlers();
         services.AddEventHandlers();
         services.AddDomainServices();
         services.AddSnowflakeIdGeneratorServices();
@@ -34,6 +38,11 @@ public static class ApplicationServiceCollectionExtensions
 
     private static void AddEventHandlers(this IServiceCollection services)
     {
- 
+
+    }
+
+    private static void AddQueryHandlers(this IServiceCollection services)
+    {
+        services.AddQueryHandler<GetAllTodoItemsQueryFilter, Result<PagedQueryResult<GetAllTodoItemsQueryResult>>, GetAllTodoItemsQueryHandler>();
     }
 }
