@@ -1,6 +1,6 @@
 ﻿namespace Honamic.Framework.Applications.Authorizes;
 
-[AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = false)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
 public sealed class DynamicPermissionAttribute : Attribute
 {
     public string? Name { get; set; }
@@ -10,7 +10,7 @@ public sealed class DynamicPermissionAttribute : Attribute
     public string? Description { get; set; }
 }
 
-[AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
 public sealed class ScopeDynamicPermissionAttribute : Attribute
 {
     public string Scope { get; }
@@ -25,7 +25,7 @@ public sealed class ScopeDynamicPermissionAttribute : Attribute
     }
 }
 
-[AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
 public sealed class FieldDynamicPermissionAttribute : Attribute
 {
     public string Name { get; }
