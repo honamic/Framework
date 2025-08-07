@@ -15,8 +15,7 @@ public class DynamicPermissionModel
 
 public class DynamicScopePermissionModel
 {
-    public string Scope { get; set; } = default!;
-    public ValuesType ValuesType { get; set; }
+    public string Name { get; set; } = default!;
     public string DisplayName { get; set; } = default!;
 }
 

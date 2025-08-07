@@ -13,14 +13,12 @@ public sealed class DynamicPermissionAttribute : Attribute
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
 public sealed class ScopeDynamicPermissionAttribute : Attribute
 {
-    public string Scope { get; }
-    public ValuesType ValuesType { get; }
+    public string Name { get; }
     public string? DisplayName { get; }
 
-    public ScopeDynamicPermissionAttribute(string scope, ValuesType valuesType, string? displayName = null)
+    public ScopeDynamicPermissionAttribute(string name, string? displayName = null)
     {
-        Scope = scope;
-        ValuesType = valuesType;
+        Name = name;
         DisplayName = displayName;
     }
 }
@@ -36,11 +34,4 @@ public sealed class FieldDynamicPermissionAttribute : Attribute
         Name = name;
         DisplayName = displayName;
     }
-}
-
-public enum ValuesType
-{
-    My = 0,
-    Value = 1,
-    List = 2,
 }

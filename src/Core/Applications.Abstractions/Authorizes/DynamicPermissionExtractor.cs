@@ -33,9 +33,8 @@ public static class DynamicPermissionExtractor
                     GeneratedFromTypeName = type.Assembly.FullName,
                     ScopePermissions = scopeAttrs.Select(scope => new DynamicScopePermissionModel
                     {
-                        Scope = scope.Scope,
-                        ValuesType = scope.ValuesType,
-                        DisplayName = scope.DisplayName ?? scope.Scope
+                        Name = scope.Name,
+                        DisplayName = scope.DisplayName ?? scope.Name
                     }).ToList(),
                     FieldPermissions = fieldAttrs.Select(field => new DynamicFieldPermissionModel
                     {
