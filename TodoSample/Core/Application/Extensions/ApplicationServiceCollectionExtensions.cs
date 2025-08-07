@@ -1,4 +1,5 @@
-﻿using Honamic.Framework.Applications.Extensions;
+﻿using Honamic.Framework.Applications.Authorizes;
+using Honamic.Framework.Applications.Extensions;
 using Honamic.Framework.Applications.Results;
 using Honamic.Framework.Queries;
 using Honamic.Framework.Tools.IdGenerators;
@@ -22,6 +23,8 @@ public static class ApplicationServiceCollectionExtensions
         services.AddEventHandlers();
         services.AddDomainServices();
         services.AddSnowflakeIdGeneratorServices();
+        DynamicPermissionRegistry.Register(typeof(GetAllTodoItemsQueryFilter).Assembly);
+        DynamicPermissionRegistry.Register(typeof(CreateTodoItem2Command).Assembly);
     }
 
     private static void AddCommandHandlers(this IServiceCollection services)

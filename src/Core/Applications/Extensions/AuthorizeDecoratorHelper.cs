@@ -15,7 +15,7 @@ internal static class AuthorizeDecoratorHelper
 
     public static async Task AuthorizeWithDynamicPermissions(this IAuthorization authorization, Type type)
     {
-        var dynamicAuthorizeAttribute = type.GetCustomAttribute<DynamicAuthorizeAttribute>();
+        var dynamicAuthorizeAttribute = type.GetCustomAttribute<DynamicPermissionAttribute>();
 
         if (dynamicAuthorizeAttribute is not null)
         {
@@ -24,9 +24,9 @@ internal static class AuthorizeDecoratorHelper
                 throw new UnauthenticatedException();
             }
 
-            string dynamicPermission = CalculatePermissionName(type);
+            string dynamicPermission = CalculatePermissionName(dynamicAuthorizeAttribute, type);
 
-            if (!await authorization.HaveAccessAsync(dynamicPermission))
+            if (!await authorization.HavePermissionAsync(dynamicPermission, dynamicAuthorizeAttribute.Module))
             {
                 throw new UnauthorizedException(dynamicPermission);
             }
@@ -57,8 +57,10 @@ internal static class AuthorizeDecoratorHelper
         }
     }
 
-    private static string CalculatePermissionName(Type type)
+    private static string CalculatePermissionName(DynamicPermissionAttribute dynamicAuthorizeAttribute, Type type)
     {
-        return type.Name;
+        return dynamicAuthorizeAttribute.Name 
+            ?? type.FullName 
+            ?? throw new InvalidOperationException("Permission key and type full name are both null.");
     }
 }

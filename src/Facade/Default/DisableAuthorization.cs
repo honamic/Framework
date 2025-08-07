@@ -9,7 +9,13 @@ internal class DisableAuthorization : IAuthorization
         return true;
     }
 
+    [Obsolete("This method is obsolete. Use HavePermissionAsync instead.")]
     public Task<bool> HaveAccessAsync(string permission)
+    {
+        return Task.FromResult(true);
+    }
+
+    public Task<bool> HavePermissionAsync(string permission, string? module)
     {
         return Task.FromResult(true);
     }

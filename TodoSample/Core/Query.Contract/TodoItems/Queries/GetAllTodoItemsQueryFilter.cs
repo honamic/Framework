@@ -4,7 +4,17 @@ using Honamic.Framework.Queries;
 
 namespace Honamic.Todo.Query.Domain.TodoItems.Queries;
 
-[DynamicAuthorize]
+[DynamicPermission(
+    DisplayName = "مدیریت کاربران | کاربران | لیست",
+    Group = "Users",
+    Module = "UserManagement",
+    Name =null,
+    Description = null)]
+[ScopeDynamicPermission("User", ValuesType.My, "کاربر")]
+[ScopeDynamicPermission("Category", ValuesType.List, "دسته‌بندی")]
+[FieldDynamicPermission("Date", "تاریخ")]
+[FieldDynamicPermission("Name", "نام")]
+
 public class GetAllTodoItemsQueryFilter: PagedQueryFilter, IQuery<Result<PagedQueryResult<GetAllTodoItemsQueryResult>>>
 {
     public GetAllTodoItemsQueryFilter()
