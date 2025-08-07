@@ -1,4 +1,5 @@
-﻿using Honamic.Framework.Facade.Discovery;
+﻿using Honamic.Framework.Applications.Authorizes;
+using Honamic.Framework.Facade.Discovery;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -10,6 +11,11 @@ public static class FacadeDiscoveryWebApplicationExtensions
         app.MapGet(path, (HttpContext httpContext) =>
         {
             return FacadeDiscovery.GetFacadesInformation();
+        });
+
+        app.MapGet("/_system/DynamicPermissions", (HttpContext httpContext) =>
+        {
+            return DynamicPermissionExtractor.AggregatePermissions();
         });
 
         return app;

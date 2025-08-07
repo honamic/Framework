@@ -9,7 +9,7 @@ public record CreateTodoItemCommand(string title, string content, List<string> t
 
 
 
-//[DynamicAuthorize]
+[DynamicPermission]
 [Authorize("admin")]
 public record CreateTodoItem2Command(string title, string content, List<string> tags)
     : ICommand<Result<CreateTodoItem2ResultCommand>>;
