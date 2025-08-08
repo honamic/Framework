@@ -15,11 +15,13 @@ public sealed class ScopeDynamicPermissionAttribute : Attribute
 {
     public string Name { get; }
     public string? DisplayName { get; }
+    public string? Description { get; set; }
 
-    public ScopeDynamicPermissionAttribute(string name, string? displayName = null)
+    public ScopeDynamicPermissionAttribute(string name, string? displayName = null, string? description = null)
     {
         Name = name;
         DisplayName = displayName;
+        Description = description;
     }
 }
 
@@ -27,11 +29,15 @@ public sealed class ScopeDynamicPermissionAttribute : Attribute
 public sealed class FieldDynamicPermissionAttribute : Attribute
 {
     public string Name { get; }
-    public string? DisplayName { get; }
 
-    public FieldDynamicPermissionAttribute(string name, string? displayName = null)
+    public string? DisplayName { get; }
+    
+    public string? Description { get; set; }
+
+    public FieldDynamicPermissionAttribute(string name, string? displayName = null, string? description = null)
     {
         Name = name;
         DisplayName = displayName;
+        Description = description;
     }
 }

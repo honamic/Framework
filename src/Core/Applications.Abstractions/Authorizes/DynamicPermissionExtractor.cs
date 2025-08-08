@@ -34,12 +34,14 @@ public static class DynamicPermissionExtractor
                     ScopePermissions = scopeAttrs.Select(scope => new DynamicScopePermissionModel
                     {
                         Name = scope.Name,
-                        DisplayName = scope.DisplayName ?? scope.Name
+                        DisplayName = scope.DisplayName ?? scope.Name,
+                        Description = scope.Description
                     }).ToList(),
                     FieldPermissions = fieldAttrs.Select(field => new DynamicFieldPermissionModel
                     {
                         Name = field.Name,
-                        DisplayName = field.DisplayName ?? field.Name
+                        DisplayName = field.DisplayName ?? field.Name,
+                        Description = field.Description
                     }).ToList()
                 };
 

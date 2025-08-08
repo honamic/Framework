@@ -16,11 +16,19 @@ public class DynamicPermissionModel
 public class DynamicScopePermissionModel
 {
     public string Name { get; set; } = default!;
+
     public string DisplayName { get; set; } = default!;
+
+    public string? Description { get; set; }
+
 }
 
 public class DynamicFieldPermissionModel
 {
     public string Name { get; set; } = default!;
+
     public string DisplayName { get; set; } = default!;
+
+    public string? Description { get; set; }
+
 }
