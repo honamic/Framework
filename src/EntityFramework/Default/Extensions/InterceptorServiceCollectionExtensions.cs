@@ -1,4 +1,6 @@
-﻿using Honamic.Framework.Persistence.EntityFramework.Interceptors.AggregateRootVersion;
+﻿using Honamic.Framework.Domain;
+using Honamic.Framework.EntityFramework.Interceptors.AuditFields;
+using Honamic.Framework.Persistence.EntityFramework.Interceptors.AggregateRootVersion;
 using Honamic.Framework.Persistence.EntityFramework.Interceptors.IsDeletedInfos;
 using Honamic.Framework.Persistence.EntityFramework.Interceptors.PersianYeKe;
 using Microsoft.EntityFrameworkCore;
@@ -34,5 +36,12 @@ public static class InterceptorServiceCollectionExtensions
     public static DbContextOptionsBuilder AddMarkAsDeletedInterceptors(this DbContextOptionsBuilder optionsBuilder)
     {
         return optionsBuilder.AddInterceptors(new MarkAsDeletedSaveChangesInterceptor());
+    }
+
+    public static DbContextOptionsBuilder AddAuditFieldsSaveChangesInterceptor(this DbContextOptionsBuilder optionsBuilder, IServiceProvider serviceProvider, AuditType auditType)
+    {
+        var userContext = serviceProvider.GetRequiredService<IUserContext>();
+
+        return optionsBuilder.AddInterceptors(new AuditFieldsSaveChangesInterceptor(userContext, auditType));
     }
 }

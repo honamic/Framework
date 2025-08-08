@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Honamic.Framework.Persistence.EntityFramework.Extensions;
 using Honamic.Todo.Domain.TodoItems;
 using Honamic.Todo.Domain;
-using Honamic.Todo.Persistence.EntityFramework.TodoItems; 
+using Honamic.Todo.Persistence.EntityFramework.TodoItems;
 
 
 namespace Honamic.Todo.Persistence.EntityFramework.Extensions;
@@ -19,6 +19,8 @@ public static class ServiceCollectionExtensions
         {
             options.UseSqlServer(SqlServerConnection, x => x.MigrationsHistoryTable("__EFMigrationsHistory", Constants.Schema));
             options.AddPersianYeKeCommandInterceptor();
+            options.AddAuditFieldsSaveChangesInterceptor(serviceProvider,
+                Framework.EntityFramework.Interceptors.AuditFields.AuditType.UserIDAndName);
             options.AddAggregateRootVersionInterceptor(serviceProvider);
             options.AddMarkAsDeletedInterceptors();
             DebuggerConsoleLog(options);

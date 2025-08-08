@@ -1,8 +1,9 @@
 <Project>
 	<PropertyGroup>
-		<Version>1.0.8-Beta08</Version>
+		<Version>1.0.9-Beta09</Version>
 		<PackageProjectUrl>https://github.com/honamic/Framework</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/honamic/Framework</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Company>Honamic</Company>
 		<Authors>Honamic</Authors>
 	</PropertyGroup>

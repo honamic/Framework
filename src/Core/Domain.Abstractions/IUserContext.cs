@@ -12,5 +12,7 @@ public interface IUserContext
 
     string? GetCurrentUserMobile();
 
+    string? GetClaimValue(string claimType);
+
     Task<List<string>> GetCurrentUserRolesAsync();
 }

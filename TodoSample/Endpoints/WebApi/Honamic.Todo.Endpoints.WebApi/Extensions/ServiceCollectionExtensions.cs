@@ -10,12 +10,12 @@ public static class ServiceCollectionExtensions
     {
         services.AddFacades(configuration);
         services.AddEndpointsServices(configuration);
-
         return services;
     }
 
     private static void AddEndpointsServices(this IServiceCollection services, IConfiguration configurations)
     {
+        services.AddDefaultUserContextService();
         services.ConfigureBadRequestToResult();
         services.AddControllers()
                     .AddJsonOptions(c =>
