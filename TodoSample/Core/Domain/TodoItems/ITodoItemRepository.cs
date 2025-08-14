@@ -4,17 +4,17 @@ namespace Honamic.Todo.Domain.TodoItems;
 
 public interface ITodoItemRepository
 {
-    Task<IList<TodoItem>> GetListAsync(Expression<Func<TodoItem, bool>> predicate);
+    Task<IList<TodoItem>> GetListAsync(Expression<Func<TodoItem, bool>> predicate, CancellationToken cancellationToken = default);
 
-    Task InsertAsync(TodoItem entity);
+    Task InsertAsync(TodoItem entity, CancellationToken cancellationToken = default);
 
-    Task Update(TodoItem entity);
+    void Update(TodoItem entity);
 
-    Task<TodoItem> GetAsync(long id);
+    Task<TodoItem> GetAsync(long id, CancellationToken cancellationToken = default);
 
-    Task<IList<TodoItem>> GetAllAsync();
+    Task<IList<TodoItem>> GetAllAsync(CancellationToken cancellationToken = default);
 
-    Task<TodoItem?> GetAsync(Expression<Func<TodoItem, bool>> predicate);
+    Task<TodoItem?> GetAsync(Expression<Func<TodoItem, bool>> predicate, CancellationToken cancellationToken = default);
 
     void Remove(TodoItem message);
 }

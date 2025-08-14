@@ -10,6 +10,6 @@ internal class MakeCompletedTodoItemCommandHandler(ITodoItemRepository todoItemR
     {
         var todoItem = await todoItemRepository.GetAsync(command.id);
         todoItem.MakeDone();
-        await todoItemRepository.Update(todoItem);
+        todoItemRepository.Update(todoItem);
     }
 }

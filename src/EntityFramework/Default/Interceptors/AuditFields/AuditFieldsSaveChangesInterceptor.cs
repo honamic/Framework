@@ -65,19 +65,31 @@ public class AuditFieldsSaveChangesInterceptor : SaveChangesInterceptor
     {
         var userId = _userContext.GetCurrentUserId();
         var username = _userContext.GetCurrentUsername();
-        string? result = null;
-        result = auditType switch
+
+        string? result = auditType switch
         {
-            AuditType.UserId => userId,
-            AuditType.UserName => username,
-            AuditType.UserIDAndName => $"{userId} | {username}",
-            AuditType.UserNameAndId => $"{username} | {userId}",
+            AuditType.UserId => string.IsNullOrWhiteSpace(userId) ? null : userId,
+            AuditType.UserName => string.IsNullOrWhiteSpace(username) ? null : username,
+            AuditType.UserIDAndName => CombineNonEmpty(userId, username),
+            AuditType.UserNameAndId => CombineNonEmpty(username, userId),
             _ => throw new ArgumentOutOfRangeException(nameof(auditType), auditType, "Invalid AuditType specified."),
         };
+
         if (result?.Length > 100)
         {
             result = result.Substring(0, 100);
         }
         return result;
+    }
+
+    private static string? CombineNonEmpty(string? first, string? second)
+    {
+        if (string.IsNullOrWhiteSpace(first) && string.IsNullOrWhiteSpace(second))
+            return null;
+        if (string.IsNullOrWhiteSpace(first))
+            return second;
+        if (string.IsNullOrWhiteSpace(second))
+            return first;
+        return $"{first} | {second}";
     }
 }

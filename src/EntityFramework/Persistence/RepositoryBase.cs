@@ -18,9 +18,9 @@ public abstract class RepositoryBase<TEntity, TKey>
         Context = context;
     }
 
-    public virtual async Task InsertAsync(TEntity entity)
+    public virtual Task InsertAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        await DbSet.AddAsync(entity);
+        return DbSet.AddAsync(entity, cancellationToken).AsTask();
     }
 
     public virtual void Remove(TEntity entity)
@@ -28,39 +28,39 @@ public abstract class RepositoryBase<TEntity, TKey>
         DbSet.Remove(entity);
     }
 
-    public async Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate)
+    public Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        return await DbSet.CountAsync(predicate);
+        return DbSet.CountAsync(predicate, cancellationToken);
     }
 
-    public virtual async Task<TEntity> GetAsync(TKey id)
+    public virtual Task<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default)
     {
-        return await GetQuery().SingleAsync(RepositoryBase<TEntity, TKey>.CreateEqualityExpressionForId<TEntity, TKey>(id));
+        return GetQuery().SingleAsync(RepositoryBase<TEntity, TKey>.CreateEqualityExpressionForId<TEntity, TKey>(id), cancellationToken);
     }
 
-    public virtual async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate)
+    public virtual Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        return await GetQuery().FirstOrDefaultAsync(predicate);
+        return GetQuery().FirstOrDefaultAsync(predicate, cancellationToken);
     }
 
-    public virtual async Task<IList<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate)
+    public virtual async Task<IList<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        return await GetQuery().Where(predicate).ToListAsync();
+        return await GetQuery().Where(predicate).ToListAsync(cancellationToken);
     }
 
-    public virtual async Task<IList<TEntity>> GetAllAsync()
+    public virtual async Task<IList<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        return await GetQuery().ToListAsync();
+        return await GetQuery().ToListAsync(cancellationToken).ConfigureAwait(false);
     }
 
-    public virtual async Task Update(TEntity entity)
+    public virtual void  Update(TEntity entity)
     {
         DbSet.Update(entity);
     }
 
-    public virtual async Task<bool> IsExistsAsync(Expression<Func<TEntity, bool>> predicate)
+    public virtual Task<bool> IsExistsAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        return await GetQuery().AnyAsync(predicate);
+        return GetQuery().AnyAsync(predicate, cancellationToken);
     }
 
     protected virtual IQueryable<TEntity> GetQuery()
