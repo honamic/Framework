@@ -50,7 +50,7 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
     {
         var result = await _crudEntityService.CreateAsync(input, cancellationToken);
 
-        if (result.Status == ResultStatus.Ok)
+        if (result.Status == ResultStatus.Success)
         {
             return CreatedAtAction(
                  nameof(Get),
@@ -98,7 +98,7 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
     {
         switch (result.Status)
         {
-            case ResultStatus.Ok:
+            case ResultStatus.Success:
                 return Ok(result);
 
             case ResultStatus.Unauthorized:
@@ -128,7 +128,7 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
     {
         switch (result.Status)
         {
-            case ResultStatus.Ok:
+            case ResultStatus.Success:
                 return Ok(result);
             
             case ResultStatus.Unauthorized:

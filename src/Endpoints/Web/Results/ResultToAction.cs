@@ -8,7 +8,7 @@ public static class ResultExtensions
     {
         switch (result.Status)
         {
-            case ResultStatus.Ok:
+            case ResultStatus.Success:
                 return controller.Ok(result);
 
             case ResultStatus.Unauthorized:
@@ -33,7 +33,7 @@ public static class ResultExtensions
     {
         switch (result.Status)
         {
-            case ResultStatus.Ok:
+            case ResultStatus.Success:
                 return controller.Ok(result);
 
             case ResultStatus.Unauthorized:

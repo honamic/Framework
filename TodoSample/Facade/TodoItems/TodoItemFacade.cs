@@ -37,13 +37,13 @@ internal class TodoItemFacade : BaseFacade, ITodoItemFacade
     public async Task<Result> MakeCompleted(MakeCompletedTodoItemCommand model, CancellationToken cancellationToken)
     {
         await _commandBus.DispatchAsync(model, cancellationToken);
-        return ResultStatus.Ok;
+        return ResultStatus.Success;
     }
 
     public async Task<Result> Delete(DeleteTodoItemCommand model, CancellationToken cancellationToken)
     {
         await _commandBus.DispatchAsync(model, cancellationToken);
 
-        return ResultStatus.Ok;
+        return ResultStatus.Success;
     }
 }

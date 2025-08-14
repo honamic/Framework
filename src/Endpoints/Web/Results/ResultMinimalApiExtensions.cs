@@ -26,7 +26,7 @@ public static class ResultMinimalApiExtensions
             case ResultStatus.NotFound:
                 return Microsoft.AspNetCore.Http.Results.NotFound(result);
             case ResultStatus.None:
-            case ResultStatus.Ok:
+            case ResultStatus.Success:
             default:
                 return Microsoft.AspNetCore.Http.Results.Ok(result);
         }

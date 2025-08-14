@@ -4,22 +4,22 @@ public static class ResultMessagesExtensions
 {
     public static void AppendWarning(this Result result, string message)
     {
-        result.Messages.Add(new ResultMessage(ResultMessageType.Warning, message));
+        result.AddMessage(ResultMessageType.Warning, message);
     }
 
     public static void AppendInfo(this Result result, string message)
     {
-        result.Messages.Add(new ResultMessage(ResultMessageType.Info, message));
+        result.AddMessage(ResultMessageType.Info, message);
     }
 
     public static void AppendError(this Result result, string message, string? field, string? code)
     {
-        result.Messages.Add(new ResultMessage(ResultMessageType.Error, message, code:code , field: field));
+        result.AddMessage(ResultMessageType.Error, message, field, code);
     }
 
     public static void AppendError(this Result result, string message, string? field)
     {
-        result.AppendError(message, field: field, null);
+        result.AppendError(message, field, null);
     }
 
     public static void AppendError(this Result result, string message)
@@ -29,13 +29,13 @@ public static class ResultMessagesExtensions
 
     public static void AppendSorryError(this Result result)
     {
-        //todo: localization message
-        result.Messages.Add(new ResultMessage(ResultMessageType.Error, "متاسفانه خطایی پیش آمده است."));
+        // TODO: localization message
+        result.AddMessage(ResultMessageType.Error, "متاسفانه خطایی پیش آمده است.");
     }
 
     public static void AppendSuccess(this Result result, string message)
     {
-        result.Messages.Add(new ResultMessage(ResultMessageType.Success, message));
+        result.AddMessage(ResultMessageType.Success, message);
     }
 
     public static void SetStatusAsNotFound(this Result result)

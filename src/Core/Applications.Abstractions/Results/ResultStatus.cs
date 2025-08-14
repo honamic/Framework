@@ -3,7 +3,9 @@
 public enum ResultStatus
 {
     None = 0,
-    Ok = 1,
+    [Obsolete("Use Success instead.", true)]
+    Ok = Success,
+    Success = 1,
     Unauthorized = 2,
     Unauthenticated = 3,
     UnhandledException = 4,

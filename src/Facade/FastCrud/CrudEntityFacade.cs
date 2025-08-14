@@ -65,7 +65,7 @@ public abstract class CrudEntityFacade<TEntity, TEntityDto, TPrimaryKey,
 
             result.Data = EntitiesDto;
 
-            result.Succeed();
+            result.SetSuccess();
         }
         catch (Exception ex)
         {
@@ -108,7 +108,7 @@ public abstract class CrudEntityFacade<TEntity, TEntityDto, TPrimaryKey,
             }
             result.Data = getEntity;
 
-            result.Succeed();
+            result.SetSuccess();
         }
         catch (Exception ex)
         {
@@ -148,7 +148,7 @@ public abstract class CrudEntityFacade<TEntity, TEntityDto, TPrimaryKey,
 
             result.Data = newEntityDto;
 
-            result.Succeed();
+            result.SetSuccess();
         }
         catch (DbUpdateException ex)
         {
@@ -213,7 +213,7 @@ public abstract class CrudEntityFacade<TEntity, TEntityDto, TPrimaryKey,
 
             result.Data = updatedEntityDto;
 
-            result.Succeed();
+            result.SetSuccess();
         }
         catch (Exception ex)
         {
@@ -261,7 +261,7 @@ public abstract class CrudEntityFacade<TEntity, TEntityDto, TPrimaryKey,
                 return result;
             }
 
-            result.Succeed("با موفقیت حذف شد.");
+            result.SetSuccess("با موفقیت حذف شد.");
         }
         catch (DbUpdateException ex)
         {
@@ -292,7 +292,7 @@ public abstract class CrudEntityFacade<TEntity, TEntityDto, TPrimaryKey,
     public virtual async Task<Result<PagedQueryResult<TSelectResult>>> GetSelectAsync(TSelectInput input, CancellationToken cancellationToken)
     {
         var result = new Result<PagedQueryResult<TSelectResult>>();
-
+ 
         try
         {
             var query = GetSelectQuery(input);
@@ -305,7 +305,7 @@ public abstract class CrudEntityFacade<TEntity, TEntityDto, TPrimaryKey,
             result.Data = await query.ProjectTo<TSelectResult>(Mapper.ConfigurationProvider)
                            .ToPagedListAsync(input, cancellationToken);
 
-            result.Succeed();
+            result.SetSuccess();
         }
         catch (Exception ex)
         {

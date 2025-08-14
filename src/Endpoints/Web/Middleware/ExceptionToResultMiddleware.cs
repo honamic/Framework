@@ -82,7 +82,7 @@ internal class ExceptionToResultMiddleware
         {
             case ResultStatus.None:
                 break;
-            case ResultStatus.Ok:
+            case ResultStatus.Success:
                 context.Response.StatusCode = (int)HttpStatusCode.OK;
                 break;
             case ResultStatus.Unauthorized:
