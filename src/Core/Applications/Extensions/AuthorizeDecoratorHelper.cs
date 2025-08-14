@@ -1,5 +1,6 @@
 ﻿using Honamic.Framework.Applications.Authorizes;
 using Honamic.Framework.Applications.Exceptions;
+using Honamic.Framework.Domain;
 using System.Reflection;
 
 namespace Honamic.Framework.Applications.Extensions;
@@ -44,11 +45,11 @@ internal static class AuthorizeDecoratorHelper
                 throw new UnauthenticatedException();
             }
 
-            if (authorizeAttribute.Permissions?.Length > 0)
+            if (authorizeAttribute.Roles?.Length > 0)
             {
-                foreach (var permission in authorizeAttribute.Permissions)
+                foreach (var permission in authorizeAttribute.Roles)
                 {
-                    if (!await authorization.HaveAccessAsync(permission))
+                    if (!await authorization.HaveRoleAsync(permission))
                     {
                         throw new UnauthorizedException(permission);
                     }

@@ -1,9 +1,9 @@
 ﻿using Castle.DynamicProxy;
 using Honamic.Framework.Applications.Authorizes;
 using Honamic.Framework.Applications.Exceptions;
+using Honamic.Framework.Domain;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Honamic.Framework.Facade.Interceptors;
 
@@ -59,7 +59,7 @@ internal class AuthorizeInterceptor : IInterceptor
             throw new UnauthenticatedException();
         }
 
-        if (!await _facadeAuthorization.HaveAccessAsync(permission))
+        if (!await _facadeAuthorization.HavePermissionAsync(permission))
         {
             throw new UnauthorizedException(permission);
         }

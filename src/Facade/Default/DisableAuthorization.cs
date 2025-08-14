@@ -1,16 +1,10 @@
-﻿using Honamic.Framework.Applications.Authorizes;
+﻿using Honamic.Framework.Domain;
 
 namespace Honamic.Framework.Facade;
 
 internal class DisableAuthorization : IAuthorization
 {
-    public bool HaveAccess(string permission)
-    {
-        return true;
-    }
-
-    [Obsolete("This method is obsolete. Use HavePermissionAsync instead.")]
-    public Task<bool> HaveAccessAsync(string permission)
+    public Task<bool> HaveRoleAsync(string roleName)
     {
         return Task.FromResult(true);
     }

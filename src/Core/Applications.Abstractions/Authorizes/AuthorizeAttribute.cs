@@ -5,13 +5,13 @@ public class AuthorizeAttribute : Attribute
 {
     public AuthorizeAttribute()
     {
-        Permissions = null;
+        Roles = null;
     }
 
-    public AuthorizeAttribute(params string[] permissions)
+    public AuthorizeAttribute(params string[] roles)
     {
-        Permissions = permissions;
+        Roles = roles;
     }
 
-    public string[]? Permissions { get; }
+    public string[]? Roles { get; }
 }

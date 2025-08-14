@@ -1,5 +1,5 @@
 ﻿using Castle.DynamicProxy;
-using Honamic.Framework.Applications.Authorizes;
+using Honamic.Framework.Domain;
 using Honamic.Framework.Facade.Discovery;
 using Honamic.Framework.Facade.Interceptors;
 using Microsoft.Extensions.Configuration;
