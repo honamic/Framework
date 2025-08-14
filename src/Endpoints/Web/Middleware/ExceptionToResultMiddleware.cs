@@ -98,9 +98,13 @@ internal class ExceptionToResultMiddleware
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 break;
             case ResultStatus.InvalidDomainState:
+                context.Response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
                 break;
             case ResultStatus.NotFound:
                 context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                break;
+            case ResultStatus.Failed:
+                context.Response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
                 break;
             default:
                 break;

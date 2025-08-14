@@ -114,7 +114,8 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
                 return BadRequest(result);
 
             case ResultStatus.InvalidDomainState:
-                return new ObjectResult(result) { StatusCode = StatusCodes.Status203NonAuthoritative };
+            case ResultStatus.Failed:
+                return new ObjectResult(result) { StatusCode = StatusCodes.Status422UnprocessableEntity };
 
             case ResultStatus.NotFound:
                 return NotFound(result);
@@ -138,8 +139,11 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
             case ResultStatus.UnhandledException:
                 return new ActionResult<Result<T>>(result);
            
-            case ResultStatus.ValidationError:
             case ResultStatus.InvalidDomainState:
+            case ResultStatus.Failed:
+                return new ObjectResult(result) { StatusCode = StatusCodes.Status422UnprocessableEntity };
+
+            case ResultStatus.ValidationError:
                 return BadRequest(result);
             
             case ResultStatus.NotFound:

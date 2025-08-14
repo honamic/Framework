@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Honamic.Framework.Applications.Results;
 
@@ -9,9 +10,11 @@ public class Result
     public ICollection<ResultMessage> Messages { get; set; }
 
     public bool IsSuccess => Status == ResultStatus.Success;
+    
     public bool IsFailure => !IsSuccess;
 
     public bool HasMessages => Messages.Any();
+
 
     [Obsolete("Use SetSuccess instead.", true)]
     public void Succeed(string message = null)
@@ -103,6 +106,9 @@ public class Result<TData> : Result
     {
         Data = data;
     }
+
+    [MemberNotNullWhen(true, nameof(Data))]
+    public bool IsSuccessWithData => Status == ResultStatus.Success && Data is not null;
 
     public new static Result<TData> Success(string? message = null)
     {

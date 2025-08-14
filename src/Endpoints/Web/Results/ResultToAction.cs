@@ -1,4 +1,5 @@
 ﻿using Honamic.Framework.Applications.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Honamic.Framework.Endpoints.Web.Results;
@@ -19,8 +20,11 @@ public static class ResultExtensions
                 return new ActionResult<Result<T>>(result);
 
             case ResultStatus.ValidationError:
-            case ResultStatus.InvalidDomainState:
                 return controller.BadRequest(result);
+            
+            case ResultStatus.InvalidDomainState:
+            case ResultStatus.Failed:
+                return new ObjectResult(result) { StatusCode = StatusCodes.Status422UnprocessableEntity };
 
             case ResultStatus.NotFound:
                 return controller.NotFound(result);
@@ -43,8 +47,11 @@ public static class ResultExtensions
             case ResultStatus.UnhandledException:
                 return new ActionResult<Result>(result);
 
-            case ResultStatus.ValidationError:
             case ResultStatus.InvalidDomainState:
+            case ResultStatus.Failed:
+                return new ObjectResult(result) { StatusCode = StatusCodes.Status422UnprocessableEntity };
+
+            case ResultStatus.ValidationError: 
                 return controller.BadRequest(result);
 
             case ResultStatus.NotFound:

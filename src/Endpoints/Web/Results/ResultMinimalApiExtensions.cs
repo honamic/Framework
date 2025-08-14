@@ -22,6 +22,7 @@ public static class ResultMinimalApiExtensions
             case ResultStatus.ValidationError:
                 return Microsoft.AspNetCore.Http.Results.Json(result, statusCode: StatusCodes.Status400BadRequest);
             case ResultStatus.InvalidDomainState:
+            case ResultStatus.Failed:
                 return Microsoft.AspNetCore.Http.Results.Json(result, statusCode: StatusCodes.Status422UnprocessableEntity);
             case ResultStatus.NotFound:
                 return Microsoft.AspNetCore.Http.Results.NotFound(result);
