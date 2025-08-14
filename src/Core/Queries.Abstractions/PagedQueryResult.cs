@@ -1,11 +1,12 @@
 ﻿namespace Honamic.Framework.Queries;
 
-public class PagedQueryResult<TEntity> 
+public class PagedQueryResult<TEntity>
 {
     public PagedQueryResult()
     {
-
+        Items = new List<TEntity>();
     }
+
     public PagedQueryResult(int totalItems, int pageNumber, int pageSize)
     {
         TotalItems = totalItems;

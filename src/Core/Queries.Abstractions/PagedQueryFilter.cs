@@ -2,7 +2,7 @@
 
 namespace Honamic.Framework.Queries;
 
-public class PagedQueryFilter
+public class PagedQueryFilter : QueryFilter
 {
     public PagedQueryFilter()
     {
@@ -21,10 +21,6 @@ public class PagedQueryFilter
 
     [Range(1, int.MaxValue)]
     public int PageSize { get; set; }
-
-    public string? OrderBy { get; set; }
-
-    public string? Keyword { get; set; }
 
     public int SkipCount() => Page * PageSize - PageSize;
 }
