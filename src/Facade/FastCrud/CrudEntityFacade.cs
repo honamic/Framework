@@ -272,7 +272,7 @@ public abstract class CrudEntityFacade<TEntity, TEntityDto, TPrimaryKey,
                 .Message.Contains("The DELETE statement conflicted with the", StringComparison.InvariantCultureIgnoreCase)
                 ?? false)
             {
-                result.SetStatusAsInvalidDomainState("به علت استفاده در سیستم قابل حذف شدن نیست.");
+                result.SetStatusAsDomainStateInvalid("به علت استفاده در سیستم قابل حذف شدن نیست.");
             }
             else
             {

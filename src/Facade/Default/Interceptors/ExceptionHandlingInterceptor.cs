@@ -111,21 +111,21 @@ internal class ExceptionHandlingInterceptor : IInterceptor
 
         switch (ex)
         {
-            case UnauthenticatedException:
-                rawResult?.SetStatusAsUnauthenticated(ex.Message);
+            case AuthenticationRequiredException:
+                rawResult?.SetStatusAsAuthenticationRequired(ex.Message);
                 break;
-            case UnauthorizedException:
-                rawResult?.SetStatusAsUnauthorized(ex.Message);
+            case ForbiddenException:
+                rawResult?.SetStatusAsForbidden(ex.Message);
                 break;
             case NotFoundBusinessException notFoundEx:
                 rawResult?.SetStatusAsNotFound();
-                rawResult?.AppendError(notFoundEx.GetMessage(), null, notFoundEx.GetCode());
+                rawResult?.AppendErrormessage(notFoundEx.GetMessage(), null, notFoundEx.GetCode());
                 break;
             case BusinessException businessException:
-                rawResult?.SetStatusAsValidationError();
+                rawResult?.SetStatusAsValidationFailed();
                 var code = businessException.GetCode();
                 var message = businessException.GetMessage();
-                rawResult?.AppendError(message, null, code);
+                rawResult?.AppendErrormessage(message, null, code);
                 break;
             default:
                 rawResult?.SetStatusAsUnhandledExceptionWithSorryError();

@@ -13,20 +13,19 @@ public static class ResultMinimalApiExtensions
     {
         switch (result.Status)
         {
-            case ResultStatus.Unauthorized:
+            case ResultStatus.AuthenticationRequired:
                 return Microsoft.AspNetCore.Http.Results.Json(result, statusCode: StatusCodes.Status401Unauthorized);
-            case ResultStatus.Unauthenticated:
+            case ResultStatus.Forbidden:
                 return Microsoft.AspNetCore.Http.Results.Json(result, statusCode: StatusCodes.Status403Forbidden);
             case ResultStatus.UnhandledException:
                 return Microsoft.AspNetCore.Http.Results.Json(result, statusCode: StatusCodes.Status500InternalServerError);
-            case ResultStatus.ValidationError:
+            case ResultStatus.ValidationFailed:
                 return Microsoft.AspNetCore.Http.Results.Json(result, statusCode: StatusCodes.Status400BadRequest);
-            case ResultStatus.InvalidDomainState:
-            case ResultStatus.Failed:
+            case ResultStatus.DomainStateInvalid:
                 return Microsoft.AspNetCore.Http.Results.Json(result, statusCode: StatusCodes.Status422UnprocessableEntity);
             case ResultStatus.NotFound:
                 return Microsoft.AspNetCore.Http.Results.NotFound(result);
-            case ResultStatus.None:
+            case ResultStatus.Undefined:
             case ResultStatus.Success:
             default:
                 return Microsoft.AspNetCore.Http.Results.Ok(result);

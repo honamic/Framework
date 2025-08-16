@@ -30,23 +30,23 @@ internal static class ExceptionDecoratorHelper
         {
             switch (ex)
             {
-                case UnauthenticatedException:
-                    result.SetStatusAsUnauthenticated();
+                case AuthenticationRequiredException:
+                    result.SetStatusAsAuthenticationRequired();
                     result.AppendError(ex.Message);
                     break;
-                case UnauthorizedException:
-                    result.SetStatusAsUnauthorized();
+                case ForbiddenException:
+                    result.SetStatusAsForbidden();
                     result.AppendError(ex.Message);
                     break;
                 case NotFoundBusinessException notFoundEx:
                     result.Status = ResultStatus.NotFound;
-                    result.AppendError(notFoundEx.GetMessage(), null, notFoundEx.GetCode());
+                    result.AppendErrormessage(notFoundEx.GetMessage(), null, notFoundEx.GetCode());
                     break;
                 case BusinessException businessException:
-                    result.Status = ResultStatus.ValidationError;
+                    result.Status = ResultStatus.ValidationFailed;
                     var code = businessException.GetCode();
                     var message = businessException.GetMessage();
-                    result.AppendError(message, null, code);
+                    result.AppendErrormessage(message, null, code);
                     break;
                 default:
                     result.SetStatusAsUnhandledExceptionWithSorryError();

@@ -68,7 +68,7 @@ public class Result
 
     public static implicit operator Result(bool boolValue)
     {
-        return new Result(boolValue ? ResultStatus.Success : ResultStatus.None);
+        return new Result(boolValue ? ResultStatus.Success : ResultStatus.Undefined);
     }
 
     public static Result Success(string? message = null)

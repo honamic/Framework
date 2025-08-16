@@ -38,11 +38,6 @@ public static class ResultChainingExtensionsGeneric
         return result;
     }
 
-    public static Result<T> WithFailedStatus<T>(this Result<T> result)
-    {
-        result.Status = ResultStatus.Failed;
-        return result;
-    }
 
     public static Result<T> WithData<T>(this Result<T> result, T data)
     {

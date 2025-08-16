@@ -22,14 +22,14 @@ internal static class AuthorizeDecoratorHelper
         {
             if (!authorization.IsAuthenticated())
             {
-                throw new UnauthenticatedException();
+                throw new AuthenticationRequiredException();
             }
 
             string dynamicPermission = CalculatePermissionName(dynamicAuthorizeAttribute, type);
 
             if (!await authorization.HavePermissionAsync(dynamicPermission, dynamicAuthorizeAttribute.Module))
             {
-                throw new UnauthorizedException(dynamicPermission);
+                throw new ForbiddenException(dynamicPermission);
             }
         }
     }
@@ -42,7 +42,7 @@ internal static class AuthorizeDecoratorHelper
         {
             if (!authorization.IsAuthenticated())
             {
-                throw new UnauthenticatedException();
+                throw new AuthenticationRequiredException();
             }
 
             if (authorizeAttribute.Roles?.Length > 0)
@@ -51,7 +51,7 @@ internal static class AuthorizeDecoratorHelper
                 {
                     if (!await authorization.HaveRoleAsync(permission))
                     {
-                        throw new UnauthorizedException(permission);
+                        throw new ForbiddenException(permission);
                     }
                 }
             }

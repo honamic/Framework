@@ -39,12 +39,6 @@ public static class ResultChainingExtensions
         return result;
     }
 
-    public static Result WithFailedStatus(this Result result)
-    {
-        result.Status = ResultStatus.Failed;
-        return result;
-    }
-
     public static Result WithFailure(this Result result, ResultStatus status, string message)
     {
         result.Status = status;

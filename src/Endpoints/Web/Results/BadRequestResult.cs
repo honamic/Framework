@@ -29,7 +29,7 @@ public class BadRequestResult : ObjectResult
             throw new ArgumentNullException(nameof(modelState));
         }
 
-        var result = new Result(ResultStatus.ValidationError);
+        var result = new Result(ResultStatus.ValidationFailed);
 
         result.AppendError("The parameters sent are not correct.");
 

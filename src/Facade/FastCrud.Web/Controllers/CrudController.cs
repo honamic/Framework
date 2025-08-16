@@ -1,5 +1,6 @@
 ﻿using Honamic.Framework.Applications.Results;
 using Honamic.Framework.Domain;
+using Honamic.Framework.Endpoints.Web.Results;
 using Honamic.Framework.Facade.FastCrud.Dtos;
 using Honamic.Framework.Queries;
 using Microsoft.AspNetCore.Http;
@@ -41,7 +42,7 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
     {
         var result = await _crudEntityService.GetAsync(id, cancellationToken);
 
-        return ResultToAction(result);
+        return this.ResultToAction(result);
     }
 
     [HttpPost]
@@ -58,7 +59,7 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
          result);
         }
 
-        return ResultToAction(result);
+        return this.ResultToAction(result);
     }
 
     [HttpPut("{id}")]
@@ -74,7 +75,7 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
         var result = await _crudEntityService.UpdateAsync(input, cancellationToken);
 
 
-        return ResultToAction(result);
+        return this.ResultToAction(result);
     }
 
     [HttpDelete("{id}")]
@@ -83,7 +84,7 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
         var result = await _crudEntityService.DeleteAsync(id, cancellationToken);
 
 
-        return ResultToAction(result);
+        return this.ResultToAction(result);
     }
 
     [HttpGet("select")]
@@ -93,64 +94,4 @@ public abstract class CrudController<TEntity, TEntityDto, TPrimaryKey, TEntities
         return _crudEntityService.GetSelectAsync(input, cancellationToken);
     }
 
-
-    private ActionResult<Result> ResultToAction(Result result)
-    {
-        switch (result.Status)
-        {
-            case ResultStatus.Success:
-                return Ok(result);
-
-            case ResultStatus.Unauthorized:
-                return new ObjectResult(result) { StatusCode = StatusCodes.Status403Forbidden };
-
-            case ResultStatus.Unauthenticated:
-                return Unauthorized(result);
-
-            case ResultStatus.UnhandledException:
-                return new ObjectResult(result) { StatusCode= StatusCodes.Status500InternalServerError};
-
-            case ResultStatus.ValidationError:
-                return BadRequest(result);
-
-            case ResultStatus.InvalidDomainState:
-            case ResultStatus.Failed:
-                return new ObjectResult(result) { StatusCode = StatusCodes.Status422UnprocessableEntity };
-
-            case ResultStatus.NotFound:
-                return NotFound(result);
-
-            default:
-                return Ok(result);
-        }
-    }
-
-    private ActionResult<Result<T>> ResultToAction<T>(Result<T> result)
-    {
-        switch (result.Status)
-        {
-            case ResultStatus.Success:
-                return Ok(result);
-            
-            case ResultStatus.Unauthorized:
-            case ResultStatus.Unauthenticated:
-                return Unauthorized(result);
-            
-            case ResultStatus.UnhandledException:
-                return new ActionResult<Result<T>>(result);
-           
-            case ResultStatus.InvalidDomainState:
-            case ResultStatus.Failed:
-                return new ObjectResult(result) { StatusCode = StatusCodes.Status422UnprocessableEntity };
-
-            case ResultStatus.ValidationError:
-                return BadRequest(result);
-            
-            case ResultStatus.NotFound:
-                return NotFound(result);
-            
-            default:
-                return Ok(result);
-        }
-    }
 }

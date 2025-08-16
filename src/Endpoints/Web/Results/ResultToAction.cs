@@ -12,18 +12,19 @@ public static class ResultExtensions
             case ResultStatus.Success:
                 return controller.Ok(result);
 
-            case ResultStatus.Unauthorized:
-            case ResultStatus.Unauthenticated:
+            case ResultStatus.Forbidden:
+                return new ObjectResult(result) { StatusCode = StatusCodes.Status403Forbidden };
+
+            case ResultStatus.AuthenticationRequired:
                 return controller.Unauthorized(result);
 
             case ResultStatus.UnhandledException:
                 return new ActionResult<Result<T>>(result);
 
-            case ResultStatus.ValidationError:
+            case ResultStatus.ValidationFailed:
                 return controller.BadRequest(result);
             
-            case ResultStatus.InvalidDomainState:
-            case ResultStatus.Failed:
+            case ResultStatus.DomainStateInvalid: 
                 return new ObjectResult(result) { StatusCode = StatusCodes.Status422UnprocessableEntity };
 
             case ResultStatus.NotFound:
@@ -40,18 +41,19 @@ public static class ResultExtensions
             case ResultStatus.Success:
                 return controller.Ok(result);
 
-            case ResultStatus.Unauthorized:
-            case ResultStatus.Unauthenticated:
+            case ResultStatus.AuthenticationRequired:
                 return controller.Unauthorized(result);
+
+            case ResultStatus.Forbidden:
+                return new ObjectResult(result) { StatusCode = StatusCodes.Status403Forbidden };
 
             case ResultStatus.UnhandledException:
                 return new ActionResult<Result>(result);
 
-            case ResultStatus.InvalidDomainState:
-            case ResultStatus.Failed:
+            case ResultStatus.DomainStateInvalid:
                 return new ObjectResult(result) { StatusCode = StatusCodes.Status422UnprocessableEntity };
 
-            case ResultStatus.ValidationError: 
+            case ResultStatus.ValidationFailed: 
                 return controller.BadRequest(result);
 
             case ResultStatus.NotFound:

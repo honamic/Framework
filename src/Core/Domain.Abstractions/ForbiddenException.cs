@@ -1,8 +1,8 @@
 ﻿namespace Honamic.Framework.Applications.Exceptions;
 
-public class UnauthorizedException : Exception
+public class ForbiddenException : Exception
 {
-    public UnauthorizedException(string permissionName)
+    public ForbiddenException(string permissionName)
     {
         PermissionName = permissionName;
     }

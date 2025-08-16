@@ -46,8 +46,8 @@ internal class ExceptionToResultMiddleware
 
         switch (exception)
         {
-            case UnauthenticatedException:
-            case UnauthorizedException:
+            case AuthenticationRequiredException:
+            case ForbiddenException:
                 break;
             case BusinessException:
                 _logger.LogWarning(exception, Constants.UnhandledBusinessExceptionMessage);
@@ -80,32 +80,30 @@ internal class ExceptionToResultMiddleware
     {
         switch (errorResult.Status)
         {
-            case ResultStatus.None:
+            case ResultStatus.Undefined:
                 break;
             case ResultStatus.Success:
                 context.Response.StatusCode = (int)HttpStatusCode.OK;
                 break;
-            case ResultStatus.Unauthorized:
+            case ResultStatus.Forbidden:
                 context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                 break;
-            case ResultStatus.Unauthenticated:
+            case ResultStatus.AuthenticationRequired:
                 context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 break;
             case ResultStatus.UnhandledException:
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 break;
-            case ResultStatus.ValidationError:
+            case ResultStatus.ValidationFailed:
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 break;
-            case ResultStatus.InvalidDomainState:
+            case ResultStatus.DomainStateInvalid:
                 context.Response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
                 break;
             case ResultStatus.NotFound:
                 context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                 break;
-            case ResultStatus.Failed:
-                context.Response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
-                break;
+
             default:
                 break;
         }
@@ -121,19 +119,19 @@ internal class ExceptionToResultMiddleware
 
         if (exception is BusinessException businessException)
         {
-            errorResult.Status = ResultStatus.ValidationError;
+            errorResult.Status = ResultStatus.ValidationFailed;
             var code = businessException.GetCode();
             var message = businessException.GetMessage();
-            errorResult.AppendError(message, null, code);
+            errorResult.AppendErrormessage(message, null, code);
         }
-        else if (exception is UnauthorizedException unauthorizedException)
+        else if (exception is ForbiddenException unauthorizedException)
         {
-            errorResult.Status = ResultStatus.Unauthorized;
+            errorResult.Status = ResultStatus.Forbidden;
             errorResult.AppendError(unauthorizedException.Message);
         }
-        else if (exception is UnauthenticatedException unauthenticatedException)
+        else if (exception is AuthenticationRequiredException unauthenticatedException)
         {
-            errorResult.Status = ResultStatus.Unauthenticated;
+            errorResult.Status = ResultStatus.AuthenticationRequired;
             errorResult.AppendError(unauthenticatedException.Message);
         }
         else

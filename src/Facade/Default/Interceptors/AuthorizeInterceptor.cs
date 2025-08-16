@@ -56,12 +56,12 @@ internal class AuthorizeInterceptor : IInterceptor
 
         if (!_facadeAuthorization.IsAuthenticated())
         {
-            throw new UnauthenticatedException();
+            throw new AuthenticationRequiredException();
         }
 
         if (!await _facadeAuthorization.HavePermissionAsync(permission))
         {
-            throw new UnauthorizedException(permission);
+            throw new ForbiddenException(permission);
         }
     }
 
@@ -91,7 +91,7 @@ internal class AuthorizeInterceptor : IInterceptor
 
         if (!_facadeAuthorization.IsAuthenticated())
         {
-            throw new UnauthenticatedException();
+            throw new AuthenticationRequiredException();
         }
     }
 

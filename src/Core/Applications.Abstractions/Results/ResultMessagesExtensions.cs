@@ -2,38 +2,38 @@
 
 public static class ResultMessagesExtensions
 {
-    public static void AppendWarning(this Result result, string message)
+    public static void AppendWarningmessage(this Result result, string message)
     {
         result.AddMessage(ResultMessageType.Warning, message);
     }
 
-    public static void AppendInfo(this Result result, string message)
+    public static void AppendInfomessage(this Result result, string message)
     {
         result.AddMessage(ResultMessageType.Info, message);
     }
 
-    public static void AppendError(this Result result, string message, string? field, string? code)
+    public static void AppendErrormessage(this Result result, string message, string? field, string? code)
     {
         result.AddMessage(ResultMessageType.Error, message, field, code);
     }
 
     public static void AppendError(this Result result, string message, string? field)
     {
-        result.AppendError(message, field, null);
+        result.AppendErrormessage(message, field, null);
     }
 
     public static void AppendError(this Result result, string message)
     {
-        result.AppendError(message, null, null);
+        result.AppendErrormessage(message, null, null);
     }
 
-    public static void AppendSorryError(this Result result)
+    public static void AppendSorryErrormessage(this Result result)
     {
         // TODO: localization message
         result.AddMessage(ResultMessageType.Error, "متاسفانه خطایی پیش آمده است.");
     }
 
-    public static void AppendSuccess(this Result result, string message)
+    public static void AppendSuccessmessage(this Result result, string message)
     {
         result.AddMessage(ResultMessageType.Success, message);
     }
@@ -49,25 +49,25 @@ public static class ResultMessagesExtensions
         result.AppendError(errorMessage);
     }
 
-    public static void SetStatusAsUnauthenticated(this Result result)
+    public static void SetStatusAsAuthenticationRequired(this Result result)
     {
-        result.Status = ResultStatus.Unauthenticated;
+        result.Status = ResultStatus.AuthenticationRequired;
     }
 
-    public static void SetStatusAsUnauthenticated(this Result result, string errorMessage)
+    public static void SetStatusAsAuthenticationRequired(this Result result, string errorMessage)
     {
-        result.Status = ResultStatus.Unauthenticated;
+        result.Status = ResultStatus.AuthenticationRequired;
         result.AppendError(errorMessage);
     }
 
-    public static void SetStatusAsUnauthorized(this Result result)
+    public static void SetStatusAsForbidden(this Result result)
     {
-        result.Status = ResultStatus.Unauthorized;
+        result.Status = ResultStatus.Forbidden;
     }
 
-    public static void SetStatusAsUnauthorized(this Result result, string errorMessage)
+    public static void SetStatusAsForbidden(this Result result, string errorMessage)
     {
-        result.Status = ResultStatus.Unauthorized;
+        result.Status = ResultStatus.Forbidden;
         result.AppendError(errorMessage);
     }
 
@@ -80,17 +80,17 @@ public static class ResultMessagesExtensions
     public static void SetStatusAsUnhandledExceptionWithSorryError(this Result result)
     {
         result.Status = ResultStatus.UnhandledException;
-        result.AppendSorryError();
+        result.AppendSorryErrormessage();
     }
 
-    public static void SetStatusAsInvalidDomainState(this Result result, string errorMessage)
+    public static void SetStatusAsDomainStateInvalid(this Result result, string errorMessage)
     {
-        result.Status = ResultStatus.InvalidDomainState;
+        result.Status = ResultStatus.DomainStateInvalid;
         result.AppendError(errorMessage);
     }
 
-    public static void SetStatusAsValidationError(this Result result)
+    public static void SetStatusAsValidationFailed(this Result result)
     {
-        result.Status = ResultStatus.ValidationError;
+        result.Status = ResultStatus.ValidationFailed;
     }
 }
