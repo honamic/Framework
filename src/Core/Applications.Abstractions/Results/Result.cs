@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace Honamic.Framework.Applications.Results;
 
@@ -9,10 +10,13 @@ public class Result
 
     public ICollection<ResultMessage> Messages { get; set; }
 
+    [JsonIgnore]
     public bool IsSuccess => Status == ResultStatus.Success;
-    
+
+    [JsonIgnore]
     public bool IsFailure => !IsSuccess;
 
+    [JsonIgnore]
     public bool HasMessages => Messages.Any();
 
 
@@ -107,6 +111,7 @@ public class Result<TData> : Result
         Data = data;
     }
 
+    [JsonIgnore]
     [MemberNotNullWhen(true, nameof(Data))]
     public bool IsSuccessWithData => Status == ResultStatus.Success && Data is not null;
 
