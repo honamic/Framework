@@ -2,6 +2,7 @@
 using Honamic.Framework.Events;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Honamic.Framework.Persistence.EntityFramework;
 
@@ -9,7 +10,7 @@ internal class DomainEventDetector : IDomainEventDetector
 {
     private readonly DbContext _dbContext;
 
-    public DomainEventDetector(DbContext dbContext)
+    public DomainEventDetector([FromKeyedServices(DomainConstants.PersistenceDbContextKey)] DbContext dbContext)
     {
         _dbContext = dbContext;
     }

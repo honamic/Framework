@@ -1,11 +1,12 @@
-﻿using Honamic.Framework.Queries;
-using Microsoft.EntityFrameworkCore;
+﻿using Honamic.Framework.Applications.Results;
+using Honamic.Framework.Queries;
 using Honamic.Framework.Utilities.Extensions;
 using Honamic.Todo.Query.Domain.TodoItems.Queries;
-using Honamic.Framework.Applications.Results;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Honamic.IdentityPlus.Application.Users.QueryHandlers;
-public class GetAllTodoItemsQueryHandler(DbContext dbContext)
+public class GetAllTodoItemsQueryHandler([FromKeyedServices(QueryConstants.QueryDbContextKey)] DbContext dbContext)
     : IQueryHandler<GetAllTodoItemsQueryFilter, Result<PagedQueryResult<GetAllTodoItemsQueryResult>>>
 {
     public async Task<Result<PagedQueryResult<GetAllTodoItemsQueryResult>>>

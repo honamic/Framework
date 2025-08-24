@@ -1,13 +1,12 @@
-﻿using System.Linq.Expressions;
-using Honamic.Framework.Persistence.EntityFramework;
-using Microsoft.EntityFrameworkCore;
+﻿using Honamic.Framework.Persistence.EntityFramework;
 using Honamic.Todo.Domain.TodoItems;
+using System.Linq.Expressions;
 
 namespace Honamic.Todo.Persistence.EntityFramework.TodoItems;
 
 internal class TodoItemRepository : RepositoryBase<TodoItem, long>, ITodoItemRepository
 {
-    public TodoItemRepository(DbContext context) : base(context)
+    public TodoItemRepository(TodoDbContext context) : base(context)
     {
 
     }

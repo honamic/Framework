@@ -1,6 +1,7 @@
 ﻿using Honamic.Framework.Domain;
 using Honamic.Framework.Events;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Data;
 
 namespace Honamic.Framework.Persistence.EntityFramework;
@@ -11,7 +12,7 @@ internal class UnitOfWork : IUnitOfWork
     private readonly IDomainEventsDispatcher _domainEventsDispatcher;
     private readonly IEnumerable<IUnitOfWorkInterceptor> _unitOfWorkInterceptors;
 
-    public UnitOfWork(DbContext context,
+    public UnitOfWork([FromKeyedServices(DomainConstants.PersistenceDbContextKey)] DbContext context,
         IDomainEventsDispatcher domainEventsDispatcher,
         IEnumerable<IUnitOfWorkInterceptor> unitOfWorkInterceptors)
     {
