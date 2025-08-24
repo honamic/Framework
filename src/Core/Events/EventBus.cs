@@ -8,10 +8,12 @@ public class EventBus : IEventBus
     private readonly IList<(object handler, string eventType)> _subscribers =
         new List<(object handler, string eventType)>();
     private readonly IServiceProvider _serviceProvider;
+    private readonly IEventStore _eventStore;
 
-    public EventBus(IServiceProvider serviceProvider)
+    public EventBus(IServiceProvider serviceProvider, IEventStore eventStore)
     {
         _serviceProvider = serviceProvider;
+        _eventStore = eventStore;
     }
 
     public void On<TEvent>(Action<TEvent> action) where TEvent : IEvent
@@ -40,24 +42,61 @@ public class EventBus : IEventBus
             }
         });
 
-        IEnumerable<object> handlers = GetHandlerSubscribers(eventToPublish);
+        var handlers = GetHandlerSubscribers(eventToPublish);
+
+        if (handlers is null)
+            return;
 
         foreach (var handler in handlers)
         {
-            Type handlerType = handler.GetType();
-            MethodInfo handleAsyncMethodInfo = handlerType.GetMethod("HandleAsync");
-            var task = (Task)handleAsyncMethodInfo.Invoke(handler, new object[] { eventToPublish });
-
-            await task;
+            if (handler is null)
+                continue;
+            var executionTiming= GetExecutionTiming(handler);
+            switch (executionTiming)
+            {
+                case EventExecutionTiming.BeforeCommit:
+                    await InvokHandler(eventToPublish, handler);
+                    break;
+                case EventExecutionTiming.AfterCommit:
+                    await _eventStore.AddAsync(eventToPublish, handler.GetType());
+                    break;
+                default:
+                    throw new InvalidOperationException($"Unknown event execution timing.[{executionTiming}]");
+            }
         }
     }
 
-    private IEnumerable<object> GetHandlerSubscribers<TEvent>(TEvent eventToPublish) where TEvent : IEvent
+    private EventExecutionTiming GetExecutionTiming(object handler)
+    {
+        var handlerType = handler.GetType();
+        var executionTimingProperty = handlerType.GetProperty("ExecutionTiming");
+        if (executionTimingProperty == null)
+            throw new InvalidOperationException("Handler does not have an ExecutionTiming property.");
+
+        var value = executionTimingProperty.GetValue(handler);
+        if (value is EventExecutionTiming timing)
+            return timing;
+
+        throw new InvalidOperationException("ExecutionTiming property is not of type EventExecutionTiming.");
+    }
+
+    private static Task InvokHandler<TEvent>(TEvent eventToPublish, object handler) where TEvent : IEvent
+    {
+        Type handlerType = handler.GetType();
+        MethodInfo handleAsyncMethodInfo = handlerType.GetMethod("HandleAsync")!;
+        var task = (Task)handleAsyncMethodInfo!.Invoke(handler, new object[] { eventToPublish })!;
+        return task;
+    }
+
+
+
+    private IEnumerable<object?>? GetHandlerSubscribers<TEvent>(TEvent eventToPublish) where TEvent : IEvent
     {
         var eventType = eventToPublish.GetType();
         var handlerType = typeof(IEventHandler<>).MakeGenericType(eventType);
         var list = _serviceProvider.GetServices(handlerType);
-        return list;
+
+        return list?.Where(x => x != null);
     }
 
 

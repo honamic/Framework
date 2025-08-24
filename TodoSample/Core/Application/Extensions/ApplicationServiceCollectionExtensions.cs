@@ -6,7 +6,9 @@ using Honamic.Framework.Tools.IdGenerators;
 using Honamic.IdentityPlus.Application.Users.QueryHandlers;
 using Honamic.Todo.Application.TodoItems.CommandHandlers;
 using Honamic.Todo.Application.TodoItems.Commands;
+using Honamic.Todo.Application.TodoItems.EventHandlers;
 using Honamic.Todo.Domain.Extensions;
+using Honamic.Todo.Domain.TodoItems;
 using Honamic.Todo.Query.Domain.TodoItems.Queries;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,7 +43,7 @@ public static class ApplicationServiceCollectionExtensions
 
     private static void AddEventHandlers(this IServiceCollection services)
     {
-
+        services.AddEventHandler<TodoItemCreatedEvent, TodoItemCreatedEventHandler>();
     }
 
     private static void AddQueryHandlers(this IServiceCollection services)

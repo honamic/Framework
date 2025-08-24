@@ -2,26 +2,23 @@
 
 namespace Honamic.Framework.Domain;
 
-public abstract class DomainEvent : IEvent
+public abstract class DomainEvent : IDomianEvent
 {
     protected DomainEvent(long aggregateId)
     {
+        EventId = Guid.NewGuid();
         AggregateId = aggregateId;
         OccurredOn = DateTimeOffset.Now;
     }
 
-    public DateTimeOffset OccurredOn { get; private set; }
+    public Guid EventId { get; }
 
-    public long AggregateId { get; private set; }
+    public DateTimeOffset OccurredOn { get; }
+
+    public long AggregateId { get; }
 
     public long AggregateVersion { get; private set; }
 
-    public IEventUserInfo? UserInfo { get; private set; }
-
-    public void SetUserContextValue(IEventUserInfo userInfo)
-    {
-        UserInfo = userInfo;
-    }
 
     public void SetAggregateVersion(long aggregateVersion)
     {

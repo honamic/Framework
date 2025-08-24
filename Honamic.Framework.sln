@@ -46,8 +46,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Endpoints.Web", "src\Endpoints\Web\Honamic.Framework.Endpoints.Web.csproj", "{E6B1BA0C-2C80-449D-A96F-EBCD590B10A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Facade", "src\Facade\Default\Honamic.Framework.Facade.csproj", "{753E6B01-E2D4-4D04-8FBD-D33A57B91429}"
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Facade.Abstractions", "src\Facade\Abstractions\Honamic.Framework.Facade.Abstractions.csproj", "{4BB01D5D-0F5E-4B29-9177-5F11DA68CA8E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Facade.Abstractions", "src\Facade\Abstractions\Honamic.Framework.Facade.Abstractions.csproj", "{4BB01D5D-0F5E-4B29-9177-5F11DA68CA8E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Facade.Web", "src\Facade\Web\Honamic.Framework.Facade.Web.csproj", "{77ED902B-18FE-4873-9169-4512184A9482}"
 EndProject
@@ -98,6 +98,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Utilities.Razor", "src\Utilities\Razor\Honamic.Framework.Utilities.Razor.csproj", "{91F6CBC0-C422-43C5-AF19-DE6D3B5B7806}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honamic.Framework.Applications.Abstractions", "src\Core\Applications.Abstractions\Honamic.Framework.Applications.Abstractions.csproj", "{29C37841-0CA2-9A52-9A08-90CA63C5E63A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -288,6 +290,7 @@ Global
 		{462B177A-3E97-4F60-A141-7A01F8B437B5} = {196209A4-3BCC-442B-9686-CF311ADEBF6D}
 		{91F6CBC0-C422-43C5-AF19-DE6D3B5B7806} = {D9480F6F-6660-49F5-9D79-2538E8041D65}
 		{29C37841-0CA2-9A52-9A08-90CA63C5E63A} = {BC728FCA-02C3-4522-A7EB-7403B8674BBA}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {E9FC6BF1-7A52-43AD-90F3-E8A20BE3FE99}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E15D83FC-8F5C-4D9C-9DCD-D114F5609922}

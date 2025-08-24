@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Honamic.Framework.Messaging;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Honamic.Framework.Events.Extensions;
@@ -19,5 +20,6 @@ public static class ServiceCollectionExtensions
     public static void AddDefaultDomainEventsDispatcherServices(this IServiceCollection services)
     {
         services.TryAddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>();
+        services.TryAddScoped<IEventStore, DisableEventStore>();
     }
 }
