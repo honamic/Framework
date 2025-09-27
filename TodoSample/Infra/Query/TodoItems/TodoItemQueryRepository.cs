@@ -4,6 +4,7 @@ using Honamic.Todo.Query.Domain.TodoItems.Queries;
 using Microsoft.EntityFrameworkCore;
 using Honamic.Todo.Query.Domain.TodoItems;
 using Honamic.Todo.Query.Domain.TodoItems.Models;
+using Honamic.Framework.EntityFramework.Query;
 
 namespace Honamic.Todo.Query.EntityFramework.TodoItems;
 

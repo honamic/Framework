@@ -1,4 +1,4 @@
-﻿using Hasti.Framework.Queries.EntityFramework.Extensions;
+﻿using Honamic.Framework.EntityFramework.Query.Extensions;
 using Honamic.Framework.Persistence.EntityFramework.Extensions;
 using Honamic.Todo.Query.Domain.TodoItems;
 using Honamic.Todo.Query.EntityFramework.TodoItems;

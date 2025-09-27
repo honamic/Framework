@@ -1,9 +1,8 @@
-﻿using Honamic.Framework.EntityFramework.Query;
-using Honamic.Framework.Queries;
+﻿using Honamic.Framework.Queries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Hasti.Framework.Queries.EntityFramework.Extensions;
+namespace Honamic.Framework.EntityFramework.Query.Extensions;
 
 public static class ServiceCollectionExtensions
 {

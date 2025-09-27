@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Honamic.Framework.Queries;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 
-namespace Honamic.Framework.Queries;
+namespace Honamic.Framework.EntityFramework.Query;
 
 public static class PagedListExtensions
 {
