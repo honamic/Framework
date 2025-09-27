@@ -9,6 +9,7 @@ using System.Linq.Dynamic.Core;
 using Honamic.Framework.Utilities.Extensions;
 using Honamic.Framework.Facade.FastCrud.Dtos;
 using Honamic.Framework.Applications.Results;
+using Honamic.Framework.EntityFramework.Query;
 
 namespace Honamic.Framework.Facade.FastCrud;
 

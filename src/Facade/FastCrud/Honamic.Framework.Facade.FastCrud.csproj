@@ -17,6 +17,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\core\Domain.Abstractions\Honamic.Framework.Domain.Abstractions.csproj" />
 	  <ProjectReference Include="..\..\core\Queries\Honamic.Framework.Queries.csproj" />
+	  <ProjectReference Include="..\..\EntityFramework\Query\Honamic.Framework.EntityFramework.Query.csproj" />
 	  <ProjectReference Include="..\..\Utilities\Default\Honamic.Framework.Utilities.csproj" />
 	  <ProjectReference Include="..\Default\Honamic.Framework.Facade.csproj" />
 	</ItemGroup>
