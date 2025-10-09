@@ -33,7 +33,7 @@ public class TodoItems2Controller : ControllerBase
     [HttpGet]
     public async Task<Result<PagedQueryResult<GetAllTodoItemsQueryResult>>> GetAll([FromQuery] GetAllTodoItemsQueryFilter model, CancellationToken cancellationToken)
     {
-        return await _queryBus.Dispatch(model, cancellationToken);
+        return await _queryBus.DispatchAsync(model, cancellationToken);
     }
  
 }

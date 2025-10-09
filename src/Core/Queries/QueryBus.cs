@@ -9,7 +9,7 @@ internal class QueryBus : IQueryBus
         _serviceProvider = serviceProvider;
     }
 
-    public async Task<TResponse> Dispatch<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken)
+    public async Task<TResponse> DispatchAsync<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken)
     {
         var queryType = query.GetType();
         var handlerType = typeof(IQueryHandler<,>).MakeGenericType(queryType, typeof(TResponse));
@@ -35,5 +35,10 @@ internal class QueryBus : IQueryBus
             throw new InvalidOperationException("Result property not found on Task.");
 
         return (TResponse)resultProperty.GetValue(task)!;
+    }
+
+    public Task<TResponse> Dispatch<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken)
+    {
+        return DispatchAsync(query, cancellationToken);
     }
 }
