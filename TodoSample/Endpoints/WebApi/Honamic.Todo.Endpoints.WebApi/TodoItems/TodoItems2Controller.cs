@@ -25,9 +25,7 @@ public class TodoItems2Controller : ControllerBase
     [HttpPost]
     public async Task<Result<CreateTodoItem2ResultCommand>> Post([FromBody] CreateTodoItem2Command model, CancellationToken cancellationToken)
     {
-        return await _commandBus
-            .DispatchAsync<CreateTodoItem2Command, Result<CreateTodoItem2ResultCommand>>
-            (model, cancellationToken);
+        return await _commandBus.DispatchAsync(model, cancellationToken);
     }
 
     [HttpGet]
@@ -35,5 +33,5 @@ public class TodoItems2Controller : ControllerBase
     {
         return await _queryBus.DispatchAsync(model, cancellationToken);
     }
- 
+
 }

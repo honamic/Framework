@@ -23,16 +23,19 @@ public class CommandBus : ICommandBus
         return handler.HandleAsync(command, cancellationToken);
     }
 
-    public Task<TResponse> DispatchAsync<TCommand, TResponse>(TCommand command, CancellationToken cancellationToken)
-        where TCommand : ICommand<TResponse>
+    public Task<TResponse> DispatchAsync<TResponse>(ICommand<TResponse> command, CancellationToken cancellationToken)
     {
-        var handler = _serviceProvider.GetService<ICommandHandler<TCommand, TResponse>>();
+        var commandType = command.GetType();
+        var handlerType = typeof(ICommandHandler<,>).MakeGenericType(commandType, typeof(TResponse));
+        var handler = _serviceProvider.GetService(handlerType);
 
         if (handler == null)
         {
-            throw new InvalidOperationException($"No CommandHandler is registered for {typeof(ICommandHandler<TCommand, TResponse>).Name}");
+            throw new InvalidOperationException($"No CommandHandler is registered for {command.GetType().Name}");
         }
 
-        return handler.HandleAsync(command, cancellationToken);
+        return ((Task<TResponse>)handlerType
+            .GetMethod("HandleAsync")!
+            .Invoke(handler, new object[] { command, cancellationToken })!);
     }
 }

@@ -9,7 +9,7 @@ internal class QueryBus : IQueryBus
         _serviceProvider = serviceProvider;
     }
 
-    public async Task<TResponse> DispatchAsync<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken)
+    public Task<TResponse> DispatchAsync<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken)
     {
         var queryType = query.GetType();
         var handlerType = typeof(IQueryHandler<,>).MakeGenericType(queryType, typeof(TResponse));
@@ -20,21 +20,9 @@ internal class QueryBus : IQueryBus
             throw new InvalidOperationException($"No QueryHandler is registered for {queryType.Name}");
         }
 
-        var method = handlerType.GetMethod("HandleAsync");
-        if (method == null)
-            throw new InvalidOperationException("HandleAsync method not found on handler.");
-
-        var task = (Task)method.Invoke(handler, new object[] { query, cancellationToken })!;
-        await task.ConfigureAwait(false);
-
-
-        // گرفتن نتیجه از Task<T>
-        var resultProperty = task.GetType().GetProperty("Result");
-
-        if (resultProperty == null)
-            throw new InvalidOperationException("Result property not found on Task.");
-
-        return (TResponse)resultProperty.GetValue(task)!;
+        return (Task<TResponse>)handlerType
+            .GetMethod("HandleAsync")!
+            .Invoke(handler, new object[] { query, cancellationToken })!;
     }
 
     public Task<TResponse> Dispatch<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken)
