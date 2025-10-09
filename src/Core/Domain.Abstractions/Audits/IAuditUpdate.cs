@@ -2,7 +2,7 @@
 
 public interface IAuditUpdate
 {
-    public string? ModifiedBy { get; set; }
+    public string? ModifiedBy { get; }
 
-    public DateTimeOffset? ModifiedOn { get; set; }
+    public DateTimeOffset? ModifiedOn { get; }
 }

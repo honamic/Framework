@@ -1,7 +1,7 @@
 ﻿namespace Honamic.Framework.Domain.Audits;
 public interface IAuditCreate
 {
-    string? CreatedBy { get; set; }
+    string? CreatedBy { get; }
 
-    DateTimeOffset? CreatedOn { get; set; }
+    DateTimeOffset? CreatedOn { get; }
 }

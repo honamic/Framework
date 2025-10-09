@@ -3,6 +3,7 @@ using Honamic.Framework.Domain.Audits;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using System.Reflection;
 
 namespace Honamic.Framework.EntityFramework.Interceptors.AuditFields;
 public class AuditFieldsSaveChangesInterceptor : SaveChangesInterceptor
@@ -44,21 +45,35 @@ public class AuditFieldsSaveChangesInterceptor : SaveChangesInterceptor
     private void ApplyCreateAudits(ChangeTracker changeTracker, string? currentUserId, DateTimeOffset now)
     {
         var addedEntries = changeTracker.Entries<IAuditCreate>().Where(x => x.State == EntityState.Added);
-        foreach (var addedEntry in addedEntries)
+
+        foreach (var entry in addedEntries)
         {
-            addedEntry.Entity.CreatedOn = now;
-            addedEntry.Entity.CreatedBy = currentUserId;
+            var entityType = entry.Entity.GetType();
+
+            var createdOnProp = entityType.GetProperty(nameof(IAuditCreate.CreatedOn));
+            var createdByProp = entityType.GetProperty(nameof(IAuditCreate.CreatedBy));
+
+            createdOnProp?.SetValue(entry.Entity, now);
+            createdByProp?.SetValue(entry.Entity, currentUserId);
         }
+
     }
 
     private void ApplyUpdateAudits(ChangeTracker changeTracker, string? currentUserId, DateTimeOffset now)
     {
-        var addedEntries = changeTracker.Entries<IAuditUpdate>().Where(x => x.State == EntityState.Modified);
-        foreach (var addedEntry in addedEntries)
+        var modifiedEntries = changeTracker.Entries<IAuditUpdate>().Where(x => x.State == EntityState.Modified);
+
+        foreach (var entry in modifiedEntries)
         {
-            addedEntry.Entity.ModifiedOn = now;
-            addedEntry.Entity.ModifiedBy = currentUserId;
+            var entityType = entry.Entity.GetType();
+
+            var modifiedOnProp = entityType.GetProperty(nameof(IAuditUpdate.ModifiedOn));
+            var modifiedByProp = entityType.GetProperty(nameof(IAuditUpdate.ModifiedBy));
+
+            modifiedOnProp?.SetValue(entry.Entity, now);
+            modifiedByProp?.SetValue(entry.Entity, currentUserId);
         }
+
     }
 
     private string? CreateUserName()

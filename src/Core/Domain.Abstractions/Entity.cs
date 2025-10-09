@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 namespace Honamic.Framework.Domain;
 public abstract class Entity<TKey> : IAuditCreate, IAuditUpdate
 {
-    public virtual TKey Id { get; set; } = default!;
+    public virtual TKey Id { get; protected set; } = default!;
 
     [StringLength(100)]
-    public string? CreatedBy { get; set; }
-    public DateTimeOffset? CreatedOn { get; set; }
+    public string? CreatedBy { get; protected set; }
+    public DateTimeOffset? CreatedOn { get; protected set; }
 
     [StringLength(100)]
-    public string? ModifiedBy { get; set; }
-    public DateTimeOffset? ModifiedOn { get; set; }
+    public string? ModifiedBy { get; protected set; }
+    public DateTimeOffset? ModifiedOn { get; protected set; }
 
     public override bool Equals(object obj)
     {
