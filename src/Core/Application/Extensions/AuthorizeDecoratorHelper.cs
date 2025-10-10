@@ -1,9 +1,8 @@
-﻿using Honamic.Framework.Applications.Authorizes;
-using Honamic.Framework.Applications.Exceptions;
+﻿using Honamic.Framework.Application.Authorizes; 
 using Honamic.Framework.Domain;
 using System.Reflection;
 
-namespace Honamic.Framework.Applications.Extensions;
+namespace Honamic.Framework.Application.Extensions;
 
 internal static class AuthorizeDecoratorHelper
 {

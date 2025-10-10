@@ -1,7 +1,7 @@
-﻿using Honamic.Framework.Applications.Extensions;
+﻿using Honamic.Framework.Application.Extensions;
 using Honamic.Framework.Commands;
 
-namespace Honamic.Framework.Applications.CommandHandlerDecorators;
+namespace Honamic.Framework.Application.CommandHandlerDecorators;
 
 public class ExceptionCommandHandlerDecorator<TCommand, TResponse> : ICommandHandler<TCommand, TResponse>
     where TCommand : ICommand<TResponse>

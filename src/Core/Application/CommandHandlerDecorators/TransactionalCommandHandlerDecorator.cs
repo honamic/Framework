@@ -1,7 +1,7 @@
 ﻿using Honamic.Framework.Commands;
 using Honamic.Framework.Domain;
 
-namespace Honamic.Framework.Applications.CommandHandlerDecorators;
+namespace Honamic.Framework.Application.CommandHandlerDecorators;
 
 public class TransactionalCommandHandlerDecorator<TCommand> : ICommandHandler<TCommand>
     where TCommand : ICommand

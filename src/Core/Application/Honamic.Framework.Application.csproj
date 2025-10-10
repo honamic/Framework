@@ -12,7 +12,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <ProjectReference Include="..\Applications.Abstractions\Honamic.Framework.Applications.Abstractions.csproj" />
+	  <ProjectReference Include="..\Application.Abstractions\Honamic.Framework.Application.Abstractions.csproj" />
 	  <ProjectReference Include="..\Commands\Honamic.Framework.Commands.csproj" />
 	  <ProjectReference Include="..\Domain\Honamic.Framework.Domain.csproj" />
 	  <ProjectReference Include="..\Events\Honamic.Framework.Events.csproj" />

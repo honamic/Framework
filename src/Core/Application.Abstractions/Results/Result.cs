@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
-namespace Honamic.Framework.Applications.Results;
+namespace Honamic.Framework.Application.Results;
 
 public class Result
 {

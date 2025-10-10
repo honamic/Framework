@@ -1,27 +1,27 @@
-﻿
-namespace Honamic.Framework.Applications.Results;
+﻿using Honamic.Framework.Application.Results;
 
+namespace Honamic.Framework.Application;
 public static class ResultChainingExtensions
 {
-    public static Result WithErrorMessage(this Result result, string message, string? field = null, string? code = null)
+    public static Result WithError(this Result result, string message, string? field = null, string? code = null)
     {
         result.AddMessage(ResultMessageType.Error, message, field, code);
         return result;
     }
 
-    public static Result WithWarningMessage(this Result result, string message)
+    public static Result WithWarning(this Result result, string message)
     {
         result.AddMessage(ResultMessageType.Warning, message);
         return result;
     }
 
-    public static Result WithInfoMessage(this Result result, string message)
+    public static Result WithInfo(this Result result, string message)
     {
         result.AddMessage(ResultMessageType.Info, message);
         return result;
     }
 
-    public static Result WithSuccessMessage(this Result result, string message)
+    public static Result WithSuccess(this Result result, string message)
     {
         result.AddMessage(ResultMessageType.Success, message);
         return result;
@@ -33,9 +33,9 @@ public static class ResultChainingExtensions
         return result;
     }
 
-    public static Result WithSuccessStatus(this Result result)
+    public static Result WithSorryError(this Result result)
     {
-        result.Status = ResultStatus.Success;
+        result.AddMessage(ResultMessageType.Error, "متاسفانه خطایی پیش آمده است.");
         return result;
     }
 

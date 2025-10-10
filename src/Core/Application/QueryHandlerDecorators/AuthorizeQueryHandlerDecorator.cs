@@ -1,8 +1,8 @@
-using Honamic.Framework.Applications.Extensions;
+using Honamic.Framework.Application.Extensions;
 using Honamic.Framework.Domain;
 using Honamic.Framework.Queries;
 
-namespace Honamic.Framework.Applications.QueryHandlerDecorators;
+namespace Honamic.Framework.Application.QueryHandlerDecorators;
 
 public class AuthorizeQueryHandlerDecorator<TQuery, TResponse> : IQueryHandler<TQuery, TResponse>
     where TQuery : class, IQuery<TResponse>

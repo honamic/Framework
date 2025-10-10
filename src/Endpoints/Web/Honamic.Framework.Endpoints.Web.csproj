@@ -11,7 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Core\Applications.Abstractions\Honamic.Framework.Applications.Abstractions.csproj" />
+		<ProjectReference Include="..\..\Core\Application.Abstractions\Honamic.Framework.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\..\Core\Domain.Abstractions\Honamic.Framework.Domain.Abstractions.csproj" />
 		<ProjectReference Include="..\..\Utilities\Web\Honamic.Framework.Utilities.Web.csproj" />
 	</ItemGroup>

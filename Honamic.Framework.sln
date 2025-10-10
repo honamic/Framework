@@ -27,11 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Queries.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Queries", "src\Core\Queries\Honamic.Framework.Queries.csproj", "{22EE24F2-4418-404A-B207-6F5D6A13E095}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Applications", "src\Core\Applications\Honamic.Framework.Applications.csproj", "{3AD0A08A-212D-447B-963C-DBDCA2889D80}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{3323AFC2-828A-4978-968F-D3FF6E95F6B7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Endpoints.Web", "src\Endpoints\Web\Honamic.Framework.Endpoints.Web.csproj", "{E6B1BA0C-2C80-449D-A96F-EBCD590B10A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Application", "src\Core\Application\Honamic.Framework.Application.csproj", "{3AD0A08A-212D-447B-963C-DBDCA2889D80}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Utilities", "src\Utilities\Default\Honamic.Framework.Utilities.csproj", "{C54DF392-BB7D-4A99-A753-1AA3719ED137}"
 EndProject
@@ -51,7 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Tools.IdG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honamic.Framework.Utilities.Razor", "src\Utilities\Razor\Honamic.Framework.Utilities.Razor.csproj", "{91F6CBC0-C422-43C5-AF19-DE6D3B5B7806}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honamic.Framework.Applications.Abstractions", "src\Core\Applications.Abstractions\Honamic.Framework.Applications.Abstractions.csproj", "{29C37841-0CA2-9A52-9A08-90CA63C5E63A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honamic.Framework.Application.Abstractions", "src\Core\Application.Abstractions\Honamic.Framework.Application.Abstractions.csproj", "{29C37841-0CA2-9A52-9A08-90CA63C5E63A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honamic.Framework.Endpoints.Web", "src\Endpoints\Web\Honamic.Framework.Endpoints.Web.csproj", "{E1A7BC6D-5EE2-D0FD-8862-DD7EED0F5169}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,10 +93,6 @@ Global
 		{3AD0A08A-212D-447B-963C-DBDCA2889D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AD0A08A-212D-447B-963C-DBDCA2889D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AD0A08A-212D-447B-963C-DBDCA2889D80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6B1BA0C-2C80-449D-A96F-EBCD590B10A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6B1BA0C-2C80-449D-A96F-EBCD590B10A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6B1BA0C-2C80-449D-A96F-EBCD590B10A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6B1BA0C-2C80-449D-A96F-EBCD590B10A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C54DF392-BB7D-4A99-A753-1AA3719ED137}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C54DF392-BB7D-4A99-A753-1AA3719ED137}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C54DF392-BB7D-4A99-A753-1AA3719ED137}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -131,6 +125,10 @@ Global
 		{29C37841-0CA2-9A52-9A08-90CA63C5E63A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29C37841-0CA2-9A52-9A08-90CA63C5E63A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29C37841-0CA2-9A52-9A08-90CA63C5E63A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1A7BC6D-5EE2-D0FD-8862-DD7EED0F5169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1A7BC6D-5EE2-D0FD-8862-DD7EED0F5169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1A7BC6D-5EE2-D0FD-8862-DD7EED0F5169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1A7BC6D-5EE2-D0FD-8862-DD7EED0F5169}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,8 +146,6 @@ Global
 		{A394F075-C5F6-484E-9521-FCD5A44CDF09} = {BC728FCA-02C3-4522-A7EB-7403B8674BBA}
 		{22EE24F2-4418-404A-B207-6F5D6A13E095} = {BC728FCA-02C3-4522-A7EB-7403B8674BBA}
 		{3AD0A08A-212D-447B-963C-DBDCA2889D80} = {BC728FCA-02C3-4522-A7EB-7403B8674BBA}
-		{3323AFC2-828A-4978-968F-D3FF6E95F6B7} = {F3646FB9-05E5-4DC5-B390-46B0035F7BC1}
-		{E6B1BA0C-2C80-449D-A96F-EBCD590B10A4} = {3323AFC2-828A-4978-968F-D3FF6E95F6B7}
 		{C54DF392-BB7D-4A99-A753-1AA3719ED137} = {D9480F6F-6660-49F5-9D79-2538E8041D65}
 		{371C12BC-1120-46D7-84E9-D5A85652B248} = {D9480F6F-6660-49F5-9D79-2538E8041D65}
 		{DFA327E3-7DC5-4DD2-92BD-68313D99D1BD} = {E9FC6BF1-7A52-43AD-90F3-E8A20BE3FE99}
@@ -160,6 +156,7 @@ Global
 		{462B177A-3E97-4F60-A141-7A01F8B437B5} = {196209A4-3BCC-442B-9686-CF311ADEBF6D}
 		{91F6CBC0-C422-43C5-AF19-DE6D3B5B7806} = {D9480F6F-6660-49F5-9D79-2538E8041D65}
 		{29C37841-0CA2-9A52-9A08-90CA63C5E63A} = {BC728FCA-02C3-4522-A7EB-7403B8674BBA}
+		{E1A7BC6D-5EE2-D0FD-8862-DD7EED0F5169} = {F3646FB9-05E5-4DC5-B390-46B0035F7BC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E15D83FC-8F5C-4D9C-9DCD-D114F5609922}

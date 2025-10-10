@@ -1,4 +1,4 @@
-﻿using Honamic.Framework.Applications.Results;
+﻿using Honamic.Framework.Application.Results;
 using Microsoft.AspNetCore.Http;
 
 namespace Honamic.Framework.Endpoints.Web.Results;

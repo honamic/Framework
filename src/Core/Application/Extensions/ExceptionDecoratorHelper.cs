@@ -1,8 +1,7 @@
-﻿using Honamic.Framework.Applications.Exceptions;
-using Honamic.Framework.Applications.Results;
+﻿using Honamic.Framework.Application.Results;
 using Honamic.Framework.Domain;
 
-namespace Honamic.Framework.Applications.Extensions;
+namespace Honamic.Framework.Application.Extensions;
 
 internal static class ExceptionDecoratorHelper
 {

@@ -1,5 +1,4 @@
-﻿
-namespace Honamic.Framework.Applications.Results;
+﻿namespace Honamic.Framework.Application.Results;
 public static class ResultChainingExtensionsGeneric
 {
     public static Result<T> WithErrorMessage<T>(this Result<T> result, string message, string? field = null, string? code = null)

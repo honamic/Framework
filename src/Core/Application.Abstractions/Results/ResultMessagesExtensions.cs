@@ -1,4 +1,4 @@
-﻿namespace Honamic.Framework.Applications.Results;
+﻿namespace Honamic.Framework.Application.Results;
 
 public static class ResultMessagesExtensions
 {

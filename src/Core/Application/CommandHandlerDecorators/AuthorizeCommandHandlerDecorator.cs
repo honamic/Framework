@@ -1,8 +1,8 @@
-﻿using Honamic.Framework.Applications.Extensions;
+﻿using Honamic.Framework.Application.Extensions;
 using Honamic.Framework.Commands;
 using Honamic.Framework.Domain;
 
-namespace Honamic.Framework.Applications.CommandHandlerDecorators;
+namespace Honamic.Framework.Application.CommandHandlerDecorators;
 
 public class AuthorizeCommandHandlerDecorator<TCommand> : ICommandHandler<TCommand>
     where TCommand : ICommand

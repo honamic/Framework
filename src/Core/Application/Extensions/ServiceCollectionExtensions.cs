@@ -1,5 +1,5 @@
-﻿using Honamic.Framework.Applications.CommandHandlerDecorators;
-using Honamic.Framework.Applications.QueryHandlerDecorators;
+﻿using Honamic.Framework.Application.CommandHandlerDecorators;
+using Honamic.Framework.Application.QueryHandlerDecorators;
 using Honamic.Framework.Commands;
 using Honamic.Framework.Commands.Extensions;
 using Honamic.Framework.Domain.Extensions;
@@ -9,7 +9,7 @@ using Honamic.Framework.Queries;
 using Honamic.Framework.Queries.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Honamic.Framework.Applications.Extensions;
+namespace Honamic.Framework.Application.Extensions;
 
 public static class ServiceCollectionExtensions
 {

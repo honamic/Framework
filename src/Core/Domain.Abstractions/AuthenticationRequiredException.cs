@@ -1,4 +1,4 @@
-﻿namespace Honamic.Framework.Applications.Exceptions;
+﻿namespace Honamic.Framework.Domain;
 
 public class AuthenticationRequiredException : Exception
 {

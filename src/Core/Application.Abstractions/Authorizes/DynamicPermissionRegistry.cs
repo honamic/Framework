@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Honamic.Framework.Applications.Authorizes;
+namespace Honamic.Framework.Application.Authorizes;
 public static class DynamicPermissionRegistry
 {
     private static readonly List<Assembly> _assemblies = new();

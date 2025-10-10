@@ -1,5 +1,4 @@
-﻿using Honamic.Framework.Applications.Exceptions;
-using Honamic.Framework.Applications.Results;
+﻿using Honamic.Framework.Application.Results;
 using Honamic.Framework.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;

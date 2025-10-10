@@ -1,4 +1,4 @@
-﻿namespace Honamic.Framework.Applications.Authorizes;
+﻿namespace Honamic.Framework.Application.Authorizes;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
 public class AllowAnonymousAttribute : Attribute
