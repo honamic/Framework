@@ -1,0 +1,10 @@
+<Project>
+	<PropertyGroup>
+		<Version>1.0.14</Version>
+		<PackageProjectUrl>https://github.com/honamic/Framework</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/honamic/Framework</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Company>Honamic</Company>
+		<Authors>Honamic</Authors> 
+	</PropertyGroup>
+</Project>

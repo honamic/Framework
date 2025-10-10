@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Abstractions", ""))</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Scrutor" Version="6.1.0" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\Application.Abstractions\Honamic.Framework.Application.Abstractions.csproj" />
+	  <ProjectReference Include="..\Commands\Honamic.Framework.Commands.csproj" />
+	  <ProjectReference Include="..\Domain\Honamic.Framework.Domain.csproj" />
+	  <ProjectReference Include="..\Events\Honamic.Framework.Events.csproj" />
+	  <ProjectReference Include="..\Queries\Honamic.Framework.Queries.csproj" />
+	</ItemGroup>
+
+</Project>
