@@ -1,4 +1,5 @@
-﻿using Honamic.Framework.Queries;
+﻿using Gridify;
+using Honamic.Framework.Queries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +10,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddDefaultQueryModelDbContext<TDbContext>(this IServiceCollection serviceCollection)
         where TDbContext : QueryDbContext‌Base
     {
+        GridifyGlobalConfiguration.EnableEntityFrameworkCompatibilityLayer();
 
         serviceCollection.AddKeyedScoped<DbContext>(QueryConstants.QueryDbContextKey, (sp, key) => sp.GetRequiredService<TDbContext>());
 
