@@ -12,10 +12,7 @@ namespace TodoSample.Application.Contracts.Todos.Queries;
     Description = "")]
 public class GetAllTodosQuery : PagedQueryFilter, IQuery<Result<PagedQueryResult<GetAllTodosQueryResult>>>
 {
-    public GetAllTodosQuery()
-    {
-        OrderBy = "Id desc";
-    }
+    protected override string DefaultOrderBy => OrderByDesc("Id");
 }
 
 

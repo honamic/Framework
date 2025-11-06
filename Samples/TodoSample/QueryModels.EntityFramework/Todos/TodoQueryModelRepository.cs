@@ -1,4 +1,4 @@
-using Honamic.Framework.Application.Results;
+using Honamic.Framework.EntityFramework.Extensions;
 using Honamic.Framework.EntityFramework.QueryModels;
 using Honamic.Framework.Queries;
 using Microsoft.EntityFrameworkCore;
@@ -26,12 +26,15 @@ public class TodoQueryModelRepository : ITodoQueryModelRepository
                         Title = c.Title,
                         Description = c.Description,
                     })
-                    .FirstOrDefaultAsync(c=>c.Id== query.Id, cancellationToken);
+                    .FirstOrDefaultAsync(c => c.Id == query.Id, cancellationToken);
     }
 
     public Task<PagedQueryResult<GetAllTodosQueryResult>> GetAll(GetAllTodosQuery query, CancellationToken cancellationToken)
     {
         return _context.Set<TodoQueryModel>()
+             .WhereIf(!string.IsNullOrWhiteSpace(query.Keyword),
+                c => c.Title.Contains(query.Keyword!)
+                     || c.Description!.Contains(query.Keyword!))
              .Select(c => new GetAllTodosQueryResult
              {
                  Id = c.Id,

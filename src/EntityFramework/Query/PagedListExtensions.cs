@@ -12,7 +12,7 @@ public static class PagedListExtensions
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (queryFilter.OrderBy is null)
+        if (string.IsNullOrWhiteSpace(queryFilter.GetOrderBy()))
         {
             throw new ArgumentNullException(nameof(queryFilter.OrderBy), "OderyBy is not specified to convert to a paged list.");
         }
@@ -22,7 +22,7 @@ public static class PagedListExtensions
         var result = new PagedQueryResult<TSource>(totalItems, queryFilter.Page, queryFilter.PageSize);
 
         result.Items = await source
-            .OrderBy(queryFilter.OrderBy)
+            .OrderBy(queryFilter.GetOrderBy())
             .Skip(queryFilter.SkipCount())
             .Take(queryFilter.PageSize)
             .ToListAsync(cancellationToken);
@@ -35,5 +35,5 @@ public static class PagedListExtensions
         CancellationToken cancellationToken = default)
     {
         return source.ApplyFilter(queryFilter).ToPagedListAsync(queryFilter, cancellationToken);
-    } 
+    }
 }
