@@ -27,44 +27,109 @@ public static class HandlerRegistrationExtensions
             assemblies = new[] { Assembly.GetCallingAssembly() };
         }
 
-        RegisterCommandHandlersWithoutResponse(services, assemblies);
-        RegisterCommandHandlersWithResponse(services, assemblies);
+        RegisterCommandHandlers(services, assemblies);
         RegisterQueryHandlers(services, assemblies);
         RegisterEventHandlers(services, assemblies);
 
         return services;
     }
 
-    private static void RegisterCommandHandlersWithoutResponse(IServiceCollection services, Assembly[] assemblies)
-    {
-        var commandHandlerTypes = assemblies.SelectMany(a => a.GetTypes())
-            .Where(t => t.IsClass && !t.IsAbstract && t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<>)));
 
-        foreach (var handlerType in commandHandlerTypes)
+    public static void AddCommandHandler<TCommandHandler>(this IServiceCollection services)
+        where TCommandHandler : class
+    {
+        RegisterCommandHandler(services, typeof(TCommandHandler));
+    }
+
+    public static void AddEventHandler<TEventHandler>(this IServiceCollection services)
+        where TEventHandler : class
+    {
+        RegisterEventHandler(services, typeof(TEventHandler));
+    }
+
+    public static void AddQueryHandler<TQueryHandler>(this IServiceCollection services)
+        where TQueryHandler : class
+    {
+        RegisterQueryHandler(services, typeof(TQueryHandler));
+    }
+
+
+    private static void RegisterCommandHandler(IServiceCollection services, Type handlerType)
+    {
+        var interfaces = handlerType.GetInterfaces();
+
+        var commandInterface = interfaces.FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<>));
+        if (commandInterface != null)
         {
-            var interfaceType = handlerType.GetInterfaces().First(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<>));
-            var commandType = interfaceType.GetGenericArguments()[0];
+            var commandType = commandInterface.GetGenericArguments()[0];
+            var interfaceType = typeof(ICommandHandler<>).MakeGenericType(commandType);
             services.AddTransient(interfaceType, handlerType);
             services.Decorate(interfaceType, typeof(AuthorizeCommandHandlerDecorator<>).MakeGenericType(commandType));
             services.Decorate(interfaceType, typeof(TransactionalCommandHandlerDecorator<>).MakeGenericType(commandType));
+            return;
         }
-    }
 
-    private static void RegisterCommandHandlersWithResponse(IServiceCollection services, Assembly[] assemblies)
-    {
-        var commandHandlerWithResponseTypes = assemblies.SelectMany(a => a.GetTypes())
-            .Where(t => t.IsClass && !t.IsAbstract && t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<,>)));
-
-        foreach (var handlerType in commandHandlerWithResponseTypes)
+        var commandWithResponseInterface = interfaces.FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<,>));
+        if (commandWithResponseInterface != null)
         {
-            var interfaceType = handlerType.GetInterfaces().First(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<,>));
-            var genericArgs = interfaceType.GetGenericArguments();
+            var genericArgs = commandWithResponseInterface.GetGenericArguments();
             var commandType = genericArgs[0];
             var responseType = genericArgs[1];
+            var interfaceType = typeof(ICommandHandler<,>).MakeGenericType(commandType, responseType);
             services.AddTransient(interfaceType, handlerType);
             services.Decorate(interfaceType, typeof(AuthorizeCommandHandlerDecorator<,>).MakeGenericType(commandType, responseType));
             services.Decorate(interfaceType, typeof(TransactionalCommandHandlerDecorator<,>).MakeGenericType(commandType, responseType));
             services.Decorate(interfaceType, typeof(ExceptionCommandHandlerDecorator<,>).MakeGenericType(commandType, responseType));
+            return;
+        }
+
+        throw new InvalidOperationException($"The handler {handlerType.Name} does not implement ICommandHandler<T> or ICommandHandler<T, TResponse>.");
+    }
+
+    private static void RegisterEventHandler(IServiceCollection services, Type handlerType)
+    {
+        var interfaces = handlerType.GetInterfaces();
+
+        var eventInterface = interfaces.FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEventHandler<>));
+        if (eventInterface == null)
+        {
+            throw new InvalidOperationException($"The handler {handlerType.Name} does not implement IEventHandler<T>.");
+        }
+
+        var eventType = eventInterface.GetGenericArguments()[0];
+        var interfaceType = typeof(IEventHandler<>).MakeGenericType(eventType);
+        services.AddTransient(interfaceType, handlerType);
+    }
+
+    private static void RegisterQueryHandler(IServiceCollection services, Type handlerType)
+    {
+        var interfaces = handlerType.GetInterfaces();
+
+        var queryInterface = interfaces.FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IQueryHandler<,>));
+        if (queryInterface == null)
+        {
+            throw new InvalidOperationException($"The handler {handlerType.Name} does not implement IQueryHandler<T, TResponse>.");
+        }
+
+        var genericArgs = queryInterface.GetGenericArguments();
+        var queryType = genericArgs[0];
+        var responseType = genericArgs[1];
+        var interfaceType = typeof(IQueryHandler<,>).MakeGenericType(queryType, responseType);
+        services.AddTransient(interfaceType, handlerType);
+        services.Decorate(interfaceType, typeof(AuthorizeQueryHandlerDecorator<,>).MakeGenericType(queryType, responseType));
+        services.Decorate(interfaceType, typeof(ExceptionQueryHandlerDecorator<,>).MakeGenericType(queryType, responseType));
+    }
+
+    private static void RegisterCommandHandlers(IServiceCollection services, Assembly[] assemblies)
+    {
+        var commandHandlerTypes = assemblies.SelectMany(a => a.GetTypes())
+            .Where(t => t.IsClass && !t.IsAbstract && 
+                (t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<>)) ||
+                 t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<,>))));
+
+        foreach (var handlerType in commandHandlerTypes)
+        {
+            RegisterCommandHandler(services, handlerType);
         }
     }
 
@@ -75,13 +140,7 @@ public static class HandlerRegistrationExtensions
 
         foreach (var handlerType in queryHandlerTypes)
         {
-            var interfaceType = handlerType.GetInterfaces().First(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IQueryHandler<,>));
-            var genericArgs = interfaceType.GetGenericArguments();
-            var queryType = genericArgs[0];
-            var responseType = genericArgs[1];
-            services.AddTransient(interfaceType, handlerType);
-            services.Decorate(interfaceType, typeof(AuthorizeQueryHandlerDecorator<,>).MakeGenericType(queryType, responseType));
-            services.Decorate(interfaceType, typeof(ExceptionQueryHandlerDecorator<,>).MakeGenericType(queryType, responseType));
+            RegisterQueryHandler(services, handlerType);
         }
     }
 
@@ -92,8 +151,7 @@ public static class HandlerRegistrationExtensions
 
         foreach (var handlerType in eventHandlerTypes)
         {
-            var interfaceType = handlerType.GetInterfaces().First(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEventHandler<>));
-            services.AddTransient(interfaceType, handlerType);
+            RegisterEventHandler(services, handlerType);
         }
     }
 }

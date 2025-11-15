@@ -1,10 +1,6 @@
 ﻿using Honamic.Framework.Application.Authorizes;
 using Honamic.Framework.Application.Extensions;
-using Honamic.Framework.Application.Results;
-using Honamic.Framework.Queries;
 using Microsoft.Extensions.DependencyInjection;
-using TodoSample.Application.Contracts.Todos.Commands;
-using TodoSample.Application.Contracts.Todos.Queries;
 using TodoSample.Application.Todos.CommandHandlers;
 using TodoSample.Application.Todos.QueryHandlers;
 using TodoSample.Domain.Extensions;
@@ -17,32 +13,39 @@ public static class TodoApplicationServiceCollection
     {
         ArgumentNullException.ThrowIfNull(services);
 
-        DynamicPermissionRegistry.RegisterAssemblies(typeof(TodoApplicationServiceCollection).Assembly);
-        DynamicPermissionRegistry.RegisterAssemblies(typeof(TodoConstants).Assembly);
+        DynamicPermissionRegistry.RegisterAssemblies(typeof(TodoConstants).Assembly, typeof(TodoApplicationServiceCollection).Assembly);
 
         services.AddTodoDomainServices();
-        services.AddHandlersFromAssemblies();
 
-        //services.AddCommandHandlers();
-        //services.AddQueryHandlers();
-        //services.AddEventHandlers();
+        var AutoScanAndRegisterHandlers = true;
+
+        if (AutoScanAndRegisterHandlers)
+        {
+            services.AddHandlersFromAssemblies();
+        }
+        else
+        {
+            services.AddCommandHandlers();
+            services.AddQueryHandlers();
+            services.AddEventHandlers();
+        }
 
         return services;
     }
 
     private static void AddCommandHandlers(this IServiceCollection services)
     {
-        services.AddCommandHandler<CreateTodoCommand, CreateTodoCommandHandler, Result<CreateTodoCommandResult>>();
+        services.AddCommandHandler<CreateTodoCommandHandler>();
     }
 
     private static void AddQueryHandlers(this IServiceCollection services)
     {
-        services.AddQueryHandler<GetTodoQuery, Result<GetTodoQueryResult?>, GetTodoQueryHandler>();
-        services.AddQueryHandler<GetAllTodosQuery, Result<PagedQueryResult<GetAllTodosQueryResult>>, GetAllTodosQueryHandler>();
+        services.AddQueryHandler<GetTodoQueryHandler>();
+        services.AddQueryHandler<GetAllTodosQueryHandler>();
     }
 
     private static void AddEventHandlers(this IServiceCollection services)
     {
-        //services.AddEventHandler<UserCreatedEvent, UserCreatedEventHandler>();
+        //services.AddEventHandler<UserCreatedEventHandler>();
     }
 }
