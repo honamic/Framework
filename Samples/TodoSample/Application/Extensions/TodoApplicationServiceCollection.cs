@@ -21,10 +21,11 @@ public static class TodoApplicationServiceCollection
         DynamicPermissionRegistry.Register(typeof(TodoConstants).Assembly);
 
         services.AddTodoDomainServices();
+        services.AddHandlersFromAssemblies();
 
-        services.AddCommandHandlers();
-        services.AddQueryHandlers();
-        services.AddEventHandlers();
+        //services.AddCommandHandlers();
+        //services.AddQueryHandlers();
+        //services.AddEventHandlers();
 
         return services;
     }
