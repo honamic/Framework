@@ -17,8 +17,8 @@ public static class TodoApplicationServiceCollection
     {
         ArgumentNullException.ThrowIfNull(services);
 
-        DynamicPermissionRegistry.Register(typeof(TodoApplicationServiceCollection).Assembly);
-        DynamicPermissionRegistry.Register(typeof(TodoConstants).Assembly);
+        DynamicPermissionRegistry.RegisterAssemblies(typeof(TodoApplicationServiceCollection).Assembly);
+        DynamicPermissionRegistry.RegisterAssemblies(typeof(TodoConstants).Assembly);
 
         services.AddTodoDomainServices();
         services.AddHandlersFromAssemblies();
