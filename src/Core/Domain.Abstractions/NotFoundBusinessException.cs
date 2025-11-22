@@ -2,8 +2,8 @@
 
 public class NotFoundBusinessException : BusinessException
 {
-    public NotFoundBusinessException(string? message = null, string? code = null)
-        : base(message ?? "Item not found.", code)
+    public NotFoundBusinessException(string? message = null, string code = "404", Exception? innerException = null)
+        : base(message ?? "Item not found.", code, innerException)
     {
     }
 }

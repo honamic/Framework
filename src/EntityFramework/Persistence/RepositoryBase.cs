@@ -33,9 +33,21 @@ public abstract class RepositoryBase<TEntity, TKey>
         return DbSet.CountAsync(predicate, cancellationToken);
     }
 
-    public virtual Task<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default)
+    public virtual async Task<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default)
     {
-        return GetQuery().SingleAsync(RepositoryBase<TEntity, TKey>.CreateEqualityExpressionForId<TEntity, TKey>(id), cancellationToken);
+        var entity = await GetQuery().SingleOrDefaultAsync(CreateEqualityExpressionForId<TEntity, TKey>(id), cancellationToken);
+        
+        if (entity is null)
+        {
+            throw new NotFoundBusinessException($"Entity of type {typeof(TEntity).Name} with id {id} was not found.");
+        }
+        
+        return entity;
+    }
+
+    public virtual Task<TEntity?> GetByIdAsync(TKey id, CancellationToken cancellationToken = default)
+    {
+        return GetQuery().FirstOrDefaultAsync(CreateEqualityExpressionForId<TEntity, TKey>(id), cancellationToken);
     }
 
     public virtual Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
@@ -53,7 +65,7 @@ public abstract class RepositoryBase<TEntity, TKey>
         return await GetQuery().ToListAsync(cancellationToken).ConfigureAwait(false);
     }
 
-    public virtual void  Update(TEntity entity)
+    public virtual void Update(TEntity entity)
     {
         DbSet.Update(entity);
     }

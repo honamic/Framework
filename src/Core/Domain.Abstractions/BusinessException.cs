@@ -14,11 +14,11 @@ public class BusinessException : Exception, IBusinessException
         Code = code;
     }
 
-    public BusinessException(string message, Exception innerException)
+    public BusinessException(string message, Exception? innerException)
         : base(message, innerException)
     { }
 
-    public BusinessException(string message, string code, Exception innerException)
+    public BusinessException(string message, string code, Exception? innerException)
     : base(message, innerException)
     {
         Code = code;

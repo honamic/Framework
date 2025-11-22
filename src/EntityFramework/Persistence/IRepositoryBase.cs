@@ -15,6 +15,8 @@ public interface IRepositoryBase<TEntity, TKey>
 
     Task<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default);
 
+    Task<TEntity?> GetByIdAsync(TKey id, CancellationToken cancellationToken = default);
+
     Task<IList<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
     Task InsertAsync(TEntity entity, CancellationToken cancellationToken = default);
