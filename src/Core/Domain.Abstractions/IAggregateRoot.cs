@@ -6,7 +6,5 @@ public interface IAggregateRoot
 
     void ClearEvents();
 
-    void MarkAsDelete();
-
     bool IsMarkAsDeleted();
 }

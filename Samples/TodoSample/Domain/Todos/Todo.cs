@@ -31,4 +31,10 @@ public class Todo : AggregateRoot<long>
         Status = TodoStatus.Completed;
         DoneAt = DateTime.UtcNow;
     }
+
+    public override void Delete()
+    {
+        // todo delete event 
+        base.Delete();
+    }
 }

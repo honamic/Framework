@@ -1,9 +1,8 @@
-﻿using Honamic.Framework.Domain.Audits;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Honamic.Framework.Domain;
 
-public abstract class AggregateRoot<TKey> : Entity<TKey>, IAuditCreateSources, IAuditUpdateSources, IAggregateRoot
+public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot
 {
     private List<DomainEvent> _events = new List<DomainEvent>();
     private bool _markAsDeleted;
@@ -17,10 +16,6 @@ public abstract class AggregateRoot<TKey> : Entity<TKey>, IAuditCreateSources, I
 
     [NotMapped]
     public IList<DomainEvent> Events => _events;
-
-    public string? CreatedSources { get; set; }
-
-    public string? ModifiedSources { get; set; }
 
     public void RaiseEvent(DomainEvent @event)
     {
@@ -36,14 +31,19 @@ public abstract class AggregateRoot<TKey> : Entity<TKey>, IAuditCreateSources, I
         _events?.Clear();
     }
 
-    public void MarkAsDelete()
+    public bool IsMarkAsDeleted()
+    {
+        return _markAsDeleted;
+    }
+
+    internal void MarkAsDelete()
     {
         _markAsDeleted = true;
     }
 
-    public bool IsMarkAsDeleted()
+    public virtual void Delete()
     {
-        return _markAsDeleted;
+        MarkAsDelete();
     }
 
     #region privates methods
