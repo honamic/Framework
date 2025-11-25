@@ -44,4 +44,10 @@ public abstract class EntityQueryResult<TKey>
     public static TimeSpan? TimeZoneOffset { get; set; }
 
     public TimeSpan EffectiveOffset() => TimeZoneOffset ?? TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
+
+
+    public override string ToString()
+    {
+        return $"{Id}";
+    }
 }

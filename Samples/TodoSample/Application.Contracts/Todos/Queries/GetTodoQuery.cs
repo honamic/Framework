@@ -18,7 +18,7 @@ public class GetTodoQuery : IQuery<Result<GetTodoQueryResult?>>
 }
 
 
-public class GetTodoQueryResult : AggregateQueryResult<long>
+public class GetTodoQueryResult : AggregateRootQueryResult<long>
 {
     [GridColumn(Order = 0, Visible = true)]
     public override long Id { get => base.Id; set => base.Id = value; }
