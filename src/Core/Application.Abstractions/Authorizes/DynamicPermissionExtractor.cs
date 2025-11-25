@@ -27,7 +27,7 @@ public static class DynamicPermissionExtractor
                 {
                     Name = dynamicAttr.Name ?? type.FullName!,
                     DisplayName = dynamicAttr.DisplayName ?? dynamicAttr.Name ?? type.Name,
-                    Group = dynamicAttr.Group,
+                    Feature = dynamicAttr.Feature,
                     Module = dynamicAttr.Module ?? assembly.GetName().Name,
                     Description = dynamicAttr.Description,
                     GeneratedFromTypeName = type.Assembly.FullName,

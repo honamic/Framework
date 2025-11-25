@@ -4,7 +4,7 @@ public class DynamicPermissionModel
 {
     public string Name { get; set; } = default!;
     public string DisplayName { get; set; } = default!;
-    public string? Group { get; set; }
+    public string? Feature { get; set; }
     public string? Module { get; set; }
     public string? Description { get; set; }
     public string? GeneratedFromTypeName { get; set; }

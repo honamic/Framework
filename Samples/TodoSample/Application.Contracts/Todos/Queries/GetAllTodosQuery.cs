@@ -6,7 +6,7 @@ namespace TodoSample.Application.Contracts.Todos.Queries;
 
 [DynamicPermission(
     DisplayName = "لیست تسک ها",
-    Group = "Todos",
+    Feature = "Todos",
     Module = null,
     Name = null,
     Description = "")]

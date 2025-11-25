@@ -8,7 +8,7 @@ namespace TodoSample.Application.Contracts.Todos.Queries;
 
 [DynamicPermission(
     DisplayName = "نمایش تسک جدید",
-    Group = "Todos",
+    Feature = "Todos",
     Module = null,
     Name = null,
     Description = "")]

@@ -5,7 +5,7 @@ public sealed class DynamicPermissionAttribute : Attribute
 {
     public string? Name { get; set; }
     public string? DisplayName { get; set; }
-    public string? Group { get; set; }
+    public string? Feature { get; set; }
     public string? Module { get; set; }
     public string? Description { get; set; }
 }

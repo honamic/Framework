@@ -6,7 +6,7 @@ namespace TodoSample.Application.Contracts.Todos.Commands;
 
 [DynamicPermission(
     DisplayName = "ایجاد تسک جدید",
-    Group = "Todos",
+    Feature = "Todos",
     Module = null,
     Name = null,
     Description = "")]
