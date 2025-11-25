@@ -1,6 +1,7 @@
 ﻿using Honamic.Framework.Application.Authorizes;
 using Honamic.Framework.Application.Results;
 using Honamic.Framework.Queries;
+using Honamic.Framework.Queries.GridColumns;
 
 namespace TodoSample.Application.Contracts.Todos.Queries;
 
@@ -17,9 +18,11 @@ public class GetTodoQuery : IQuery<Result<GetTodoQueryResult?>>
 }
 
 
-public class GetTodoQueryResult
+public class GetTodoQueryResult : AggregateQueryResult<long>
 {
-    public long Id { get; set; }
+    [GridColumn(Order = 0, Visible = true)]
+    public override long Id { get => base.Id; set => base.Id = value; }
+
     public string Title { get; set; } = default!;
     public string? Description { get; set; }
     public bool IsCompleted { get; set; }

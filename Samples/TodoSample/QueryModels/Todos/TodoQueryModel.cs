@@ -3,7 +3,7 @@ using TodoSample.Todos;
 
 namespace TodoSample.QueryModels.Todos;
 
-public class TodoQueryModel : AggregateQueryBase<long>
+public class TodoQueryModel : AggregateRootQueryBase<long>
 {
     public string Title { get; set; } = default!;
     public string? Description { get; set; }
