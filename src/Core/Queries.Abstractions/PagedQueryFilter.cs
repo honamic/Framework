@@ -7,6 +7,9 @@ public abstract class PagedQueryFilter : QueryFilter
 {
     protected override abstract string DefaultOrderBy { get; }
 
+    [DefaultValue(false)]
+    public bool? DisablePaging { get; set; } = false;
+
     public PagedQueryFilter()
     {
         Page = 1;

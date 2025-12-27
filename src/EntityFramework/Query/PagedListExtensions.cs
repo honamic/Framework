@@ -12,22 +12,30 @@ public static class PagedListExtensions
     {
         cancellationToken.ThrowIfCancellationRequested();
 
+        if (queryFilter.DisablePaging == true)
+        {
+            var items = await source.ToListAsync(cancellationToken);
+            return new PagedQueryResult<TSource>(items.Count, 1, items.Count)
+            {
+                Items = items
+            };
+        }
+
         if (string.IsNullOrWhiteSpace(queryFilter.GetOrderBy()))
         {
             throw new ArgumentNullException(nameof(queryFilter.OrderBy), "OderyBy is not specified to convert to a paged list.");
         }
 
-        var totalItems = await source.CountAsync();
-
+        var orderedQuery = source.OrderBy(queryFilter.GetOrderBy());
+        var totalItems = await source.CountAsync(cancellationToken);
         var result = new PagedQueryResult<TSource>(totalItems, queryFilter.Page, queryFilter.PageSize);
 
-        result.Items = await source
-            .OrderBy(queryFilter.GetOrderBy())
+        result.Items = await orderedQuery
             .Skip(queryFilter.SkipCount())
             .Take(queryFilter.PageSize)
             .ToListAsync(cancellationToken);
-
         return result;
+
     }
 
     public static Task<PagedQueryResult<TSource>> ToFilteredPagedListAsync<TSource>(this IQueryable<TSource> source,
