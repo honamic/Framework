@@ -85,22 +85,14 @@ public abstract class RepositoryBase<TEntity, TKey>
         {
             foreach (var include in includes)
             {
-                if (include.Body.NodeType == ExpressionType.Constant)
-                {
-                    var memberExpression = include.Body as ConstantExpression;
-                    query = query.Include(memberExpression.Value.ToString());
-                }
-                else
-                {
-                    query = query.Include(include);
-                }
+                query = include(query);
             }
         }
 
         return query;
     }
 
-    protected abstract IList<Expression<Func<TEntity, object?>>> GetIncludes();
+    protected abstract IList<Func<IQueryable<TEntity>, IQueryable<TEntity>>> GetIncludes();
 
 
     private static Expression<Func<TEntity, bool>> CreateEqualityExpressionForId<TEntity, TKey>(TKey id)

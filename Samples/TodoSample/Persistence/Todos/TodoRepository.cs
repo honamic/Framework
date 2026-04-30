@@ -2,7 +2,6 @@
 using Honamic.Framework.Persistence.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq.Expressions;
 using TodoSample.Domain.Todos;
 
 namespace TodoSample.Persistence.Todos;
@@ -22,11 +21,11 @@ internal class TodoRepository : RepositoryBase<Todo, long>, ITodoRepository
             return IsExistsAsync(c => c.Title == title);
     }
 
-    protected override IList<Expression<Func<Todo, object?>>> GetIncludes()
+    protected override IList<Func<IQueryable<Todo>, IQueryable<Todo>>> GetIncludes()
     {
-        return new List<Expression<Func<Todo, object?>>>
+        return new List<Func<IQueryable<Todo>, IQueryable<Todo>>>
         {
-             //c=>c.
+            // example: q => q.Include(c => c.Items).ThenInclude(i => i.SubItems)
         };
     }
 }
