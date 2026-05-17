@@ -41,6 +41,12 @@ public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot
         _markAsDeleted = true;
     }
 
+    public void EnsureLatestVersion(long clientVersion)
+    {
+        if (clientVersion != Version)
+            throw new ConcurrencyException(Version, clientVersion);
+    }
+
     public virtual void Delete()
     {
         MarkAsDelete();
