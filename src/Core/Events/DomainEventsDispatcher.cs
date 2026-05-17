@@ -15,8 +15,9 @@ public class DomainEventsDispatcher : IDomainEventsDispatcher
     {
         var domainEvents = _domainEventDetector.GetAndClearDomainEvents();
 
-        var tasks = domainEvents.Select(domainEvent => _eventBus.PublishAsync(domainEvent));
-
-        await Task.WhenAll(tasks);
+        foreach (var domainEvent in domainEvents)
+        {
+            await _eventBus.PublishAsync(domainEvent);
+        }
     }
 }
