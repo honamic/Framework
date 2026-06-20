@@ -4,7 +4,7 @@
 public class GridColumnAttribute : Attribute
 {
     public string? Title { get; set; }
-    public int Order { get; set; } = 0;
+    public int Order { get; set; } = 999;
     public bool Visible { get; set; } = true;
     public bool Sortable { get; set; } = true;
     public bool Filterable { get; set; } = true;
