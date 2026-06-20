@@ -6,12 +6,18 @@ public abstract class Entity<TKey> : IAuditCreate, IAuditUpdate
 {
     public virtual TKey Id { get; protected set; } = default!;
 
+    [AuditIgnore]
     [StringLength(100)]
     public string? CreatedBy { get; protected set; }
+
+    [AuditIgnore]
     public DateTimeOffset? CreatedOn { get; protected set; }
 
+    [AuditIgnore]
     [StringLength(100)]
     public string? ModifiedBy { get; protected set; }
+
+    [AuditIgnore]
     public DateTimeOffset? ModifiedOn { get; protected set; }
 
     public override bool Equals(object obj)

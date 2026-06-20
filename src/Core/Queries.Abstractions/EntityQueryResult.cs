@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Honamic.Framework.Queries;
 
-public abstract class EntityQueryResult<TKey>
+public abstract class EntityQueryResult<TKey>: QueryResultBase
 {
     [GridColumn(Order = 0, Visible = false, GenerateField = true)]
     public virtual TKey Id { get; set; } = default!;
@@ -25,7 +25,6 @@ public abstract class EntityQueryResult<TKey>
     public virtual DateTime? CreatedOnLocal => CreatedOn?.ToOffset(EffectiveOffset()).DateTime;
 
 
-
     [GridColumn(GenerateField = false)]
     public virtual DateTimeOffset? ModifiedOn { get; set; }
 
@@ -33,18 +32,6 @@ public abstract class EntityQueryResult<TKey>
     [GridColumn(Title = nameof(ModifiedOn), Order = 1000, Visible = false)]
     [JsonIgnore]
     public virtual DateTime? ModifiedOnLocal => ModifiedOn?.ToOffset(EffectiveOffset()).DateTime;
-
-
-
-
-
-
-    [GridColumn(GenerateField = false)]
-    [JsonIgnore]
-    public static TimeSpan? TimeZoneOffset { get; set; }
-
-    public TimeSpan EffectiveOffset() => TimeZoneOffset ?? TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
-
 
     public override string ToString()
     {
