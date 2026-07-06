@@ -1,4 +1,6 @@
-﻿using Honamic.Framework.Commands;
+﻿using Honamic.Framework.Application.Authorizes;
+using Honamic.Framework.Application.Results;
+using Honamic.Framework.Commands;
 using Honamic.Framework.Endpoints.Web.Results;
 using Honamic.Framework.Queries;
 using Microsoft.AspNetCore.Mvc;
@@ -61,6 +63,29 @@ public static class TodoEndpoints
                   return result.ToMinimalApiResult();
               })
               .WithName(nameof(CreateTodoCommand))
+              .WithOpenApi();
+        
+        routeGroup.MapGet("/ValueScopeTest",
+              async Task<Result<ScopeValuePage>> (IScopeValueProviderRegistry registry,
+                  CancellationToken cancellationToken) =>
+              {
+                  var provider = registry.Find("Todo");
+
+                  if (provider is null)
+                  {
+                      return Result<ScopeValuePage>.Success(new ScopeValuePage  ());
+                  }
+
+                  var items = await provider.SearchAsync(new ScopeValueQuery 
+                  {
+                      Page = 1,
+                      PageSize = 10,
+                      Search= "search"
+
+                  }, cancellationToken);
+
+                  return Result<ScopeValuePage>.Success(items);
+              }) 
               .WithOpenApi();
     }
 }

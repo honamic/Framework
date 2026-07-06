@@ -1,6 +1,7 @@
 ﻿using Honamic.Framework.Application.Authorizes;
 using Honamic.Framework.Application.Extensions;
 using Microsoft.Extensions.DependencyInjection;
+using TodoSample.Application.Todos;
 using TodoSample.Application.Todos.CommandHandlers;
 using TodoSample.Application.Todos.QueryHandlers;
 using TodoSample.Domain.Extensions;
@@ -16,6 +17,7 @@ public static class TodoApplicationServiceCollection
         DynamicPermissionRegistry.RegisterAssemblies(typeof(TodoConstants).Assembly, typeof(TodoApplicationServiceCollection).Assembly);
 
         services.AddTodoDomainServices();
+        services.AddScopeValueProvider<TodoScopeValueProvider>();
 
         var AutoScanAndRegisterHandlers = true;
 
