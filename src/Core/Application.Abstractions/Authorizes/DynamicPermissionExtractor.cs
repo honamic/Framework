@@ -35,6 +35,7 @@ public static class DynamicPermissionExtractor
                     {
                         Name = scope.Name,
                         DisplayName = scope.DisplayName ?? scope.Name,
+                        ValueSourceKey= scope.ValueSourceKey,
                         Description = scope.Description
                     }).ToList(),
                     FieldPermissions = fieldAttrs.Select(field => new DynamicFieldPermissionModel

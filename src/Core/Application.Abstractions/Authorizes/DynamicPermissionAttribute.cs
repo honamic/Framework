@@ -17,11 +17,18 @@ public sealed class ScopeDynamicPermissionAttribute : Attribute
     public string? DisplayName { get; }
     public string? Description { get; set; }
 
-    public ScopeDynamicPermissionAttribute(string name, string? displayName = null, string? description = null)
+    /// <summary>
+    /// کلید منبع مقادیر این scope برای انتخاب‌گر داینامیک UI.
+    /// null/خالی = ورود دستی مقدار.
+    /// </summary>
+    public string? ValueSourceKey { get; set; }
+
+    public ScopeDynamicPermissionAttribute(string name, string? displayName = null, string? description = null, string? valueSourceKey = null)
     {
         Name = name;
         DisplayName = displayName;
         Description = description;
+        ValueSourceKey = valueSourceKey;
     }
 }
 

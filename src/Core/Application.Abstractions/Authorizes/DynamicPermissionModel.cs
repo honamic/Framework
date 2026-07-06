@@ -19,6 +19,8 @@ public class DynamicScopePermissionModel
 
     public string DisplayName { get; set; } = default!;
 
+    public string? ValueSourceKey { get; set; }
+
     public string? Description { get; set; }
 
 }
