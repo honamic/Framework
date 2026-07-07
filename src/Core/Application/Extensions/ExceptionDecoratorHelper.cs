@@ -5,6 +5,16 @@ namespace Honamic.Framework.Application.Extensions;
 
 internal static class ExceptionDecoratorHelper
 {
+    public static bool IsNonBusinessException(Exception ex)
+    {
+        // Business/expected exceptions (validation, not-found, auth, forbidden) are turned into
+        // meaningful results and should not be logged as unhandled errors. Everything else is
+        // an unexpected (non-business) exception that must be logged.
+        return ex is not (BusinessException
+            or AuthenticationRequiredException
+            or ForbiddenException);
+    }
+
     public static bool IsResultOriented(Type type)
     {
         if (type == typeof(Result))
