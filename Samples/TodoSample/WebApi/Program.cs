@@ -3,6 +3,8 @@ using Honamic.Framework.Domain;
 using Honamic.Framework.Endpoints.Web.Authorization;
 using Honamic.Framework.Endpoints.Web.Extensions;
 using Honamic.Framework.Tools.IdGeneration;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi;
 using TodoSample.Application.Extensions;
 using TodoSample.Persistence.Extensions;
 using TodoSample.QueryModels.EntityFramework.Extensions;
@@ -20,7 +22,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(options => options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_1);
     app.UseSwaggerUI();
 }
 
