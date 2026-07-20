@@ -14,6 +14,16 @@ public abstract class QueryDbContext‌Base : DbContext
         ChangeTracker.AutoDetectChangesEnabled = false;
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.HasDbFunction(
+            typeof(CustomDbFunctionsExtensions).GetMethod(nameof(CustomDbFunctionsExtensions.SwitchOffset))!)
+        .HasName("SWITCHOFFSET")
+        .IsBuiltIn();
+
+        base.OnModelCreating(modelBuilder);
+    }
+
 
     #region SaveChanges
     public override int SaveChanges()
